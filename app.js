@@ -25,4 +25,5 @@ app.use("/", require(__dirname + "/router/index"));
 // @route	/admin
 app.use("/admin", require(__dirname + "/router/admin"));
 
-app.listen(5000, ()=> console.log("started app at port 5000"));
+const port = process.env.PORT || 5000;
+app.listen(port, ()=> console.log("started app at port 5000"));
