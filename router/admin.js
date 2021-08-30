@@ -1,7 +1,7 @@
 const _bird = require(__dirname + "../../middleware/messageBird");
-const _page = require(__dirname + "../../middleware/Page");
-const upload = require(__dirname + "../../config/multer");
 const ImagesDB = require(__dirname + "../../model/Images");
+const _page = require(__dirname + "../../middleware/page");
+const upload = require(__dirname + "../../config/multer");
 const Books = require(__dirname + "../../model/Books");
 const Shelf = require(__dirname + "../../model/Shelf");
 const express = require("express");
