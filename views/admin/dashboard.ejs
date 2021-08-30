@@ -1,0 +1,56 @@
+<%- include("../partials/head") %>
+
+	<body id="page-top" style="padding-left: 0%;">
+		<!-- Page Content-->
+		<div id="bubble" class="container p-md-2">
+			<!-- My Books-->
+			<section id="books">
+				<div class="">
+					<div class="d-flex justify-content-between align-items-center my-5">
+						<h2 class="">Add A Book</h2>
+						<a href="/home#books" class="" target="_blank" rel="noopener noreferrer">
+							<button type="button" class="btn btn-primary text-white"><i class="fa fa-arrow-left"></i>
+								Back</button>
+						</a>
+					</div>
+					<div class="row d-flex justify-content-center align-items-center">
+						<div class="col-md-4 my-3">
+							<h5>Add a new book</h5>
+							<form class="form-inline" action="/admin/dashboard" method="POST" enctype="multipart/form-data">
+								<div class="form-group">
+									<label for="title" class="mr-sm-2">Title:</label>
+									<input type="text" class="form-control mb-2 mr-sm-2" name="title" id="title">
+								</div>
+								<div class="form-group">
+									<label for="price" class="mr-sm-2">Price:</label>
+									<input type="text" class="form-control mb-2 mr-sm-2" name="price" id="price">
+								</div>
+								<div class="form-group">
+									<label for="length" class="mr-sm-2">Length:</label>
+									<input type="number" class="form-control mb-2 mr-sm-2" name="length" id="length">
+								</div>
+								<div class="form-group">
+									<label for="book" class="mr-sm-2">Book:</label>
+									<input type="file" class="form-control mb-2 mr-sm-2" name="book" id="book" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+									text/plain, application/pdf" required>
+								</div>
+								<div class="form-group">
+									<label for="image" class="mr-sm-2">Image of book:</label>
+									<input type="file" class="form-control mb-2 mr-sm-2" name="image" id="image" accept="image/*" required>
+								</div>
+								<div class="form-group">
+									<label for="description">About:</label>
+									<textarea class="form-control" rows="5" name="description"
+										id="description"></textarea>
+								</div>
+								<button type="submit" class="btn btn-primary text-white mt-4">Submit</button>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<%- include("../components/modal") %>
+		<%- include("../components/messageBird") %>
+			<%- include("../partials/footer") %>
+			<%- include("../partials/scripts") %>

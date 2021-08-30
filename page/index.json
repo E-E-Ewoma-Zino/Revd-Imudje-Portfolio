@@ -1,0 +1,54 @@
+{
+	"title": {
+		"home": "Revd Joseph G.O. Imudje",
+		"books": "My Books",
+		"error": {
+			"404": "Page Not Found",
+			"500": "Server Error"
+		}
+	},
+	"aboutMe": {
+		"name": {
+			"fullname": "Revd Joseph G.O. Imudje",
+			"eachName": [
+				"Revd Joseph",
+				"G.O. Imudje"
+			]
+		},
+		"address": "5 Ugboloposo · Effurun Warri, Delta State 320012",
+		"phoneNo": "08021286282",
+		"email": "daddyimudje@gmail.com",
+		"facebook": "www.facebook.com/imudje",
+		"whatsapp": "090290298762",
+		"body": [
+			"The Revd. Joseph Gentle Omohow Imudje is a Priest in ST. LUKE's Ugbolokposo. He studied at St. Paul University college Awka. He is done with his studies at Immanuel College of Theology, Ibadan in affiliation with the  University of Ibadan.",
+			"He served at St. Peters Anglican Church Warri, Warri Diocese. He hails from Unenurhie Town in Evwreni Clan, Ugheli North Local Government Area Delta State Nigeria. He was bapitzed with the Holy Spirit on 11th September, 1998. He has since then continued to enjoy the in-filling of the Holy Spirit.",
+			"He is an anointed charismatic preacher and teacher of the Gospel of our Lord Jesus Christ. He is loaded with inspiration for evangelistic preaching. He is a seasoned revival preacher in the body of Christ. He is blessed with a godly Wife-Mrs. Pauline U. Imudje and with children."
+		]
+	},
+	"belives": [
+		{
+			"title": "Preaching and Teaching",
+			"subTitle": "Spiritual guidance",
+			"body": "According to Churchleaders.com, the primary duty of a pastor is to spread the word of God and shepherd followers seeking spiritual guidance, as taught in 1 Peter 5:2-4. In fulfillment of their calling, pastors dedicate themselves to studying the Bible and preaching.",
+			"date": "March 2020"
+		},
+		{
+			"title": "Performing Rites and Holding Services",
+			"subTitle": "Pastoral responsibilities ",
+			"body": "Consistent with their faith tradition, pastors may perform baptisms, confirmations and marriages. They make an effort to get to know their congregants and work to strengthen family ties. Personal connections are helpful when praying with the sick and comforting loved ones at memorial services and funerals. Their job requires pastors to respond 24/7 when tragedy strikes a family or a church member becomes gravely ill and asks to see their priest or minister. \nPastoral responsibilities extend to holding worship services throughout the liturgical year.",
+			"date": "December 2020"
+		},
+		{
+			"title": "Overseeing Administrative Functions",
+			"subTitle": "Executive pastoral duties",
+			"body": "As the senior leader of a church, a pastor assumes administrative oversight of business operations and facility upkeep. They must act in good faith and follow the constitution and by-laws of the church in carrying out their executive pastoral duties. For example, Bethlehem Baptist Church has constitutional provisions regarding accounting, fundraising and permitted indebtedness that define what pastors can and cannot do in their role. \nDepending on church rules, pastors may make independent personnel decisions to hire, discipline or fire church staff such as housekeepers, administrative assistants, bookkeepers and custodians.",
+			"date": "July 2021"
+		}
+	],
+	"acheivements": [
+		"Graduate at St. Paul University college Awka.",
+		"Graduates at the Immanuel College of Theology.",
+		"Author of the book 'My People Called By My Name' and 3 others"
+	]
+}

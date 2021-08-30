@@ -1,0 +1,121 @@
+<%- include("partials/head") %>
+
+	<body id="page-top" style="padding-left: 0%;">
+		<!-- Page Content-->
+		<div id="bubble" class="container p-md-2">
+			<!-- My Books-->
+			<section id="books">
+				<div class="">
+					<div class="d-flex justify-content-between align-items-center mb-5">
+						<h2 class="">My Books</h2>
+						<a href="/books" rel="noopener noreferrer">
+							<button type="button" class="btn btn-secondary text-white"><i
+									class="fa fa-arrow-left"></i></button>
+						</a>
+					</div>
+					<h5>Most popular books</h5>
+					<div class="row">
+						<div class="col-md-4 my-3">
+							<div class="card">
+								<img src="/<%= book.image.path %> " class="">
+							</div>
+						</div>
+						<% if(!hasPayed){ %>
+							<div class="col-md-8 d-block my-3">
+								<!-- FLUTTERWAVE SCRIPT FOR PAYMENT -->
+								<h4><small class="lead">Price:</small> $<span id="price">
+										<%= book.price %>
+									</span> </h4>
+								<form id="buy" class="w-100 mw-md-50" method="POST"
+									action="/books/<%= book.title %>?pq=<%= book._id %>">
+									<script src="https://checkout.flutterwave.com/v3.js"></script>
+									<div class="form-group">
+										<input type="text" class="form-control mb-2 mr-sm-2" name="name" id="name"
+											placeholder="Name">
+									</div>
+									<div class="form-group">
+										<input type="email" class="form-control mb-2 mr-sm-2" name="email" id="email"
+											placeholder="Email">
+										<input type="hidden" id="status" name="status">
+										<input type="hidden" id="transaction_id" name="transaction_id">
+										<input type="hidden" id="tx_ref" name="tx_ref">
+									</div>
+									<button type="button" class="btn btn-primary text-white mt-3"
+										onclick="makePayment()">Buy Now</button>
+								</form>
+							</div>
+							<% }else{ %>
+								<div class="col-md-8 d-block my-3">
+									<a href="#x" class="btn btn-primary text-white mt-3"
+										download="/<%= book.shelf.path %>">Download Now<i
+											class="fa fa-download"></i></a>
+									</form>
+								</div>
+								<% } %>
+					</div>
+					<div class="row align-items-center">
+						<div class="col-md-12 my-3">
+							<p class="lead dropcap">
+								<%= book.description %>
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<%- include("components/modal") %>
+			<%- include("components/messageBird") %>
+				<%- include("partials/footer") %>
+					<%- include("partials/scripts") %>
+						<script>
+							function makePayment(callback) {
+								try {
+									console.log("ent", document.getElementById("email").value, document.getElementById("name").value, document.getElementById("price").innerHTML);
+									FlutterwaveCheckout({
+										public_key: "FLWPUBK_TEST-88cd4a7dc50e807c5da141b586b3a656-X",
+										tx_ref: "RX1" + Math.floor(Math.random() * 9999999) + 1,
+										amount: document.getElementById("price").innerHTML,
+										currency: "NGN",
+										customer: {
+											email: document.getElementById("email").value,
+											name: document.getElementById("name").value
+										},
+										callback: function (data) {
+											document.getElementById("status").value = data.status;
+											document.getElementById("transaction_id").value = data.transaction_id;
+											document.getElementById("tx_ref").value = data.tx_ref;
+											// save the data to localstorage
+											// using an array
+											const payments = [];
+											payments.push({
+												bookId: "<%= book._id %>",
+												status: data.status,
+												transaction_id: data.transaction_id,
+												tx_ref: data.tx_ref
+											});
+											// convert it to json then store in LS
+											window.localStorage.setItem("payments", JSON.stringify(payments));
+											// submit form
+											document.getElementById("buy").submit();
+										},
+										onclose: function () {
+											// close modal
+											console.log("closed function");
+										},
+										customizations: {
+											title: "Rev Imudeje",
+											description: "Payment for book",
+										},
+									});
+								} catch (err) {
+									console.log(err);
+									if (err == "ReferenceError: FlutterwaveCheckout is not defined") messager({
+										replace: ["success", "danger"],
+										message: "Little or No Connection!\n<i class='fa fa-refresh' aria-hidden='true'></i> Refresh!"
+									});
+								}
+							}
+
+							window.location.href = window.location.href.slice(0, window.location.href.search("&tr=")) + "&tr=" + data.transaction_id;
+						</script>

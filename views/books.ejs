@@ -1,0 +1,43 @@
+<%- include("partials/head") %>
+<body id="page-top" style="padding-left: 0%;">
+	<!-- Page Content-->
+	<div id="bubble" class="container p-md-2">
+		<!-- My Books-->
+		<section id="books">
+			<div class="">
+				<div class="d-flex justify-content-between align-items-center my-5">
+					<h2 class="">My Books</h2>
+					<a href="/home#books" class="" target="_self" rel="noopener noreferrer">
+						<button type="button" class="btn btn-secondary text-white"><i class="fa fa-home"></i> </button>
+					</a>
+				</div>
+				<h5>Most popular books</h5>
+				<div class="row d-flex justify-content-center align-items-center">
+					<% books.forEach(book => { %>
+						<div class="col-md-4 my-3">
+							<div class="card">
+								<img src="/<%= book.image.path %> " class="">
+								<div class="card-body">
+									<div class="d-flex justify-content-between align-items-center">
+										<h6><%= book.title %> </h6>
+										<button type="button" class="btn rounded-circle mb-2"
+											style="width: 2rem; height: 2rem;" onclick="openModal({title: '<%= book.title %>', body: '<%= book.description %>'})"><i class="fa fa-info"></i> </button>
+									</div>
+									<span class="mb-5"><%= book.description.substr(0, 9) + "..." %> </span>
+									<div class="d-flex justify-content-between align-items-center mt-3">
+										<a href="/books/<%= book.title %>?pq=<%= book.id %>&q=<%= Math.floor(Math.random() * books.length + 1) %> " class="btn btn-primary text-white" target="_parent"
+											rel="noopener noreferrer" onmouseenter="getTransactionId(this, '<%= book._id %>')">Buy Now</a>
+										<span class="price">$<%= book.price %> </span>
+									</div>
+								</div>
+							</div>
+						</div>
+					<% }); %>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<%- include("components/modal") %>
+	<%- include("partials/footer") %>
+		<%- include("partials/scripts") %>
