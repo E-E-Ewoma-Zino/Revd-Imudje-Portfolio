@@ -6771,6 +6771,12 @@ textarea.form-control-lg {
 	top: 50%!important
 }
 
+/* my code */
+.top-40 {
+	top: 40%!important
+}
+/*  */
+
 .top-100 {
 	top: 100%!important
 }
@@ -8875,8 +8881,8 @@ textarea.form-control-lg {
 	.position-sticky-md {
 		position: sticky!important
 	}
-	.end-md-0 {
-		right: 0!important
+	.end-md-10 {
+		right: 10%!important
 	}
 	/*  */
 	.p-md-0 {
