@@ -1,4 +1,5 @@
 const _bird = require(__dirname + "../../middleware/messageBird");
+const _books = require(__dirname + "../../middleware/books");
 const ImagesDB = require(__dirname + "../../model/Images");
 const _page = require(__dirname + "../../middleware/page");
 const upload = require(__dirname + "../../config/multer");
@@ -10,7 +11,7 @@ const router = express.Router();
 
 // @desc	Admin Router
 router.get("/", (req, res) => {
-	res.redirect("/admin/dashboard");
+	res.redirect("/admin/dashboard");  
 });
 
 // @desc	Dashboard Router
@@ -26,15 +27,32 @@ router.get("/dashboard", (req, res) => {
 				page: page,
 				bird: _bird.fly
 			});
+		}
+	});
+});
+
+// @desc	Add New Book Router
+// @route	get
+router.get("/addbook", (req, res) => {
+	_page.getPage((page_err, page) => {
+		if (page_err) {
+			console.log(page_err);
+		}
+		else {
+			res.render("admin/addbook", {
+				title: "admin",
+				page: page,
+				bird: _bird.fly
+			});
 			// res.send(page);
 		}
 	});
 });
 
 
-// @desc	Dashboard Router
+// @desc	Add New Book Router
 // @route	post
-router.post("/dashboard", upload.fields([{ name: "book" }, { name: "image" }]), (req, res) => {
+router.post("/addbook", upload.fields([{ name: "book" }, { name: "image" }]), (req, res) => {
 	console.log("it", req.body);
 	console.log("it", req.files.book[0]);
 	// variable to check if image and shelf have finished saving
@@ -91,5 +109,67 @@ router.post("/dashboard", upload.fields([{ name: "book" }, { name: "image" }]), 
 		}
 	});
 });
+
+// @desc	All Books
+// @route	Get admin/books
+router.get("/books", (req, res)=>{
+	_page.getPage((page_err, page) => {
+		if (page_err) {
+			console.log(page_err);
+			error500(req, res);
+		}
+		else {
+			_books.allBooks((err, books) => {
+				if (err) {
+					console.log(":::", err);
+					error500(req, res);
+				}
+				else {
+					res.render("admin/books", {
+						title: page.title.books,
+						page: page,
+						bird: _bird.fly,
+						books: books? books : []
+					});
+				}
+			});
+		}
+	});
+});
+
+
+// @desc	Edit Home Router
+// @route	Get admin/editpage
+router.get("/editpage", (req, res) => {
+	_page.getPage((page_err, page) => {
+		if (page_err) {
+			console.log(page_err);
+			error500(req, res);
+		}
+		else {
+			_books.allBooks((err, books) => {
+				if (err) {
+					console.log(":::", err);
+					error500(req, res);
+				}
+				else {
+					res.render("admin/editpage", {
+						title: page.title.home,
+						page: page,
+						bird: _bird.fly,
+						books: books? books : []
+					});
+				}
+			});
+		}
+	});
+});
+
+// @desc	Edit Home Router
+// @route	POST admin/editpage
+router.post("/editpage", (req, res) => {
+	res.redirect("back");
+});
+
 
 module.exports = router;

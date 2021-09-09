@@ -4,7 +4,6 @@ const _books = require(__dirname + "../../middleware/books");
 const _client = require(__dirname + "../../middleware/client");
 const _page = require(__dirname + "../../middleware/page");
 const express = require("express");
-const { hasPayed } = require("../middleware/client");
 
 const router = express.Router();
 

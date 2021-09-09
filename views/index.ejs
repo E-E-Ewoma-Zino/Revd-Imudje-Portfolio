@@ -1,180 +1,433 @@
-<%- include("partials/head") %>
+<!DOCTYPE html>
+<html lang="en">
 
-	<body id="page-top">
-		<%- include("partials/sidenav") %>
-			<!-- Page Content-->
-			<div class="container-fluid p-0">
-				<!-- About-->
-				<section class="resume-section" id="about">
-					<div class="resume-section-content">
-						<h1 class="mb-0">
-							<%= page.aboutMe.name.eachName[0] %>
-								<span class="text-primary">
-									<%= page.aboutMe.name.eachName[1] %>
-								</span>
-						</h1>
-						<div class="subheading mb-5">
-							<%= page.aboutMe.address %> · <%= page.aboutMe.phoneNo %> ·
-									<a href="mailto:<%= page.aboutMe.email %>">
-										<%= page.aboutMe.email %>
-									</a>
-						</div>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Rev Portfolio</title>
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;600&family=Source+Sans+Pro:wght@400;600&display=swap"
+		rel="stylesheet">
+	<!-- FontAwesome -->
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+	<!-- Bootstraps CSS / Main CSS -->
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
 
-						<% page.aboutMe.body.forEach(text=> { %>
-							<p class="lead mb-5">
-								<%= text %>
-							</p>
-							<% }); %>
-								<div class="social-icons">
-									<ul class="list-inline dev-icons" style="font-size: 1.9rem;">
-										<li class="list-inline-item">
-											<a href="http://<%=  page.aboutMe.facebook  %>" target="_blank"
-												rel="noopener noreferrer" class="social-icon">
-												<i class="fab fa-facebook"></i>
-											</a>
-										</li>
-										<li class="list-inline-item">
-											<a href="tel:<%=  page.aboutMe.whatsapp  %>" rel="noopener noreferrer"
-												class="social-icon">
-												<i class="fab fa-whatsapp"></i>
-											</a>
-										</li>
-										<li class="list-inline-item">
-											<a href="mailto:<%=  page.aboutMe.email  %>" rel="noopener noreferrer"
-												class="social-icon">
-												<i class="far fa-envelope"></i>
-											</a>
-										</li>
-										<li class="list-inline-item">
-											<a href="tel:<%=  page.aboutMe.phoneNo  %>" rel="noopener noreferrer"
-												class="social-icon">
-												<i class="fa fa-phone"></i>
-											</a>
-										</li>
-									</ul>
-								</div>
-					</div>
-				</section>
-				<hr class="m-0" />
-				<!-- Belives-->
-				<section class="resume-section" id="belives">
-					<div class="resume-section-content">
-						<h2 class="mb-5">Belives</h2>
-						<% page.belives.forEach(belive=> { %>
-							<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-								<div class="flex-grow-1">
-									<!-- Title not needed -->
-									<!-- <h3 class="mb-0"><%# belive.title %></h3> -->
-									<div class="subheading mb-3">
-										<%= belive.subTitle %>
-									</div>
-									<p>
-										<%= belive.body %>
-									</p>
-								</div>
-								<div class="flex-shrink-0"><span class="text-primary">
-										<%= belive.date %>
-									</span></div>
-							</div>
-							<% }); %>
-					</div>
-				</section>
-				<hr class="m-0" />
-				<!-- Acheivements-->
-				<section class="resume-section" id="acheivements">
-					<div class="resume-section-content">
-						<h2 class="mb-5">Awards & Certifications</h2>
-						<ul class="fa-ul mb-0">
-							<% page.acheivements.forEach(award=> { %>
-								<li>
-									<span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-									<%= award %>
-								</li>
-								<% }); %>
-						</ul>
-					</div>
-				</section>
-				<hr class="m-0" />
-				<!-- My Books-->
-				<section class="resume-section" id="books">
-					<div class="resume-section-content">
-						<h2 class="mb-5">My Books</h2>
-						<% if(books.length){ %>
-							<h5>Most popular</h5>
-							<div class="row d-flex">
-								<% for (let i=0; i < books.length; i++) { %>
-									<% if(i> 2) break; %>
-										<% const book=books[i]; %>
-											<div class="col-md-4 my-3">
-												<div class="card">
-													<img src="/<%= book.image.path %> " class="">
-													<div class="card-body">
-														<div class="d-flex justify-content-between align-items-center">
-															<h6>
-																<%= book.title %>
-															</h6>
-															<button type="button" class="btn rounded-circle mb-2"
-																style="width: 2rem; height: 2rem;"
-																onclick="openModal({title: '<%= book.title %>', body: '<%= book.description %>'})"><i
-																	class="fa fa-info"></i> </button>
-														</div>
-														<span class="mb-5">
-															<%= book.description.substr(0, 9) + "..." %>
-														</span>
-														<div
-															class="d-flex justify-content-between align-items-center mt-3">
-															<a href="/books/<%= book.title %>?pq=<%= book.id %>&q=<%= Math.floor(Math.random() * books.length + 1) %>"
-																class="btn btn-primary text-white" target="_parent"
-																rel="noopener noreferrer"
-																onmouseenter="getTransactionId(this, '<%= book._id %>')">Buy
-																Now</a>
-															<span class="price">$<%= book.price %> </span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<% } %>
-							</div>
-							<div class="d-flex justify-content-start my-3">
-								<a href="books" class="" target="_blank" rel="noopener noreferrer">
-									<button type="button" class="btn btn-secondary text-white mb-2">See All <i
-											class="fa fa-arrow-right"></i> </button>
-								</a>
-							</div>
-							<% }else{ %>
-								<h4>No books to display yet!</h4>
-								<% } %>
-					</div>
-				</section>
-				<hr class="m-0" />
-				<!-- Contact Me-->
-				<section class="resume-section" id="contact">
-					<div class="resume-section-content">
-						<h2 class="mb-5">Contact Me</h2>
-						<div class="subheading mb-3">Send a mail</div>
-						<div class="row">
-							<form class="form-inline" action="/action_page.php">
-								<label for="email" class="mr-sm-2">Email address:</label>
-								<input type="email" class="form-control mb-2 mr-sm-2" id="email">
-								<label for="fullname" class="mr-sm-2">Full Name:</label>
-								<input type="text" class="form-control mb-2 mr-sm-2" id="fullname">
-								<div class="form-group">
-									<label for="message">Message:</label>
-									<textarea class="form-control" rows="5" id="message"></textarea>
-								</div>
-								<div class="form-check mb-2 mr-sm-2">
-									<label class="form-check-label">
-										<input class="form-check-input" type="checkbox"> Remember me
-									</label>
-								</div>
-								<button type="submit" class="btn btn-primary text-white mb-2">Submit</button>
-							</form>
-						</div>
-					</div>
-				</section>
+<body>
+	<!-- Nav -->
+	<nav id="navbar" class="navbar navbar-expand-md navbar-dark position-fixed-md top-0 w-100">
+		<div class="container d-flex justify-content-between align-items-center pt-2">
+			<a class="navbar-brand" href="#">
+				<img src="/assets/img/profile.jpg" alt="profile" class="img-fluid rounded-circle" width="50vw"
+					height="50vw">
+				<div class="navbar-name d-inline-block">Revd Imudje</div>
+			</a>
+			<button class="navbar-toggler border-0" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavbar">
+				<i class="fas fa-ellipsis-v"></i>
+			</button>
+			<div class="collapse navbar-collapse justify-content-md-end p-3" id="collapsibleNavbar">
+				<ul class="navbar-nav d-flex justify-content-md-between align-items-md-center w-md-75">
+					<li class="nav-item">
+						<a class="nav-link" href="/#About">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/#Belives">Belives</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/#Acheivements">Acheivements</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/#Contact">Contact</a>
+					</li>
+					<li class="nav-item rounded-pill text-center bg-p">
+						<a class="nav-link" href="/#Books"><strong>Articles</strong></a>
+					</li>
+				</ul>
 			</div>
+		</div>
+	</nav>
+
+	<!-- Header -->
+	<section>
+		<header>
+			<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+						aria-current="true" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+						aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+						aria-label="Slide 3"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active" data-bs-interval="6000">
+						<img src="/assets/img/book1.png" class="d-block w-100" alt="...">
+						<div class="position-absolute top-50 translate-middle-y end-md-0 text-light mw-md-50 px-3">
+							<h5>First slide label</h5>
+							<p>Some representative placeholder content for the first slide.</p>
+							<a href="#x" class="btn btn-primary text-light rounded-pill d-none d-md-block w-30">View
+								Prayers</a>
+						</div>
+					</div>
+					<div class="carousel-item" data-bs-interval="6000">
+						<img src="/assets/img/book2.png" class="d-block w-100" alt="...">
+						<div class="position-absolute top-50 translate-middle-y end-md-0 text-light mw-md-50 px-3">
+							<h5>First slide label</h5>
+							<p>Some representative placeholder content for the first slide.</p>
+							<a href="#x" class="btn btn-primary text-light rounded-pill d-none d-md-block w-30">View
+								Prayers</a>
+						</div>
+					</div>
+					<div class="carousel-item" data-bs-interval="6000">
+						<img src="/assets/img/book3.png" class="d-block w-100" alt="...">
+						<div class="position-absolute top-50 translate-middle-y end-md-0 text-light mw-md-50 px-3">
+							<h5>First slide label</h5>
+							<p>Some representative placeholder content for the first slide.</p>
+							<a href="#x" class="btn btn-primary text-light rounded-pill d-none d-md-block w-30">View
+								Prayers</a>
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+					data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+					data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</header>
+	</section>
+	<!-- Main section -->
+	<!-- About Me -->
+	<section>
+		<div class="mt-5">
+			<div id="About" class="row no-gutters justify-content-center">
+				<div class="container my-5">
+					<div class="heading">
+						<h2 class="text-center text-dark">A Little About Me</h2>
+					</div>
+					<div class="design d-flex justify-content-center align-items-center w-100">
+						<hr class="hr w-10 bg-p">
+						<div class="d-flex justify-content-center align-items-center rounded-circle border border-p text-p"
+							style="width: 2rem; height: 2rem;">R</div>
+						<hr class="hr w-10 bg-p">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<img class="img-fluid" src="assets/img/book2.png" alt="img">
+				</div>
+				<div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+					<div class="container">
+						<div class="heading">
+							<h3 class="text-dark">Lorem, ipsum di deleniti sequi vel, labore reiciendis beatae.</h3>
+						</div>
+						<div class="text-block">
+							<p class="text-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
+								molestiae consectetur, inventore minima quia quibusdam saepe? Corrupti laboriosam culpa
+								placeat perferendis aspernatur possimus cumque! Facilis tenetur natus maxime quod
+								voluptate.
+							</p>
+						</div>
+						<div class="text-block">
+							<p class="text-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
+								molestiae consectetur, inventore minima quia quibusdam saepe? Corrupti laboriosam culpa
+								placeat perferendis aspernatur possimus cumque! Facilis tenetur natus maxime quod
+								voluptate.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<!-- Belives -->
+	<section>
+		<div id="Belives" class="bg-img p-2 p-md-5 w-100">
+			<div class="container d-flex flex-column justify-content-center align-items-center">
+				<div class="heading mb-3">
+					<h3 class="text-light">Lorem, ipsum di deleniti sequi vel, labore reiciendis beatae.</h3>
+				</div>
+				<div class="text-block text-center">
+					<p class="text-light">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas molestiae
+						consectetur, inventore minima quia quibusdam saepe? Corrupti laboriosam culpa placeat
+						perferendis aspernatur possimus cumque! Facilis tenetur natus maxime quod voluptate.</p>
+				</div>
+			</div>
+			<div class="container-fluid container-md mt-3">
+				<div class="d-flex flex-row flex-wrap justify-content-evenly align-items-stretch">
+					<div
+						class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0">
+						<img class="card-img-top mw-30 mt-3" src="/assets/img/cross.png" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title text-center">The Cross</h5>
+						</div>
+					</div>
+					<div
+						class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0">
+						<img class="card-img-top mw-30 mt-3" src="/assets/img/bell.png" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title text-center">The Bell</h5>
+						</div>
+					</div>
+					<div
+						class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0">
+						<img class="card-img-top mw-30 mt-3" src="/assets/img/bible.png" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title text-center">The Bible</h5>
+						</div>
+					</div>
+					<div
+						class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0">
+						<img class="card-img-top mw-30 mt-3" src="/assets/img/church.png" alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title text-center">The Church</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Acheivments -->
+	<section>
+		<div id="Acheivements" class="container my-5">
+			<div class="container my-5">
+				<div class="heading">
+					<h2 class="text-center text-dark">Acheivements</h2>
+				</div>
+				<div class="design d-flex justify-content-center align-items-center w-100">
+					<hr class="hr w-10 bg-p">
+					<div class="d-flex justify-content-center align-items-center rounded-circle border border-p text-p"
+						style="width: 2rem; height: 2rem;">R</div>
+					<hr class="hr w-10 bg-p">
+				</div>
+				<div class="text-block">
+					<p class="container text-center text-dark">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nostrum architecto repellat
+						ipsa facilis commodi incidunt aut nemo, voluptatum error impedit, earum ducimus! Iste qui
+						nesciunt optio dolor odio ipsam!
+					</p>
+				</div>
+			</div>
+			<div class="container center-sqr">
+				<div class="row no-gutters justify-content-center flex-row-reverse">
+					<div class="col-md-6">
+						<img class="img-fluid" src="assets/img/book2.png" alt="img">
+					</div>
+					<div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+						<div class="container">
+							<div class="heading">
+								<h3 class="text-dark">Lorem, ipsum di deleniti sequi vel, labore reiciendis beatae.</h3>
+							</div>
+							<div class="text-block">
+								<span class="text-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+									Voluptas
+									molestiae consectetur, inventore minima quia quibusdam saepe? Corrupti laboriosam
+									culpa placeat perferendis aspernatur possimus cumque! Facilis tenetur natus maxime
+									quod voluptate.</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--  -->
+				<div class="row no-gutters justify-content-center flex-row">
+					<div class="col-md-6">
+						<img class="img-fluid" src="assets/img/book2.png" alt="img">
+					</div>
+					<div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+						<div class="container">
+							<div class="heading">
+								<h3 class="text-dark">Lorem, ipsum di deleniti sequi vel, labore reiciendis beatae.</h3>
+							</div>
+							<div class="text-block">
+								<span class="text-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+									Voluptas
+									molestiae consectetur, inventore minima quia quibusdam saepe? Corrupti laboriosam
+									culpa placeat perferendis aspernatur possimus cumque! Facilis tenetur natus maxime
+									quod voluptate.</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Books -->
+	<section>
+		<div id="Books" class="">
+			<div class="container my-5">
+				<div class="heading">
+					<h2 class="text-center text-dark">Get Our Books</h2>
+				</div>
+				<div class="design d-flex justify-content-center align-items-center w-100">
+					<hr class="hr w-10 bg-p">
+					<div class="d-flex justify-content-center align-items-center rounded-circle border border-p text-p"
+						style="width: 2rem; height: 2rem;">R</div>
+					<hr class="hr w-10 bg-p">
+				</div>
+				<div class="text-block">
+					<p class="container text-center text-dark">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nostrum architecto repellat
+						ipsa facilis commodi incidunt aut nemo, voluptatum error impedit, earum ducimus! Iste qui
+						nesciunt optio dolor odio ipsam!
+					</p>
+				</div>
+			</div>
+			<div class="container row d-flex">
+				<div class="col-md-4 my-3">
+					<div class="card">
+						<img src="/assets/img/book2.png" class="img-fluid">
+						<div class="card-body">
+							<div class="d-flex justify-content-between align-items-center">
+								<h6>
+									Title Of Book
+								</h6>
+							</div>
+							<span class="mb-5">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, nam?
+							</span>
+							<div class="d-flex justify-content-between align-items-center mt-3">
+								<a href="/books/" class="btn btn-primary text-white" target="_parent"
+									rel="noopener noreferrer">Read Article</a>
+								<!-- <span class="price">$80</span> -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--  -->
+				<div class="col-md-4 my-3">
+					<div class="card">
+						<img src="/assets/img/book2.png" class="img-fluid">
+						<div class="card-body">
+							<div class="d-flex justify-content-between align-items-center">
+								<h6>
+									Title Of Book
+								</h6>
+							</div>
+							<span class="mb-5">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, nam?
+							</span>
+							<div class="d-flex justify-content-between align-items-center mt-3">
+								<a href="/books/" class="btn btn-primary text-white" target="_parent"
+									rel="noopener noreferrer">Read Article</a>
+								<!-- <span class="price">$80</span> -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--  -->
+				<div class="col-md-4 my-3">
+					<div class="card">
+						<img src="/assets/img/book2.png" class="img-fluid">
+						<div class="card-body">
+							<div class="d-flex justify-content-between align-items-center">
+								<h6>
+									Title Of Book
+								</h6>
+							</div>
+							<span class="mb-5">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, nam?
+							</span>
+							<div class="d-flex justify-content-between align-items-center mt-3">
+								<a href="/books/" class="btn btn-primary text-white" target="_parent"
+									rel="noopener noreferrer">Read Article</a>
+								<!-- <span class="price">$80</span> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact -->
+	<section>
+		<div id="Contact" class="bg-s w-100 mt-5 pb-5 text-light">
+			<div class="container my-5">
+				<div class="heading">
+					<h2 class="text-center text-light">My Contact</h2>
+				</div>
+				<div class="design d-flex justify-content-center align-items-center w-100">
+					<hr class="hr w-10 bg-p">
+					<div class="d-flex justify-content-center align-items-center rounded-circle border border-p text-p"
+						style="width: 2rem; height: 2rem;">R</div>
+					<hr class="hr w-10 bg-p">
+				</div>
+				<div class="text-block">
+					<p class="container text-center text-light">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio dolor odio ipsam!
+					</p>
+				</div>
+			</div>
+			<form action="/" method="post" class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="name">Name address</label>
+							<input type="Name" class="form-control" id="name" placeholder="Enter Name">
+						</div>
+					</div>
+					<!--  -->
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="email">Email address</label>
+							<input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+								placeholder="Enter email">
+							<small id="emailHelp" class="form-text text-light">We'll never share your email with anyone
+								else.</small>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<!--  -->
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">Message</label>
+							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Send a mail..."></textarea>
+						</div>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary mt-3">Submit</button>
+			</form>
+			<!-- Footer -->
+			<div class="d-flex flex-column justify-content-center align-items-center">
+				<hr class="hr w-75">
+				<span class="text-center">&copy; <span id="year"></span> Theme | Made with <i class="fa fa-heart"></i> by <a
+						href="http://www.ewomaetemire.com" target="_blank" class="link text-p text-light-hover">Art In
+						Coding</a></span>
+				<script>window.onload = () => { document.getElementById("year").innerHTML = new Date().getFullYear(); }</script>
+			</div>
+		</div>
+	</section>
 
 
-			<%- include("components/modal") %>
-				<%- include("components/messageBird") %>
-					<%- include("partials/scripts") %>
+
+	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Popper -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<!-- Bootstraps JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+		integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- custom JS -->
+	<script src="/js/scripts.js"></script>
+	<script src="/js/slide.js"></script>
+</body>
+
+</html>

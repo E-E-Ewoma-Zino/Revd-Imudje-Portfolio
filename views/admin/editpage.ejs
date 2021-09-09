@@ -1,0 +1,252 @@
+<%- include("../partials/head") %>
+	<%- include("partials/sidenav") %>
+
+		<body id="page-top">
+			<%- include("partials/sidenav") %>
+				<!-- Page Content-->
+				<div class="container-fluid p-0">
+					<!-- About-->
+					<section class="resume-section" id="about">
+						<form action="/admin/editpage" method="POST">
+							<div class="resume-section-content">
+								<h1 class="mb-0">
+									<%= page.aboutMe.name.eachName[0] %>
+										<span class="text-primary">
+											<%= page.aboutMe.name.eachName[1] %>
+										</span>
+								</h1>
+								<div class="row form-group">
+									<div class="col-md-6">
+										<input type="text" name="name" class="form-control mb-2 mr-sm-2"
+											placeholder="<%= page.aboutMe.name.eachName[0] %>">
+									</div>
+									<div class="col-md-6">
+										<input type="text" name="name" class="form-control mb-2 mr-sm-2"
+											placeholder="<%= page.aboutMe.name.eachName[1] %>">
+									</div>
+								</div>
+								<div class="subheading">
+									<%= page.aboutMe.address %> · <%= page.aboutMe.phoneNo %> ·
+											<a href="mailto:<%= page.aboutMe.email %>">
+												<%= page.aboutMe.email %>
+											</a>
+								</div>
+								<div class="row form-group mb-5">
+									<div class="col-md-12">
+										<label class="mr-sm-2">Edit the address, phone no, and email here <a
+												href="/admin/settings" target="_blank"
+												rel="noopener noreferrer">Settings</a></label>
+									</div>
+								</div>
+
+								<div class="row form-group">
+									<div id="newBodyText"></div>
+								</div>
+								<div class="d-flex justify-content-center align-items-center">
+									<button type="button" id="newBodyBtn"
+										class="btn btn-primary rounded-circle d-flex justify-content-center align-items-center text-white float-right my-2"
+										style="width: 2vw;height: 2vw;"><i class="fa fa-plus"></i></button>
+								</div>
+							</div>
+							<div class="d-flex justify-content-center justify-content-md-end align-items-center mt-4">
+								<button type="submit" class="btn btn-primary text-white float-right">Update</button>
+							</div>
+						</form>
+					</section>
+					<hr class="m-0" />
+					<!-- Belives-->
+					<section class="resume-section" id="belives">
+						<div class="resume-section-content">
+							<h2 class="mb-5">Belives</h2>
+							<% page.belives.forEach(belive=> { %>
+								<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+									<div class="flex-grow-1">
+										<!-- Title not needed -->
+										<!-- <h3 class="mb-0"><%# belive.title %></h3> -->
+										<div class="subheading mb-3">
+											<%= belive.subTitle %>
+										</div>
+										<p>
+											<%= belive.body %>
+										</p>
+									</div>
+									<div class="flex-shrink-0"><span class="text-primary">
+											<%= belive.date %>
+										</span></div>
+								</div>
+								<% }); %>
+						</div>
+					</section>
+					<hr class="m-0" />
+					<!-- Acheivements-->
+					<section class="resume-section" id="acheivements">
+						<div class="resume-section-content">
+							<h2 class="mb-5">Awards & Certifications</h2>
+							<ul class="fa-ul mb-0">
+								<% page.acheivements.forEach(award=> { %>
+									<li>
+										<span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+										<%= award %>
+									</li>
+									<% }); %>
+							</ul>
+						</div>
+					</section>
+					<hr class="m-0" />
+					<!-- My Books-->
+					<section class="resume-section" id="books">
+						<div class="resume-section-content">
+							<h2 class="mb-5">My Books</h2>
+							<% if(books.length){ %>
+								<h5>Most popular</h5>
+								<div class="row d-flex">
+									<% for (let i=0; i < books.length; i++) { %>
+										<% if(i> 2) break; %>
+											<% const book=books[i]; %>
+												<div class="col-md-4 my-3">
+													<div class="card">
+														<img src="/<%= book.image.path %> " class="">
+														<div class="card-body">
+															<div
+																class="d-flex justify-content-between align-items-center">
+																<h6>
+																	<%= book.title %>
+																</h6>
+																<button type="button" class="btn rounded-circle mb-2"
+																	style="width: 2rem; height: 2rem;"
+																	onclick="openModal({title: '<%= book.title %>', body: '<%= book.description %>'})"><i
+																		class="fa fa-info"></i> </button>
+															</div>
+															<span class="mb-5">
+																<%= book.description.substr(0, 9) + "..." %>
+															</span>
+															<div
+																class="d-flex justify-content-between align-items-center mt-3">
+																<a href="/books/<%= book.title %>?pq=<%= book.id %>&q=<%= Math.floor(Math.random() * books.length + 1) %>"
+																	class="btn btn-primary text-white" target="_parent"
+																	rel="noopener noreferrer"
+																	onmouseenter="getTransactionId(this, '<%= book._id %>')">Buy
+																	Now</a>
+																<span class="price">$<%= book.price %> </span>
+															</div>
+														</div>
+													</div>
+												</div>
+												<% } %>
+								</div>
+								<div class="d-flex justify-content-start my-3">
+									<a href="books" class="" target="_blank" rel="noopener noreferrer">
+										<button type="button" class="btn btn-secondary text-white mb-2">See All
+											<i class="fa fa-arrow-right"></i> </button>
+									</a>
+								</div>
+								<% }else{ %>
+									<h4>No books to display yet!</h4>
+									<% } %>
+						</div>
+					</section>
+					<hr class="m-0" />
+					<!-- Contact Me-->
+					<section class="resume-section" id="contact">
+						<div class="resume-section-content">
+							<h2 class="mb-5">Contact Me</h2>
+							<div class="subheading mb-3">Send a mail</div>
+							<div class="row">
+								<form class="form-inline" action="/action_page.php">
+									<label for="email" class="mr-sm-2">Email address:</label>
+									<input type="email" class="form-control mb-2 mr-sm-2" id="email">
+									<label for="fullname" class="mr-sm-2">Full Name:</label>
+									<input type="text" class="form-control mb-2 mr-sm-2" id="fullname">
+									<div class="form-group">
+										<label for="message">Message:</label>
+										<textarea class="form-control" rows="5" id="message"></textarea>
+									</div>
+									<div class="form-check mb-2 mr-sm-2">
+										<label class="form-check-label">
+											<input class="form-check-input" type="checkbox"> Remember me
+										</label>
+									</div>
+									<button type="submit" class="btn btn-primary text-white mb-2">Submit</button>
+								</form>
+							</div>
+						</div>
+					</section>
+				</div>
+
+
+				<%- include("../components/modal") %>
+					<%- include("../components/messageBird") %>
+
+						<script>
+							// this script will be able to add new, delete and display Paragraph to the page body
+							// get the number of Paragraphs
+							let index = Number("<%= page.aboutMe.body.length %>");
+							// get the add btn
+							const newBodyBtn = document.getElementById("newBodyBtn");
+							// get the text area section
+							const newBodyText = document.getElementById("newBodyText");
+
+							// array to store Paragraphs
+							const paragraphs = [];
+
+							// put paragraphs in paragraphs array
+							"<% let ctn = 0 %>";// display all paragraphs in teh page
+							for (let i = 0; i < index; i++) {
+								const newtextArea = document.createElement("div");
+								newtextArea.innerHTML = `
+								<div class="edit-text-block col-md-12">
+								<div class="d-flex justify-content-between align-items-center">
+									<label class="mr-sm-2">Paragraph ${i + 1}: </label>
+									<button type="button" class="deleteBodyBtn btn btn-primary rounded-circle d-flex justify-content-center align-items-center text-white float-right my-2"
+									style="width: 2vw;height: 2vw;"><i class="fa fa-trash"></i></button>
+								</div>
+								<textarea class="form-control" name="bodyText" rows="5" id="message"><%= page.aboutMe.body[ctn] %></textarea>
+								</div>
+								<% ++ctn %>
+								`;
+								
+								paragraphs.push(newtextArea); 
+							}
+
+							// Display Paragraph
+							for (let i = 0; i < paragraphs.length; i++) {
+								// create new text area
+								
+								// put new text area in body
+								newBodyText.append(paragraphs[i]);
+							}
+
+							// Add new Paragraph
+
+							// add event listener to create a new text area
+							newBodyBtn.addEventListener("click", () => {
+								// create new text area
+								const newtextArea = document.createElement("div");
+
+								newtextArea.innerHTML = `<div class="edit-text-block col-md-12">
+											<div class="d-flex justify-content-between align-items-center">
+												<label class="mr-sm-2">Paragraph ${index + 1}: </label>
+												<button type="button" class="deleteBodyBtn btn btn-primary rounded-circle d-flex justify-content-center align-items-center text-white float-right my-2"
+												style="width: 2vw;height: 2vw;"><i class="fa fa-trash"></i></button>
+											</div>
+											<textarea class="form-control" name="bodyText" rows="5" id="message"></textarea>
+											</div>`;
+								// put new text area in body
+								newBodyText.append(newtextArea);
+								// after creating a Paragraph increment indexOfParagraph
+								index++;
+							});
+
+							// Delete Paragraph
+							// get all element that has the delete classname
+							const deleteBodyBtn = document.getElementsByClassName("deleteBodyBtn");
+							// add event listener to delete Paragraph
+							for (let i = 0; i < deleteBodyBtn.length; i++) {
+								const btn = deleteBodyBtn[i];
+
+								btn.addEventListener("click", () => {
+
+								})
+							}
+						</script>
+						<%- include("../partials/scripts") %>
