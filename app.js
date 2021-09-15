@@ -1,5 +1,5 @@
-require("dotenv").config()
-const methodOverride = require("method-override")
+require("dotenv").config();
+const methodOverride = require("method-override");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const passport = require("passport");
