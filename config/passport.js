@@ -13,3 +13,11 @@ module.exports = (passport) => {
 	passport.serializeUser(Users.serializeUser());
 	passport.deserializeUser(Users.deserializeUser());
 }
+
+/* While using this passport you require */
+// passport
+// passport-local
+// A user Schema
+/* In user model file you need */
+// passport-local-mongoose
+// then add this: userSchema.plugin(passportLocalMongoose);

@@ -2,7 +2,7 @@
 module.exports = async (mongoose) => {
 	try {
 		// const connected = await mongoose.connect("mongodb://localhost:27017/newrevDB", {
-			const connected = await mongoose.connect("mongodb+srv://zino:monday27@revdimduje.zu00q.mongodb.net/RevDB?retryWrites=true&w=majority", {
+			const connected = await mongoose.connect(process.env.MONGO_URL, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 			useCreateIndex: true

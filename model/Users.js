@@ -1,4 +1,5 @@
 // The module for the users
+const passportLocalMongoose = require("passport-local-mongoose");
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
@@ -14,5 +15,7 @@ const userSchema = mongoose.Schema({
 		default: Date.now
 	}
 });
+
+userSchema.plugin(passportLocalMongoose);
 
 module.exports = new mongoose.model("User", userSchema);
