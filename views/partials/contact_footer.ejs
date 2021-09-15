@@ -1,0 +1,61 @@
+<!-- Contact / Footer -->
+<!-- Contact -->
+<section>
+    <div id="Contact" class="bg-s w-100 mt-5 pb-5 text-light">
+        <div class="container my-5">
+            <div class="heading">
+                <h2 class="text-center text-light">My Contact</h2>
+            </div>
+            <div class="design d-flex justify-content-center align-items-center w-100">
+                <hr class="hr w-10 bg-p">
+                <div class="d-flex justify-content-center align-items-center rounded-circle border border-p text-p"
+                    style="width: 2rem; height: 2rem;">R</div>
+                <hr class="hr w-10 bg-p">
+            </div>
+            <div class="text-block">
+                <p class="container text-center text-light">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio dolor odio ipsam!
+                </p>
+            </div>
+        </div>
+        <form action="/" method="post" class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Name address</label>
+                        <input type="Name" class="form-control" id="name" placeholder="Enter Name">
+                    </div>
+                </div>
+                <!--  -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                            placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-light">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!--  -->
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Message</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                            placeholder="Send a mail..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+        <!-- Footer -->
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <hr class="hr w-75">
+            <span class="text-center"> Made with <i class="fa fa-heart"></i> by <a href="http://www.ewomaetemire.com"
+                    target="_blank" class="link text-p text-light-hover">Art In
+                    Coding</a>. All Rights Reserved &copy; <span id="year"></span></span>
+            <script>window.onload = () => { document.getElementById("year").innerHTML = new Date().getFullYear(); }</script>
+        </div>
+    </div>
+</section>

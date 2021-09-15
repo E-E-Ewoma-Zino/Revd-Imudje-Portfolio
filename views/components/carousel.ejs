@@ -1,0 +1,51 @@
+<!-- Carousel / Header -->
+<section>
+	<header>
+		<div id="carouselExampleCaptions" class="carousel slide vh-md-100 overflow-hidden" data-bs-ride="carousel">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+					aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+					aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+					aria-label="Slide 3"></button>
+			</div>
+			<div class="carousel-inner">
+				<% for (let i = 1; i <= 3; i++) { %>
+					<% if(i == 1){ %>
+						<div class="carousel-item active" data-bs-interval="6000">
+							<img src="/assets/img/slide<%= i %>.jpg" class="d-block w-100" alt="...">
+							<div class="position-absolute top-40 translate-middle-y end-md-10 text-light mw-md-50 px-3">
+								<h5><%= page.carousel[i-1].title %></h5>
+								<p><%= page.carousel[i-1].body %></p>
+								<a href="#x" class="btn btn-primary text-light rounded-pill d-none d-md-block w-30">View
+									Prayers</a>
+							</div>
+						</div>
+					<% }else{ %>
+					<div class="carousel-item" data-bs-interval="6000">
+						<img src="/assets/img/slide<%= i %>.jpg" class="filter-brightness d-block w-100" alt="...">
+						<div class="position-absolute top-40 translate-middle-y end-md-10 text-light mw-md-50 px-3">
+							<h5><%= page.carousel[i-1].title %></h5>
+								<p><%= page.carousel[i-1].body %></p>
+								<a href="#x" class="btn btn-primary text-light rounded-pill d-none d-md-block w-30">View
+									Prayers</a>
+						</div>
+					</div>
+					<% } %>
+				<% } %> 
+				
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+				data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+				data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+	</header>
+</section>

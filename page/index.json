@@ -46,9 +46,23 @@
 			"date": "July 2021"
 		}
 	],
-	"acheivements": [
+	"achievements": [
 		"Graduate at St. Paul University college Awka.",
 		"Graduates at the Immanuel College of Theology.",
 		"Author of the book 'My People Called By My Name' and 3 others"
+	],
+	"carousel": [
+		{
+			"title": "First slide label",
+			"body": "Some representative placeholder content for the first slide."
+		},
+		{
+			"title": "Second slide label",
+			"body": "Some representative placeholder content for the first slide."
+		},
+		{
+			"title": "Third slide label",
+			"body": "Some representative placeholder content for the first slide."
+		}
 	]
 }

@@ -26,7 +26,8 @@ module.exports = {
 						title: require(__dirname + "../../page/index").title,
 						aboutMe: require(__dirname + "../../page/index").aboutMe,
 						belives: require(__dirname + "../../page/index").belives,
-						acheivements: require(__dirname + "../../page/index").acheivements
+						achievements : require(__dirname + "../../page/index").achievements, 
+						carousel : require(__dirname + "../../page/index").carousel 
 					});
 					newPage.save();
 				}

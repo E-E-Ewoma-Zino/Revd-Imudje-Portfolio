@@ -1,43 +1,72 @@
+<!-- Head -->
 <%- include("partials/head") %>
-<body id="page-top" style="padding-left: 0%;">
-	<!-- Page Content-->
-	<div id="bubble" class="container p-md-2">
-		<!-- My Books-->
-		<section id="books">
-			<div class="">
-				<div class="d-flex justify-content-between align-items-center my-5">
-					<h2 class="">My Books</h2>
-					<a href="/home#books" class="" target="_self" rel="noopener noreferrer">
-						<button type="button" class="btn btn-secondary text-white"><i class="fa fa-home"></i> </button>
-					</a>
-				</div>
-				<h5>Most popular books</h5>
-				<div class="row d-flex justify-content-center align-items-center">
-					<% books.forEach(book => { %>
-						<div class="col-md-4 my-3">
-							<div class="card">
-								<img src="/<%= book.image.path %> " class="">
-								<div class="card-body">
-									<div class="d-flex justify-content-between align-items-center">
-										<h6><%= book.title %> </h6>
-										<button type="button" class="btn rounded-circle mb-2"
-											style="width: 2rem; height: 2rem;" onclick="openModal({title: '<%= book.title %>', body: '<%= book.description %>'})"><i class="fa fa-info"></i> </button>
-									</div>
-									<span class="mb-5"><%= book.description.substr(0, 9) + "..." %> </span>
-									<div class="d-flex justify-content-between align-items-center mt-3">
-										<a href="/books/<%= book.title %>?pq=<%= book.id %>&q=<%= Math.floor(Math.random() * books.length + 1) %> " class="btn btn-primary text-white" target="_parent"
-											rel="noopener noreferrer" onmouseenter="getTransactionId(this, '<%= book._id %>')">Buy Now</a>
-										<span class="price">$<%= book.price %> </span>
+	<!-- Navbar -->
+	<%- include("partials/navbar") %>
+		<!-- Header -->
+
+			<!-- Main section -->
+			<!-- Header / Breadcrumb -->
+			<section>
+				<header class="position-relative mvh-70 overflow-hidden">
+					<img src="/assets/img/slide2.jpg" alt="header" class="img-fluid filter-brightness">
+					<div class="text-block text-center position-absolute top-50 start-50 translate-middle-x">
+						<h1 class="text-light">My Books</h1>
+						<span class="text-light">Home / Books</span>
+					</div>
+				</header>
+			</section>
+			<!-- Books -->
+			<section>
+				<div id="Books" class="mt-5">
+					<div class="container my-5">
+						<div class="heading">
+							<h2 class="text-center text-dark">Get Our Books</h2>
+						</div>
+						<div class="design d-flex justify-content-center align-items-center w-100">
+							<hr class="hr w-10 bg-p">
+							<div class="d-flex justify-content-center align-items-center rounded-circle border border-p text-p"
+								style="width: 2rem; height: 2rem;">R</div>
+							<hr class="hr w-10 bg-p">
+						</div>
+						<div class="text-block">
+							<p class="container text-center text-dark">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nostrum architecto
+								repellat
+								ipsa facilis commodi incidunt aut nemo, voluptatum error impedit, earum ducimus! Iste
+								qui
+								nesciunt optio dolor odio ipsam!
+							</p>
+						</div>
+					</div>
+					<div class="container row d-flex justify-content-center align-items-start">
+						<% books.forEach(book => { %>
+							<!--  -->
+							<div class="col-md-4 my-3">
+								<div class="card">
+									<img src="/<%= book.image.path %>" class="img-fluid">
+									<div class="card-body">
+										<div class="d-flex justify-content-between align-items-center">
+											<h6>
+												<%= book.title %>
+											</h6>
+										</div>
+										<span class="mb-5">
+											<%= book.description.length > 32? book.description.substr(0, 32): book.description %> 
+										</span>
+										<div class="d-flex justify-content-between align-items-center mt-3">
+											<a href="/books/<%= book.title %>?pq=<%= book._id %>&tr=<%= Math.floor(Math.random() * 1233) %>" class="btn btn-primary text-white" target="_parent"
+												rel="noopener noreferrer">Read Article</a>
+											<!-- <span class="price">$80</span> -->
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					<% }); %>
+						<% }); %>
+					</div>
 				</div>
-			</div>
-		</section>
-	</div>
+			</section>
 
-	<%- include("components/modal") %>
-	<%- include("partials/footer") %>
-		<%- include("partials/scripts") %>
+			<!-- Contact / Footer -->
+			<%- include("partials/contact_footer") %>
+				<!-- Scripts -->
+				<%- include("partials/scripts") %>

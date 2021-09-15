@@ -26,22 +26,6 @@ window.onclick = function (event) {
 }
 
 
-// using messageBird
-const messageBox = document.getElementById("littleMessageBox");
-const messageBird = document.getElementById("littleMessage");
-
-// message sender
-function messager(data) {
-	$("#littleMessageBox").fadeIn(() => {
-		setTimeout(() => {
-			$("#littleMessageBox").fadeOut();
-		}, 7000);
-	});
-
-	messageBox.classList.replace(`alert-${data.replace[0]}`, `alert-${data.replace[1]}`);
-	messageBird.innerHTML = data.message;
-}
-
 // this function uses the book id to know if the book has been but by this browser before
 // it will add the transactionId to the link, if the book has been bought before
 function getTransactionId(e, bookId) {
@@ -64,7 +48,6 @@ function getTransactionId(e, bookId) {
 window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
-	console.log("scrolling");
 	if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
 		document.getElementById("navbar").style.padding = ".5rem 0";
 		document.getElementById("navbar").style.backgroundColor = "rgb(0,0,0)";

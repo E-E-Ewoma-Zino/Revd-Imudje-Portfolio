@@ -1,121 +1,249 @@
+<!-- Head -->
 <%- include("partials/head") %>
+	<!-- Navbar -->
+	<%- include("partials/navbar") %>
+		<!-- Header -->
 
-	<body id="page-top" style="padding-left: 0%;">
-		<!-- Page Content-->
-		<div id="bubble" class="container p-md-2">
-			<!-- My Books-->
-			<section id="books">
-				<div class="">
-					<div class="d-flex justify-content-between align-items-center mb-5">
-						<h2 class="">My Books</h2>
-						<a href="/books" rel="noopener noreferrer">
-							<button type="button" class="btn btn-secondary text-white"><i
-									class="fa fa-arrow-left"></i></button>
-						</a>
-					</div>
-					<h5>Most popular books</h5>
-					<div class="row">
-						<div class="col-md-4 my-3">
-							<div class="card">
-								<img src="/<%= book.image.path %> " class="">
+		<!-- Main section -->
+		<!-- Header / Breadcrumb -->
+		<section>
+			<header class="position-relative mvh-70 overflow-hidden">
+				<img src="/assets/img/slide3.jpg" alt="header" class="img-fluid filter-brightness">
+				<div class="text-block text-center position-absolute top-50 start-50 translate-middle-x">
+					<h1 class="text-light">Buy My Books</h1>
+					<span class="text-light">Home / Books / Buy</span>
+				</div>
+			</header>
+		</section>
+		<!-- Books -->
+		<section>
+			<div class="container my-5">
+				<div class="row">
+					<!-- This is a row of three column for book to be sold, description of the book, and other books -->
+					<!-- Book -->
+					<!-- On small screens this page is disabled -->
+					<div class="d-none d-lg-block col-lg-2">
+						<img src="/<%= theBook.image.path %>" class="img-fluid">
+
+						<div class="text-block">
+							<a href="#x" class="btn btn-primary text-white">Buy Now</a>
+						</div>
+						<!-- TODO: ratings later -->
+						<div class="text-block">
+							<small class="text-dark text-muted">Rate This Book</small>
+							<div class="star">
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
 							</div>
 						</div>
-						<% if(!hasPayed){ %>
-							<div class="col-md-8 d-block my-3">
-								<!-- FLUTTERWAVE SCRIPT FOR PAYMENT -->
-								<h4><small class="lead">Price:</small> $<span id="price">
-										<%= book.price %>
-									</span> </h4>
-								<form id="buy" class="w-100 mw-md-50" method="POST"
-									action="/books/<%= book.title %>?pq=<%= book._id %>">
-									<script src="https://checkout.flutterwave.com/v3.js"></script>
-									<div class="form-group">
-										<input type="text" class="form-control mb-2 mr-sm-2" name="name" id="name"
-											placeholder="Name">
-									</div>
-									<div class="form-group">
-										<input type="email" class="form-control mb-2 mr-sm-2" name="email" id="email"
-											placeholder="Email">
-										<input type="hidden" id="status" name="status">
-										<input type="hidden" id="transaction_id" name="transaction_id">
-										<input type="hidden" id="tx_ref" name="tx_ref">
-									</div>
-									<button type="button" class="btn btn-primary text-white mt-3"
-										onclick="makePayment()">Buy Now</button>
-								</form>
-							</div>
-							<% }else{ %>
-								<div class="col-md-8 d-block my-3">
-									<a href="#x" class="btn btn-primary text-white mt-3"
-										download="/<%= book.shelf.path %>">Download Now<i
-											class="fa fa-download"></i></a>
-									</form>
-								</div>
-								<% } %>
 					</div>
-					<div class="row align-items-center">
-						<div class="col-md-12 my-3">
-							<p class="lead dropcap">
-								<%= book.description %>
-							</p>
+					<!-- Description -->
+					<div class="col-md-8 col-lg-6">
+						<!-- This is the book image and buy book section in small screend -->
+						<div class="d-lg-none">
+							<img src="/<%= theBook.image.path %>" class="img-fluid">
+						<div class="text-block">
+							<a href="#x" class="btn btn-primary text-white">Buy Now</a>
+						</div>
+						<div class="text-block">
+							<small class="text-dark text-muted">Rate This Book</small>
+							<!-- TODO -->
+							<div class="star">
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+						</div>
+						</div>
+						<div class="heading">
+							<h2 class="text-dark">Book Name</h2>
+						</div>
+						<div class="text-block d-inline-flex">
+							<span class="text-muted me-3"><%= page.aboutMe.name.fullname %></span>
+							<!-- TODO -->
+							<div class="star">
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+						</div>
+						<!-- TODO -->
+						<div class="text-block">
+							<small class="text-muted">209+ sales</small><span class="text-dark">&nbsp;·&nbsp;</span>
+							<small class="text-muted">120+ reviews</small><span class="text-dark">&nbsp;·&nbsp;</span>
+							<small class="text-muted">10+ currently reading</small>
+						</div>
+						<!-- About Book details -->
+						<div class="text-block mt-3">
+							<p class="text-dark"><%= theBook.description.length > 20? theBook.description.substr(0, 20) + '<span class="text-dark text-muted text-p-hover">Read more...</span>': theBook.description %></p>
+						</div>
+						<hr class="hr w-50">
+						<!-- TODO: Status and pages -->
+						<div class="text-block">
+							<small class="text-dark text-muted">Status: Unpaied</small><br>
+							<small class="text-dark text-muted">Pages: <%= theBook.length %> </small>
+							<small class="text-dark text-muted text-p-hover">More details...</small>
+						</div>
+						<div class="text-block">
+							<small class="text-dark text-muted">Language: English</small><br>
+							<small class="text-dark text-muted">Published: 2016</small>
+						</div>
+						<hr class="hr w-100">
+						<!-- Area for Question and Answer -->
+						<div class="heading">
+							<h6 class="text-dark">Questions and Comments</h6>
+						</div>
+						<!-- TODO: Form to be submited for to the books/question route -->
+						<form action="/books/question" method="post">
+							<div class="form-group">
+								<label for="comment">Comment:</label>
+								<textarea class="form-control" rows="2" id="comment" placeholder="Ask a question or place a comment about this theBook..."></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary mt-2">Send</button>
+						</form>
+						<!-- Comment section -->
+						<div class="container-fluid">
+							<!-- COMMENT 1 -->
+							<div class="comment">
+								<hr class="hr w-100">
+								<div class="row">
+									<!-- comment img for profile -->
+									<div class="col-md-2">
+										<img src="/assets/img/profile1.jpg" alt="profile" class="img-fluid rounded-circle" style="height: 3rem;width: 3rem;">
+									</div>
+									<div class="col-md-10">
+										<div class="heading">
+											<div class="h6 text-dark">Profile Name</div>
+										</div>
+										<div class="text-block">
+											<p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem sit natus atque fugiat.</p>
+										</div>
+										<div class="text-block">
+											<small class="text-dark text-muted">Like 21</small><span class="text-dark">&nbsp;·&nbsp;</span>
+											<small class="text-dark text-muted"><i class="fa fa-thumbs-up"></i></small><span class="text-dark">&nbsp;·&nbsp;</span>
+											<small class="text-dark text-muted">Jan 21, 2021</small>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- COMMENT 2 -->
+							<div class="comment">
+								<hr class="hr w-100">
+								<div class="row">
+									<!-- comment img for profile -->
+									<div class="col-md-2">
+										<img src="/assets/img/profile1.jpg" alt="profile" class="img-fluid rounded-circle" style="height: 3rem;width: 3rem;">
+									</div>
+									<div class="col-md-10">
+										<div class="heading">
+											<div class="h6 text-dark">Profile Name</div>
+										</div>
+										<div class="text-block">
+											<p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem sit natus atque fugiat.</p>
+										</div>
+										<div class="text-block">
+											<small class="text-dark text-muted">Like 21</small><span class="text-dark">&nbsp;·&nbsp;</span>
+											<small class="text-dark text-muted"><i class="fa fa-thumbs-up"></i></small><span class="text-dark">&nbsp;·&nbsp;</span>
+											<small class="text-dark text-muted">Jan 21, 2021</small>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- COMMENT 3 -->
+							<div class="comment">
+								<hr class="hr w-100">
+								<div class="row">
+									<!-- comment img for profile -->
+									<div class="col-md-2">
+										<img src="/assets/img/profile1.jpg" alt="profile" class="img-fluid rounded-circle" style="height: 3rem;width: 3rem;">
+									</div>
+									<div class="col-md-10">
+										<div class="heading">
+											<div class="h6 text-dark">Profile Name</div>
+										</div>
+										<div class="text-block">
+											<p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem sit natus atque fugiat.</p>
+										</div>
+										<div class="text-block">
+											<small class="text-dark text-muted">Like 21</small><span class="text-dark">&nbsp;·&nbsp;</span>
+											<small class="text-dark text-muted"><i class="fa fa-thumbs-up"></i></small><span class="text-dark">&nbsp;·&nbsp;</span>
+											<small class="text-dark text-muted">Jan 21, 2021</small>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Others -->
+					<div class="col-md-4 d-none d-md-block">
+						<!-- About the author -->
+						<div class="mt-5">
+							<div class="d-flex justify-content-center align-content-center">
+								<img src="/assets/img/profile.jpg" alt="Author" class="img-fluidn rounded-circle" style="width: 6rem;height: 6rem;">
+							</div>
+							<div class="heading">
+								<h6 class="text-dark text-center">The Author</h6>
+							</div>
+							<div class="text-block">
+								<p class="text-dark">
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quod fugiat excepturi libero, expedita iure suscipit? Totam repudiandae, in tempora itaque facere deleniti provident recusandae quo optio quod a odio.
+								</p>
+							</div>
+						</div>
+						<!-- Carousel -->
+						<div class="heading text-uppercase">
+							<h6 class="text-dark">Readers also enjoy </h6>
+						</div>
+						<!-- This is a carousel to display the books -->
+						<section>
+							<header>
+								<div id="carouselExampleCaptions" class="carousel slide overflow-hidden" data-bs-ride="carousel">
+									<div class="carousel-inner">
+										<% books.forEach((book, index) => { %>
+											<% if(index == 0){ %>
+												<div class="carousel-item active" data-bs-interval="6000">
+													<a href="/books/<%= book.title %>?pq=<%= book._id %>&tr=<%= Math.floor(Math.random() * 1233) %>">
+														<img src="/<%= book.image.path %>" class="d-block w-100" alt="...">
+													</a>
+												</div>
+											<% }else{ %>
+												<div class="carousel-item" data-bs-interval="6000">
+													<a href="/books/<%= book.title %>?pq=<%= book._id %>&tr=<%= Math.floor(Math.random() * 1233) %>">
+														<img src="/<%= book.image.path %>" class="d-block w-100" alt="...">
+													</a>
+												</div>
+											<% } %>
+										<% }); %> 
+										</div>
+									<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+										data-bs-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Previous</span>
+									</button>
+									<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+										data-bs-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Next</span>
+									</button>
+								</div>
+							</header>
+						</section>
+						<div class="text-block d-flex justify-content-end align-items-center">
+							<a href="/books" class="text-dark text-muted text-p-hover">See more books...</a>
 						</div>
 					</div>
 				</div>
-			</section>
-		</div>
+			</div>
+		</section>
 
-		<%- include("components/modal") %>
-			<%- include("components/messageBird") %>
-				<%- include("partials/footer") %>
-					<%- include("partials/scripts") %>
-						<script>
-							function makePayment(callback) {
-								try {
-									console.log("ent", document.getElementById("email").value, document.getElementById("name").value, document.getElementById("price").innerHTML);
-									FlutterwaveCheckout({
-										public_key: "FLWPUBK_TEST-88cd4a7dc50e807c5da141b586b3a656-X",
-										tx_ref: "RX1" + Math.floor(Math.random() * 9999999) + 1,
-										amount: document.getElementById("price").innerHTML,
-										currency: "NGN",
-										customer: {
-											email: document.getElementById("email").value,
-											name: document.getElementById("name").value
-										},
-										callback: function (data) {
-											document.getElementById("status").value = data.status;
-											document.getElementById("transaction_id").value = data.transaction_id;
-											document.getElementById("tx_ref").value = data.tx_ref;
-											// save the data to localstorage
-											// using an array
-											const payments = [];
-											payments.push({
-												bookId: "<%= book._id %>",
-												status: data.status,
-												transaction_id: data.transaction_id,
-												tx_ref: data.tx_ref
-											});
-											// convert it to json then store in LS
-											window.localStorage.setItem("payments", JSON.stringify(payments));
-											// submit form
-											document.getElementById("buy").submit();
-										},
-										onclose: function () {
-											// close modal
-											console.log("closed function");
-										},
-										customizations: {
-											title: "Rev Imudeje",
-											description: "Payment for book",
-										},
-									});
-								} catch (err) {
-									console.log(err);
-									if (err == "ReferenceError: FlutterwaveCheckout is not defined") messager({
-										replace: ["success", "danger"],
-										message: "Little or No Connection!\n<i class='fa fa-refresh' aria-hidden='true'></i> Refresh!"
-									});
-								}
-							}
-
-							window.location.href = window.location.href.slice(0, window.location.href.search("&tr=")) + "&tr=" + data.transaction_id;
-						</script>
+		<!-- Contact / Footer -->
+		<%- include("partials/contact_footer") %>
+			<!-- Scripts -->
+			<%- include("partials/scripts") %>
