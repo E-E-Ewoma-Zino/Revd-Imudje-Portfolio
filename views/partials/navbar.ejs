@@ -1,33 +1,57 @@
 <!-- Nav -->
 <nav id="navbar" class="navbar navbar-expand-md navbar-dark position-fixed-md top-0 w-100">
-    <div class="container d-flex justify-content-between align-items-center pt-2">
-        <a class="navbar-brand" href="/">
-            <img src="/assets/img/profile.jpg" alt="profile" class="img-fluid rounded-circle" width="50vw"
-                height="50vw">
-            <div class="navbar-name d-inline-block">Revd Imudje</div>
-        </a>
-        <button class="navbar-toggler border-0" type="button" data-toggle="collapse"
-            data-target="#collapsibleNavbar">
-            <i class="fas fa-ellipsis-v"></i>
-        </button>
-        <div class="collapse show  navbar-collapse justify-content-lg-end justify-content-md-evenly p-3" id="collapsibleNavbar">
-            <ul class="navbar-nav d-flex justify-content-md-between align-items-md-center w-md-70">
-                <li class="nav-item">
-                    <a class="nav-link" href="/#About">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/#Belives">Belives</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/#Achievements ">Achievements </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/#Contact">Contact</a>
-                </li>
-                <li class="nav-item rounded-pill text-center bg-p">
-                    <a class="nav-link" href="/books"><strong>Articles</strong></a>
-                </li>
-            </ul>
-        </div>
-    </div>
+	<div class="container d-flex justify-content-between align-items-center pt-2">
+		<a class="navbar-brand" href="/">
+			<img src="/assets/img/profile.jpg" alt="profile" class="img-fluid rounded-circle" width="50vw"
+				height="50vw">
+			<div class="navbar-name d-inline-block">Revd Imudje</div>
+		</a>
+		<button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<i class="fas fa-ellipsis-v"></i>
+		</button>
+		<div class="collapse show  navbar-collapse justify-content-lg-end justify-content-md-evenly p-3"
+			id="collapsibleNavbar">
+			<ul class="navbar-nav d-flex justify-content-md-between align-items-md-center w-md-70">
+				<li class="nav-item">
+					<a class="nav-link" href="/#About">About</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/#Belives">Belives</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/books">Articles</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/#Contact">Contact</a>
+				</li>
+				<!-- on small screens show full name (Achievements) -->
+				<li class="nav-item d-md-none">
+					<a class="nav-link" href="/#Achievements">Achievements</a>
+				</li>
+				<!-- on large screens show icon -->
+				<li class="nav-item d-none d-md-block" title="Achievements">
+					<a class="nav-link" href="/#Achievements"><i class="fa fa-trophy"></i></a>
+				</li>
+				<% if(user) { %> 
+				<li class="nav-item rounded-pill text-center w-10">
+					<div class="dropdown">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							<!-- This is the user logIn name -->
+							<span class="text-light" style="font-weight: 700;"><%= user.substr(0,1).toUpperCase() %></span>
+						</button>
+						<div class="dropdown-menu translate-md-middle-x bg-black">
+						  <a class="dropdown-item text-light bg-s-hover" href="#">Owned books</a>
+						  <a class="dropdown-item text-light bg-s-hover" href="#">Share a book</a>
+						  <a class="dropdown-item text-light bg-s-hover" href="/logout">LogOut</a>
+						</div>
+					  </div>
+				</li>
+				<% }else{ %>
+					<li class="nav-item rounded-pill text-center bg-p">
+						<a class="nav-link" href="#x" onclick="openLogInModal()"><strong>Login</strong></a>
+					</li>
+				<% } %> 
+			</ul>
+		</div>
+	</div>
 </nav>

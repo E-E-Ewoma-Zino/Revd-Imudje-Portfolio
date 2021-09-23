@@ -1,11 +1,11 @@
 // controlls all the routes for the home page
-const error500 = require(__dirname + "../../errors/error500");
 const _bird = require(__dirname + "../../../middleware/messageBird");
-const _books = require(__dirname + "../../../middleware/books");
 const _client = require(__dirname + "../../../middleware/client");
+const _books = require(__dirname + "../../../middleware/books");
+const error500 = require(__dirname + "../../errors/error500");
 const _page = require(__dirname + "../../../middleware/page");
 
-module.exports = (req, res)=>{
+module.exports = (req, res) => {
 	_page.getPage((page_err, page) => {
 		if (page_err) {
 			console.log(page_err);
@@ -19,10 +19,11 @@ module.exports = (req, res)=>{
 				}
 				else {
 					res.render("index", {
+						user: req.isAuthenticated() && req.user.username,
+						books: books ? books : [],
 						title: page.title.home,
-						page: page,
 						bird: _bird.fly,
-						books: books? books : []
+						page: page
 					});
 				}
 			});

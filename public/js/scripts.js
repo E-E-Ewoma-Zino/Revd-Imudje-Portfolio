@@ -20,27 +20,26 @@ function close_modal() {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
+	// This is for simple modals
 	if (event.target == modal) {
 		modal.style.display = "none";
 	}
-}
-
-
-// this function uses the book id to know if the book has been but by this browser before
-// it will add the transactionId to the link, if the book has been bought before
-function getTransactionId(e, bookId) {
-	// get items and convert it from json to array
-	const items = window.localStorage.getItem("payments") ? JSON.parse(window.localStorage.getItem("payments")) : [];
-	// value to be retuned
-	let transaction_id = 0;
-
-	items.forEach(item => {
-		console.log(item.bookId, bookId);
-		if (item.bookId === bookId) {
-			transaction_id = item.transaction_id;
-		}
-	});
-	e.href = e.href.slice(0, e.href.search("&tr=")) + "&tr=" + transaction_id;
+	// This is for the Login Modal
+	if (event.target == logInModal) {
+		logInModal.firstElementChild.classList.remove("riseUp");
+		logInModal.firstElementChild.classList.add("fallDown");
+		setTimeout(() => {
+			logInModal.style.display = "none";
+		}, 700);
+	}
+	// This is for the Register Modal
+	if (event.target == registerModal) {
+		registerModal.firstElementChild.classList.remove("riseUp");
+		registerModal.firstElementChild.classList.add("fallDown");
+		setTimeout(() => {
+			registerModal.style.display = "none";
+		}, 700);
+	}
 }
 
 

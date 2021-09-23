@@ -2,7 +2,6 @@
 const error500 = require(__dirname + "../../errors/error500");
 const _bird = require(__dirname + "../../../middleware/messageBird");
 const _books = require(__dirname + "../../../middleware/books");
-const _client = require(__dirname + "../../../middleware/client");
 const _page = require(__dirname + "../../../middleware/page");
 
 module.exports = {
@@ -20,10 +19,11 @@ module.exports = {
 					}
 					else {
 						res.render("books", {
+							user: req.isAuthenticated() && req.user.username,
+							books: books ? books : [],
 							title: page.title.books,
-							page: page,
 							bird: _bird.fly,
-							books: books ? books : []
+							page: page
 						});
 					}
 				});
@@ -42,26 +42,43 @@ module.exports = {
 					error500(req, res);
 				}
 				else {
+					// I wanted to send all the book so that I can put it in the slide and also get the book that is for the page
 					_books.allBooks((book_err, books) => {
 						if (book_err) {
-							console.log(":::", book_err);
+							console.log(":::book_err:", book_err);
 							error500(req, res);
 						}
 						else if (books) {
-							books.forEach(book => {
-								if(book._id == req.query.pq){
+							// This loop is to make sure that the book that is sented from the 
+							// query is assigned to theBook variable and it also redirect invalid queries to 
+							// the error 500 page.
+							for (let i = 0; i < books.length; i++) {
+								const book = books[i];
+
+								if (book._id == req.query.pq) {
 									theBook = book;
+									console.log(i, book._id, req.query.pq);
+									break;
 								}
-							});
+								else {
+									// If an invalid ID was entered for a book do this
+									if (books.length - 1 == i) {
+										console.log(i, book._id, req.query.pq);
+										_bird.message("danger", "Invalid request!");
+										error500(req, res);
+									}
+								}
+							}
 							res.render("buy", {
-								page: page,
-								bird: _bird.fly,
+								user: req.isAuthenticated() && req.user.username,
 								theBook: theBook,
-								books: books
+								bird: _bird.fly,
+								books: books,
+								page: page
 							});
 						}
-						else{
-							console.log(":::Err in books.buy: allBooks fucked up");
+						else {
+							console.log(":::Err in books.buy: allBooks is fucked up");
 							error500(req, res);
 						}
 					});
@@ -100,11 +117,11 @@ module.exports = {
 									}
 									else {
 										res.render("buy", {
-											title: book.title,
-											page: page,
-											bird: _bird.fly,
+											user: req.isAuthenticated() && req.user.username,
 											book: book ? book : {},
-											hasPayed: true
+											title: book.title,
+											bird: _bird.fly,
+											page: page,
 										});
 									}
 								});

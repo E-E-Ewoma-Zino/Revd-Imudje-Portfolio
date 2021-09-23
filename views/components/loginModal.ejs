@@ -1,0 +1,146 @@
+<!-- Login Modal -->
+<section>
+	<!-- The Modal -->
+	<div id="logInModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content position-fixed bottom-0 riseUp p-5">
+			<div class="d-flex justify-content-between align-items-center">
+				<h4 class="modal-title">
+					<!--Modal Title -->
+					Sign In
+				</h4>
+				<span onclick="closeLogInModal()"
+					class="btn-close d-flex justify-content-center align-items-center rounded-circle bg-secondary text-white float-left"
+					style="width: 1.5rem; height: 1.5rem;"></span>
+			</div>
+			<!--Modal Body -->
+			<form action="/login" method="post" class="container">
+				<div class="row">
+					<!--  -->
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input type="email" class="form-control" id="email" name="username" aria-describedby="emailHelp"
+								placeholder="Enter email">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+						<div class="d-flex flex-column">
+							<small id="emailHelp" class="form-text text-dark">Don't have an account? <a href="#x" class="text-dark text-p-hover" onclick="register()">Registre</a></small>
+							<small id="emailHelp" class="form-text text-dark"><a href="#x" class="text-dark text-p-hover">Forgot password?</a></small>
+						</div>
+						<button type="submit" class="btn btn-primary mt-3 w-md-30">Submit</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+<!-- Register Modal -->
+<section>
+	<!-- The Modal -->
+	<div id="registerModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content position-fixed bottom-0 riseUp p-5">
+			<div class="d-flex justify-content-between align-items-center">
+				<h4 class="modal-title">
+					<!--Modal Title -->
+					Sign Up
+				</h4>
+				<span onclick="closeRegisterModal()"
+					class="btn-close d-flex justify-content-center align-items-center rounded-circle bg-secondary text-white float-left"
+					style="width: 1.5rem; height: 1.5rem;"></span>
+			</div>
+			<!--Modal Body -->
+			<form action="/register" method="post" class="container">
+				<div class="row">
+					<!--  -->
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input type="email" class="form-control" id="email" name="username" aria-describedby="emailHelp"
+								placeholder="Enter email">
+							<small id="emailHelp" class="form-text text-dark">We'll never share your email with
+								anyone
+								else.</small>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-12 d-flex justify-content-between align-items-center">
+						<small id="emailHelp" class="form-text text-dark">Already have an account? <a href="#x" class="text-dark text-p-hover" onclick="logIn()">LogIn</a></small>
+						<button type="submit" class="btn btn-primary mt-3 w-md-30">Submit</button>
+						<small id="emailHelp" class="form-text text-dark d-none"><a href="#x" class="text-dark text-p-hover">Forgot password?</a></small>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+<!-- Script -->
+<script>
+	// modal
+	// Get the modal
+	// for the logIn and Register Modal
+	var logInModal = document.getElementById('logInModal');
+	var registerModal = document.getElementById('registerModal');
+	
+	// for the register modal
+	function logIn() {
+		closeRegisterModal();
+		setTimeout(() => {
+			openLogInModal();
+		}, 700);
+	}
+	// When the user clicks the button, open the modal 
+	function openLogInModal(data) {
+		logInModal.style.display = "block";
+		logInModal.firstElementChild.classList.add("riseUp");
+		logInModal.firstElementChild.classList.remove("fallDown");
+	}
+	
+	// When the user clicks on (x), close the modal
+	function closeLogInModal() {
+		logInModal.firstElementChild.classList.remove("riseUp");
+		logInModal.firstElementChild.classList.add("fallDown");
+		setTimeout(() => {
+			logInModal.style.display = "none";
+		}, 700);
+	}
+	
+	// for the register modal
+	function register() {
+		closeLogInModal();
+		setTimeout(() => {
+			openRegisterModal();
+		}, 700);
+	}
+
+	// When the user clicks the button, open the modal 
+	function openRegisterModal(data) {
+		registerModal.style.display = "block";
+		registerModal.firstElementChild.classList.add("riseUp");
+		registerModal.firstElementChild.classList.remove("fallDown");
+	}
+	
+	// When the user clicks on (x), close the modal
+	function closeRegisterModal() {
+		registerModal.firstElementChild.classList.remove("riseUp");
+		registerModal.firstElementChild.classList.add("fallDown");
+		setTimeout(() => {
+			registerModal.style.display = "none";
+		}, 700);
+	}
+	</script>

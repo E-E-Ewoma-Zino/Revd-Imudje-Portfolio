@@ -5,13 +5,24 @@ const Users = require(__dirname + "../../model/Users");
 
 module.exports = (passport) => {
 	passport.use(Users.createStrategy());
-	// THIS WAS WHAT I USE IN FIXING THE PASSPORT AUTHENTICATION ISSUE
-	passport.use(new LocalStrategy({
-		usernameField: 'email',
-	}, Users.authenticate()));
+	// // THIS WAS WHAT I USE IN FIXING THE PASSPORT AUTHENTICATION ISSUE
+	// passport.use(new LocalStrategy({
+	// 	usernameField: 'email',
+	// }, Users.authenticate()));
 
-	passport.serializeUser(Users.serializeUser());
-	passport.deserializeUser(Users.deserializeUser());
+	// passport.serializeUser(Users.serializeUser());
+	// passport.deserializeUser(Users.deserializeUser());
+	// This methode works better than the one above
+	passport.serializeUser(function (user, done) {
+		console.log("from passport", user);
+		done(null, user.id);
+	});
+	
+	passport.deserializeUser(function (id, done) {
+		Users.findById(id, function (err, user) {
+			done(err, user);
+		});
+	});
 }
 
 /* While using this passport you require */

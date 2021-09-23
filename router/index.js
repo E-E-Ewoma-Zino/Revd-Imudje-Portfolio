@@ -1,3 +1,4 @@
+const authentication = require(__dirname + "../../controllers/auth/authentication");
 const books = require(__dirname + "../../controllers/home/books");
 const home = require(__dirname + "../../controllers/home/home");
 const express = require("express");
@@ -22,5 +23,19 @@ router.get("/books/:bookTitle", (req, res) => books.buy.get(req, res));
 // for when someone wants to buy a book
 router.post("/books/:bookTitle", (req, res) => books.buy.post(req, res));
 
+// @desc	Register User
+// @route	POST
+// for when someone wants to register
+router.post("/register", (req, res) => authentication.register(req, res));
+
+// @desc	LogIn User
+// @route	POST
+// for when someone wants to logIn
+router.post("/login", (req, res, next) => authentication.login(req, res, next));
+
+// @desc	LogOut User
+// @route	GET
+// for when someone wants to logOut
+router.get("/logout", (req, res) => authentication.logOut(req, res));
 
 module.exports = router;

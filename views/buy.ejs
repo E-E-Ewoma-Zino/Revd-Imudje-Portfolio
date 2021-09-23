@@ -26,7 +26,7 @@
 						<img src="/<%= theBook.image.path %>" class="img-fluid">
 
 						<div class="text-block">
-							<a href="#x" class="btn btn-primary text-white">Buy Now</a>
+							<a href="#x" class="btn btn-primary text-white" onclick="openLogInModal()">Buy Now</a>
 						</div>
 						<!-- TODO: ratings later -->
 						<div class="text-block">
@@ -46,7 +46,7 @@
 						<div class="d-lg-none">
 							<img src="/<%= theBook.image.path %>" class="img-fluid">
 						<div class="text-block">
-							<a href="#x" class="btn btn-primary text-white">Buy Now</a>
+							<a href="#x" class="btn btn-primary text-white" onclick="openLogInModal()">Buy Now</a>
 						</div>
 						<div class="text-block">
 							<small class="text-dark text-muted">Rate This Book</small>
@@ -201,6 +201,7 @@
 						<div class="heading text-uppercase">
 							<h6 class="text-dark">Readers also enjoy </h6>
 						</div>
+						<hr class="hr w-100">
 						<!-- This is a carousel to display the books -->
 						<section>
 							<header>
@@ -243,7 +244,11 @@
 			</div>
 		</section>
 
+		<!-- Message Bird -->
+		<%- include("components/messageBird") %>
+		<!-- LogIn and Register Modal -->
+		<%- include("components/loginModal") %>
 		<!-- Contact / Footer -->
 		<%- include("partials/contact_footer") %>
-			<!-- Scripts -->
-			<%- include("partials/scripts") %>
+<!-- Scripts -->
+<%- include("partials/scripts") %>
