@@ -1,10 +1,10 @@
 // Components for adding books
-const _bird = require(__dirname + "../../../middleware/messageBird");
-const _books = require(__dirname + "../../../middleware/books");
-const ImagesDB = require(__dirname + "../../../model/Images");
-const _page = require(__dirname + "../../../middleware/page");
-const Books = require(__dirname + "../../../model/Books");
-const Shelf = require(__dirname + "../../../model/Shelf");
+const _bird = require("../../middleware/messageBird");
+const _books = require("../../middleware/books");
+const ImagesDB = require("../../model/Images");
+const _page = require("../../middleware/page");
+const Books = require("../../model/Books");
+const Shelf = require("../../model/Shelf");
 
 module.exports = {
 	get: (req, res) => {

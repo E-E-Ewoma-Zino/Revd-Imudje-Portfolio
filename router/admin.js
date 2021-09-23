@@ -1,8 +1,8 @@
-const dashboard = require(__dirname + "../../controllers/admin/dashboard");
-const addBooks = require(__dirname + "../../controllers/admin/addBooks");
-const editPage = require(__dirname + "../../controllers/admin/editPage");
-const books = require(__dirname + "../../controllers/admin/books");
-const upload = require(__dirname + "../../config/multer");
+const dashboard = require("../controllers/admin/dashboard");
+const addBooks = require("../controllers/admin/addBooks");
+const editPage = require("../controllers/admin/editPage");
+const books = require("../controllers/admin/books");
+const upload = require("../config/multer");
 const express = require("express");
 
 const router = express.Router();

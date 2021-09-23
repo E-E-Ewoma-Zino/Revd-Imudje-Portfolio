@@ -1,6 +1,6 @@
 // configure passport
 const LocalStrategy = require("passport-local").Strategy;
-const Users = require(__dirname + "../../model/Users");
+const Users = require("../model/Users");
 
 
 module.exports = (passport) => {
@@ -14,7 +14,6 @@ module.exports = (passport) => {
 	// passport.deserializeUser(Users.deserializeUser());
 	// This methode works better than the one above
 	passport.serializeUser(function (user, done) {
-		console.log("from passport", user);
 		done(null, user.id);
 	});
 	

@@ -1,6 +1,6 @@
 // Components for dashboard
-const _bird = require(__dirname + "../../../middleware/messageBird");
-const _page = require(__dirname + "../../../middleware/page");
+const _bird = require("../../middleware/messageBird");
+const _page = require("../../middleware/page");
 
 module.exports = (req, res)=>{
 	_page.getPage((page_err, page) => {

@@ -1,9 +1,8 @@
 // controlls all the routes for the home page
-const _bird = require(__dirname + "../../../middleware/messageBird");
-const _client = require(__dirname + "../../../middleware/client");
-const _books = require(__dirname + "../../../middleware/books");
-const error500 = require(__dirname + "../../errors/error500");
-const _page = require(__dirname + "../../../middleware/page");
+const _bird = require("../../middleware/messageBird");
+const _books = require("../../middleware/books");
+const error500 = require("../errors/error500");
+const _page = require("../../middleware/page");
 
 module.exports = (req, res) => {
 	_page.getPage((page_err, page) => {

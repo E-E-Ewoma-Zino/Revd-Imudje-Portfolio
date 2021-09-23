@@ -1,5 +1,5 @@
 // This page controlls the book activities
-const Books = require(__dirname + "../../model/Books");
+const Books = require("../model/Books");
 
 
 module.exports = {

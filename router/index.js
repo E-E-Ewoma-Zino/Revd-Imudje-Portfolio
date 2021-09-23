@@ -1,6 +1,6 @@
-const authentication = require(__dirname + "../../controllers/auth/authentication");
-const books = require(__dirname + "../../controllers/home/books");
-const home = require(__dirname + "../../controllers/home/home");
+const authentication = require("../controllers/auth/authentication");
+const books = require("../controllers/home/books");
+const home = require("../controllers/home/home");
 const express = require("express");
 
 const router = express.Router();

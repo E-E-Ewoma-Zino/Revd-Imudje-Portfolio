@@ -1,7 +1,7 @@
 // Components for editing a page
-const _bird = require(__dirname + "../../../middleware/messageBird");
-const _books = require(__dirname + "../../../middleware/books");
-const _page = require(__dirname + "../../../middleware/page");
+const _bird = require("../../middleware/messageBird");
+const _books = require("../../middleware/books");
+const _page = require("../../middleware/page");
 
 module.exports = {
 	get: (req, res)=>{

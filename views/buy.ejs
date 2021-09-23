@@ -24,10 +24,38 @@
 					<!-- On small screens this page is disabled -->
 					<div class="d-none d-lg-block col-lg-2">
 						<img src="/<%= theBook.image.path %>" class="img-fluid">
-
-						<div class="text-block">
-							<a href="#x" class="btn btn-primary text-white" onclick="openLogInModal()">Buy Now</a>
-						</div>
+						
+						<% if(user){ %> 
+							<% if(hasPaid){ %> 
+								<div class="text-block">
+									<a href="/<%= theBook.shelf.path %> " class="btn btn-primary text-white" download="<%= theBook.title %>">Paid <i class="fa fa-download"></i></a>
+								</div>
+							<% }else{ %> 
+								<!-- FORM FOR FLUTTERWAVE PAYMENT -->
+								<form id="paymentForm" method="POST" action="/books/<%= theBook.title %>?pq=<%= theBook._id %>">
+									<script src="https://checkout.flutterwave.com/v3.js"></script>
+									<input type="hidden" id="status" name="status">
+									<input type="hidden" id="transaction_id" name="transaction_id">
+									<input type="hidden" id="tx_ref" name="tx_ref">
+									<input type="hidden" id="username" name="username" value="<%= user %>">
+									<input type="hidden" id="price" name="price" value="<%= theBook.price %>">
+									<div class="text-block">
+										<a href="#x" class="btn btn-primary text-white" onclick="makePayment()">Pay Now</a>
+									</div>
+								</form>
+								<div class="text-block">
+									<span class="text-dark"><strong>$<%= theBook.price %></strong> <i class="fa fa-coin"></i></span>
+								</div>
+							<% } %> 
+							<% }else{ %> 
+								<div class="text-block">
+									<a href="#x" class="btn btn-primary text-white" onclick="openLogInModal()">Buy Book</a>
+								</div>
+								<div class="text-block">
+									<span class="text-dark"><strong>$<%= theBook.price %></strong> <i class="fa fa-coin"></i></span>
+								</div>
+							<% } %> 
+						
 						<!-- TODO: ratings later -->
 						<div class="text-block">
 							<small class="text-dark text-muted">Rate This Book</small>
@@ -45,25 +73,53 @@
 						<!-- This is the book image and buy book section in small screend -->
 						<div class="d-lg-none">
 							<img src="/<%= theBook.image.path %>" class="img-fluid">
-						<div class="text-block">
-							<a href="#x" class="btn btn-primary text-white" onclick="openLogInModal()">Buy Now</a>
-						</div>
-						<div class="text-block">
-							<small class="text-dark text-muted">Rate This Book</small>
-							<!-- TODO -->
-							<div class="star">
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
+							<% if(user){ %> 
+								<% if(hasPaid){ %> 
+									<div class="text-block">
+										<a href="/<%= theBook.shelf.path %> " class="btn btn-primary text-white" download="<%= theBook.title %>">Paid <i class="fa fa-download"></i></a>
+									</div>
+								<% }else{ %> 
+									<!-- FORM FOR FLUTTERWAVE PAYMENT -->
+									<form id="paymentForm" method="POST" action="/books/<%= theBook.title %>?pq=<%= theBook._id %>">
+										<script src="https://checkout.flutterwave.com/v3.js"></script>
+										<input type="hidden" id="status" name="status">
+										<input type="hidden" id="transaction_id" name="transaction_id">
+										<input type="hidden" id="tx_ref" name="tx_ref">
+										<input type="hidden" id="username" name="username" value="<%= user %>">
+										<input type="hidden" id="price" name="price" value="<%= theBook.price %>">
+										<div class="text-block">
+											<a href="#x" class="btn btn-primary text-white" onclick="makePayment()">Pay Now</a>
+										</div>
+									</form>
+									<div class="text-block">
+										<span class="text-dark"><strong>$<%= theBook.price %></strong> <i class="fa fa-coin"></i></span>
+									</div>
+								<% } %> 
+								<% }else{ %> 
+									<div class="text-block">
+										<a href="#x" class="btn btn-primary text-white" onclick="openLogInModal()">Buy Book</a>
+									</div>
+									<div class="text-block">
+										<span class="text-dark"><strong>$<%= theBook.price %></strong> <i class="fa fa-coin"></i></span>
+									</div>
+								<% } %> 
+							<div class="text-block">
+								<small class="text-dark text-muted">Rate This Book</small>
+								<!-- TODO -->
+								<div class="star">
+									<span class="fa fa-star"></span>
+									<span class="fa fa-star"></span>
+									<span class="fa fa-star"></span>
+									<span class="fa fa-star"></span>
+									<span class="fa fa-star"></span>
+								</div>
 							</div>
 						</div>
-						</div>
 						<div class="heading">
-							<h2 class="text-dark">Book Name</h2>
+							<!-- The book name -->
+							<h2 class="text-dark"><%= theBook.title %></h2>
 						</div>
-						<div class="text-block d-inline-flex">
+						<div class="text-block d-md-inline-flex">
 							<span class="text-muted me-3"><%= page.aboutMe.name.fullname %></span>
 							<!-- TODO -->
 							<div class="star">
@@ -74,15 +130,19 @@
 								<span class="fa fa-star"></span>
 							</div>
 						</div>
-						<!-- TODO -->
+						<!-- TODO: sales -->
 						<div class="text-block">
 							<small class="text-muted">209+ sales</small><span class="text-dark">&nbsp;·&nbsp;</span>
-							<small class="text-muted">120+ reviews</small><span class="text-dark">&nbsp;·&nbsp;</span>
-							<small class="text-muted">10+ currently reading</small>
+							<small class="text-muted"><%= theBook.length.substr(1, 2) %>+ reviews</small><span class="text-dark">&nbsp;·&nbsp;</span>
+							<small class="text-muted"><%= theBook.length.substr(0, 2) %>+ currently reading</small>
 						</div>
 						<!-- About Book details -->
 						<div class="text-block mt-3">
-							<p class="text-dark"><%= theBook.description.length > 20? theBook.description.substr(0, 20) + '<span class="text-dark text-muted text-p-hover">Read more...</span>': theBook.description %></p>
+							<% if(theBook.description.length > 20) { %>
+								<p class="text-dark"><%= theBook.description.substr(0, 500) %><span class="text-dark text-muted text-p-hover">...Read more</span></p>
+							<% }else{ %> 
+								<p class="text-dark"><%= theBook.description %></p>
+							<% } %>  
 						</div>
 						<hr class="hr w-50">
 						<!-- TODO: Status and pages -->
@@ -250,5 +310,7 @@
 		<%- include("components/loginModal") %>
 		<!-- Contact / Footer -->
 		<%- include("partials/contact_footer") %>
+		<!-- flutterwave script -->
+		<script src="/js/flutterwave.js"></script>
 <!-- Scripts -->
 <%- include("partials/scripts") %>

@@ -1,9 +1,13 @@
-// The module for the clients
+// The module for the payments
 const mongoose = require("mongoose");
 
-const clientSchema = mongoose.Schema({
+const paymentSchema = mongoose.Schema({
 	book: {
 		ref: "Book",
+		type: mongoose.Schema.Types.ObjectId
+	},
+	user: {
+		ref: "User",
 		type: mongoose.Schema.Types.ObjectId
 	},
 	status: String,
@@ -15,4 +19,4 @@ const clientSchema = mongoose.Schema({
 	}
 });
 
-module.exports = new mongoose.model("Client", clientSchema);
+module.exports = new mongoose.model("Payment", paymentSchema);

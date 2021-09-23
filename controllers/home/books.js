@@ -1,8 +1,10 @@
 // Controlls all the routes consigning the books
-const error500 = require(__dirname + "../../errors/error500");
-const _bird = require(__dirname + "../../../middleware/messageBird");
-const _books = require(__dirname + "../../../middleware/books");
-const _page = require(__dirname + "../../../middleware/page");
+const _payments = require("../../middleware/payments");
+const _bird = require("../../middleware/messageBird");
+const _users = require("../../middleware/users");
+const _books = require("../../middleware/books");
+const error500 = require("../errors/error500");
+const _page = require("../../middleware/page");
 
 module.exports = {
 	get: (req, res) => {
@@ -35,6 +37,8 @@ module.exports = {
 		get: (req, res) => {
 			// to store the book that the user is selecting
 			let theBook;
+			// to know if the user has paid for this book
+			let hasPaid = false;
 
 			_page.getPage((page_err, page) => {
 				if (page_err) {
@@ -53,29 +57,40 @@ module.exports = {
 							// query is assigned to theBook variable and it also redirect invalid queries to 
 							// the error 500 page.
 							for (let i = 0; i < books.length; i++) {
-								const book = books[i];
+							const book = books[i];
 
 								if (book._id == req.query.pq) {
 									theBook = book;
-									console.log(i, book._id, req.query.pq);
+									// we want to set the user.hasPaid property to true if theBook is
+									// equal to any book in the user.ownedBook
+									if(req.isAuthenticated()) req.user.ownedBooks.forEach(ownedBook => {
+										if(ownedBook.toString() === theBook._id.toString()) hasPaid = true;
+									});
 									break;
 								}
 								else {
 									// If an invalid ID was entered for a book do this
 									if (books.length - 1 == i) {
-										console.log(i, book._id, req.query.pq);
 										_bird.message("danger", "Invalid request!");
 										error500(req, res);
 									}
 								}
 							}
-							res.render("buy", {
+
+							// This condition makes sure that when books is empty the error500 page will run
+							if(books.length) res.render("buy", {
 								user: req.isAuthenticated() && req.user.username,
+								title: page.title.buy,
 								theBook: theBook,
+								hasPaid: hasPaid,
 								bird: _bird.fly,
 								books: books,
 								page: page
 							});
+							else {
+								_bird.message("danger", "Invalid request!");
+								error500(req, res);
+							}
 						}
 						else {
 							console.log(":::Err in books.buy: allBooks is fucked up");
@@ -86,51 +101,42 @@ module.exports = {
 			});
 		},
 		post: (req, res) => {
-			console.log(req.body);
-			console.log(req.query.pq);
-			_client.buy({
-				book: req.query.pq,
-				status: req.body.status,
-				tx_ref: req.body.tx_ref,
-				transaction_id: req.body.transaction_id
-			}, (err, done) => {
-				if (err) {
-					console.log(":::", err);
-					_bird.message("danger", "Could not save transaction <i class='fa fa-warning'></i>");
+			// Get the book 
+			_books.byId(req.query.pq, (book_err, book) => {
+				if (book_err) {
+					console.log(":::book_err:", book_err);
 					error500(req, res);
-				}
-				if (done) {
-					// after saving the clients details, I check if the purchase was a success then
-					// I render an new buy page if it was or...
-					if (req.body.status == "successful") {
-						_bird.message("success", "Your payment was a success <i class='fa fa-check'></i>");
-						_page.getPage((page_err, page) => {
-							if (page_err) {
-								console.log(page_err);
+				} else {
+					// check if the payment was successful
+					if(req.body.status == "successful"){
+						// create the payment
+						_payments.createPayment({
+							book: book._id,
+							user: req.user._id,
+							status: req.body.status,
+							tx_ref: req.body.tx_ref,
+							transaction_id: req.body.transaction_id
+						}, (payment_err)=>{
+							if(payment_err){
+								console.log(":::payment_err:", payment_err);
 								error500(req, res);
 							}
-							else {
-								_books.byId(req.query.pq, (book_err, book) => {
-									if (book_err) {
-										console.log(":::", book_err);
-										error500(req, res);
-									}
-									else {
-										res.render("buy", {
-											user: req.isAuthenticated() && req.user.username,
-											book: book ? book : {},
-											title: book.title,
-											bird: _bird.fly,
-											page: page,
-										});
-									}
-								});
-							}
+
+							// Add the book to the user ownlist
+							// this function callback is a bool
+							_users.ownBook(req.user._id, book._id, (ownBook_err, done)=>{
+								if(ownBook_err){
+									console.log(":::ownBook_err:", ownBook_err);
+									_bird.message("danger", "Something went wrong! Contact costomer care");
+								}
+								else{
+									_bird.message("success", "You now own " + book.title);
+								}
+							});
+							res.redirect("back");
 						});
-					}
-					// ...I return the user back if it but page to re-purchase
-					else {
-						_bird.message("danger", "Your payment " + req.body.status + " <i class='fa fa-warning'></i>");
+					}else{
+						_bird.message("danger", "Your payment status is " + req.body.status);
 						res.redirect("back");
 					}
 				}

@@ -1,9 +1,9 @@
 // controlls all the authentication for the users
-const _bird = require(__dirname + "../../../middleware/messageBird");
-const _books = require(__dirname + "../../../middleware/books");
-const error500 = require(__dirname + "../../errors/error500");
-const _page = require(__dirname + "../../../middleware/page");
-const Users = require(__dirname + "../../../model/Users");
+const _bird = require("../../middleware/messageBird");
+const _books = require("../../middleware/books");
+const error500 = require("../errors/error500");
+const _page = require("../../middleware/page");
+const Users = require("../../model/Users");
 const passport = require("passport");
 
 module.exports = {
@@ -46,7 +46,6 @@ module.exports = {
 					console.log("::reqLogIn_err:", reqLogIn_err);
 					return next(reqLogIn_err);
 				}
-				console.log("details", req.body);
 				_bird.message("success", "Welcome back " + req.user.username);
 				return res.redirect("back");
 			});

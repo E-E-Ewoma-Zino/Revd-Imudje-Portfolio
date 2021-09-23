@@ -1,5 +1,5 @@
 // stores pages to db and gets them
-const Page = require(__dirname + "../../model/Page");
+const Page = require("../model/Page");
 
 
 module.exports = {
@@ -23,14 +23,27 @@ module.exports = {
 				} else {
 					console.log("New Page");
 					const newPage = Page({
-						title: require(__dirname + "../../page/index").title,
-						aboutMe: require(__dirname + "../../page/index").aboutMe,
-						belives: require(__dirname + "../../page/index").belives,
-						achievements : require(__dirname + "../../page/index").achievements, 
-						carousel : require(__dirname + "../../page/index").carousel 
+						title: require("../page/index").title,
+						aboutMe: require("../page/index").aboutMe,
+						belives: require("../page/index").belives,
+						achievements : require("../page/index").achievements, 
+						carousel : require("../page/index").carousel 
 					});
 					newPage.save();
 				}
+			}
+		});
+	},
+	dropPage() {
+		this.getPage((err, page) => {
+			if (err) {
+				console.log(":::", err);
+			} else {
+				Page.deleteOne({_id: page._id}, (pageDelete_err)=>{
+					if(pageDelete_err){
+						console.log(":::pageDelete_err:", pageDelete_err);
+					}
+				});
 			}
 		});
 	}

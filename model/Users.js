@@ -7,13 +7,10 @@ const userSchema = mongoose.Schema({
 	username: String,
 	password: String,
 	// things need for a user for this site
-	book: {
+	ownedBooks: [{
 		ref: "Book",
 		type: mongoose.Schema.Types.ObjectId
-	},
-	status: String,
-	tx_ref: String,
-	transaction_id: String,
+	}],
 	// Things needed for all user Schema
 	createdAt: {
 		type: Date,
