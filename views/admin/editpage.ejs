@@ -1,252 +1,270 @@
-<%- include("../partials/head") %>
-	<%- include("partials/sidenav") %>
-
-		<body id="page-top">
-			<%- include("partials/sidenav") %>
-				<!-- Page Content-->
-				<div class="container-fluid p-0">
-					<!-- About-->
-					<section class="resume-section" id="about">
-						<form action="/admin/editpage" method="POST">
-							<div class="resume-section-content">
-								<h1 class="mb-0">
-									<%= page.aboutMe.name.eachName[0] %>
-										<span class="text-primary">
-											<%= page.aboutMe.name.eachName[1] %>
-										</span>
-								</h1>
-								<div class="row form-group">
-									<div class="col-md-6">
-										<input type="text" name="name" class="form-control mb-2 mr-sm-2"
-											placeholder="<%= page.aboutMe.name.eachName[0] %>">
-									</div>
-									<div class="col-md-6">
-										<input type="text" name="name" class="form-control mb-2 mr-sm-2"
-											placeholder="<%= page.aboutMe.name.eachName[1] %>">
-									</div>
-								</div>
-								<div class="subheading">
-									<%= page.aboutMe.address %> · <%= page.aboutMe.phoneNo %> ·
-											<a href="mailto:<%= page.aboutMe.email %>">
-												<%= page.aboutMe.email %>
-											</a>
-								</div>
-								<div class="row form-group mb-5">
-									<div class="col-md-12">
-										<label class="mr-sm-2">Edit the address, phone no, and email here <a
-												href="/admin/settings" target="_blank"
-												rel="noopener noreferrer">Settings</a></label>
-									</div>
-								</div>
-
-								<div class="row form-group">
-									<div id="newBodyText"></div>
-								</div>
-								<div class="d-flex justify-content-center align-items-center">
-									<button type="button" id="newBodyBtn"
-										class="btn btn-primary rounded-circle d-flex justify-content-center align-items-center text-white float-right my-2"
-										style="width: 2vw;height: 2vw;"><i class="fa fa-plus"></i></button>
-								</div>
-							</div>
-							<div class="d-flex justify-content-center justify-content-md-end align-items-center mt-4">
-								<button type="submit" class="btn btn-primary text-white float-right">Update</button>
-							</div>
-						</form>
-					</section>
-					<hr class="m-0" />
-					<!-- Belives-->
-					<section class="resume-section" id="belives">
-						<div class="resume-section-content">
-							<h2 class="mb-5">Belives</h2>
-							<% page.belives.forEach(belive=> { %>
-								<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-									<div class="flex-grow-1">
-										<!-- Title not needed -->
-										<!-- <h3 class="mb-0"><%# belive.title %></h3> -->
-										<div class="subheading mb-3">
-											<%= belive.subTitle %>
-										</div>
-										<p>
-											<%= belive.body %>
-										</p>
-									</div>
-									<div class="flex-shrink-0"><span class="text-primary">
-											<%= belive.date %>
-										</span></div>
-								</div>
-								<% }); %>
-						</div>
-					</section>
-					<hr class="m-0" />
-					<!-- Achievements -->
-					<section class="resume-section" id="achievements ">
-						<div class="resume-section-content">
-							<h2 class="mb-5">Awards & Certifications</h2>
-							<ul class="fa-ul mb-0">
-								<% page.achievements .forEach(award=> { %>
-									<li>
-										<span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-										<%= award %>
-									</li>
-									<% }); %>
-							</ul>
-						</div>
-					</section>
-					<hr class="m-0" />
-					<!-- My Books-->
-					<section class="resume-section" id="books">
-						<div class="resume-section-content">
-							<h2 class="mb-5">My Books</h2>
-							<% if(books.length){ %>
-								<h5>Most popular</h5>
-								<div class="row d-flex">
-									<% for (let i=0; i < books.length; i++) { %>
-										<% if(i> 2) break; %>
-											<% const book=books[i]; %>
-												<div class="col-md-4 my-3">
-													<div class="card">
-														<img src="/<%= book.image.path %> " class="">
-														<div class="card-body">
-															<div
-																class="d-flex justify-content-between align-items-center">
-																<h6>
-																	<%= book.title %>
-																</h6>
-																<button type="button" class="btn rounded-circle mb-2"
-																	style="width: 2rem; height: 2rem;"
-																	onclick="openModal({title: '<%= book.title %>', body: '<%= book.description %>'})"><i
-																		class="fa fa-info"></i> </button>
-															</div>
-															<span class="mb-5">
-																<%= book.description.substr(0, 9) + "..." %>
-															</span>
-															<div
-																class="d-flex justify-content-between align-items-center mt-3">
-																<a href="/books/<%= book.title %>?pq=<%= book.id %>&q=<%= Math.floor(Math.random() * books.length + 1) %>"
-																	class="btn btn-primary text-white" target="_parent"
-																	rel="noopener noreferrer"
-																	onmouseenter="getTransactionId(this, '<%= book._id %>')">Buy
-																	Now</a>
-																<span class="price">$<%= book.price %> </span>
-															</div>
-														</div>
-													</div>
-												</div>
-												<% } %>
-								</div>
-								<div class="d-flex justify-content-start my-3">
-									<a href="books" class="" target="_blank" rel="noopener noreferrer">
-										<button type="button" class="btn btn-secondary text-white mb-2">See All
-											<i class="fa fa-arrow-right"></i> </button>
-									</a>
-								</div>
-								<% }else{ %>
-									<h4>No books to display yet!</h4>
-									<% } %>
-						</div>
-					</section>
-					<hr class="m-0" />
-					<!-- Contact Me-->
-					<section class="resume-section" id="contact">
-						<div class="resume-section-content">
-							<h2 class="mb-5">Contact Me</h2>
-							<div class="subheading mb-3">Send a mail</div>
+<%- include("partials/_head") %>
+	<div class="container-scroller">
+		<!-- partial:partials/_navbar.html -->
+		<%- include("partials/_navbar") %>
+			<!-- partial -->
+			<div class="container-fluid page-body-wrapper">
+				<!-- partial:partials/_sidebar.html -->
+				<%- include("partials/_sidebar") %>
+					<!-- partial -->
+					<div class="main-panel">
+						<div class="content-wrapper">
 							<div class="row">
-								<form class="form-inline" action="/action_page.php">
-									<label for="email" class="mr-sm-2">Email address:</label>
-									<input type="email" class="form-control mb-2 mr-sm-2" id="email">
-									<label for="fullname" class="mr-sm-2">Full Name:</label>
-									<input type="text" class="form-control mb-2 mr-sm-2" id="fullname">
-									<div class="form-group">
-										<label for="message">Message:</label>
-										<textarea class="form-control" rows="5" id="message"></textarea>
+								<div class="col-md-12 grid-margin">
+									<div class="d-flex justify-content-between align-items-center">
+										<div>
+											<h4 class="font-weight-bold mb-0">Edit Home</h4>
+										</div>
+										<div>
+											<button type="button" class="btn btn-primary btn-icon-text btn-rounded"
+												onclick="link({url: '/admin'})">
+												<i class="ti-arrow-left btn-icon-prepend"></i>Back
+											</button>
+										</div>
 									</div>
-									<div class="form-check mb-2 mr-sm-2">
-										<label class="form-check-label">
-											<input class="form-check-input" type="checkbox"> Remember me
-										</label>
-									</div>
-									<button type="submit" class="btn btn-primary text-white mb-2">Submit</button>
-								</form>
+								</div>
+							</div>
+							<!-- Main -->
+							<!-- Head -->
+<%- include("../partials/_head") %>
+<!-- Navbar -->
+<%# include("../partials/_navbar") %>
+	<!-- Header -->
+	<%# include("components/carousel") %>
+	<div class="row">
+		<div class="col-12 d-flex justify-content-center align-items-center"><h4 class="text-dark">What can I do here? <button class="btn" onclick="modal({type: 'info', title: 'What can I do here?', message: 'You can edit the home page text. Anywhere you see <i class=\'ti-write text-p\'></i> you can edit that text. Make sure the page looks good before you save <i class=\'ti-save text-p\'></i>.'})">Click</button></h4></div>
+	</div>
+		<!-- Main section -->
+		<!-- About Me -->
+		<section>
+			<div class="">
+				<div id="About" class="row no-gutters justify-content-center">
+					<div class="container my-5">
+						<div class="heading">
+							<h2 class="text-center text-dark" contenteditable="true"><%= page.aboutMe.topic %></h2>
+						</div>
+						<div class="design d-flex justify-content-center align-items-center w-100">
+							<hr class="hr w-10 bg-p">
+							<div class="d-flex justify-content-center align-items-center rounded-circle border border-p text-p"
+								style="width: 2rem; height: 2rem;">R</div>
+							<hr class="hr w-10 bg-p">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<img class="img-fluid" src="/assets/img/aboutImg.jpg" alt="img">
+					</div>
+					<div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+						<div class="container">
+							<div class="heading">
+								<h3 class="text-dark" contenteditable="true"><%= page.aboutMe.aboutTitle %></h3>
+							</div>
+
+							<!-- About Me Body -->
+							<div class="text-block">
+								<% page.aboutMe.body.forEach(body => { %>
+									<p class="text-dark" contenteditable="true"><%= body %></p>
+								<% }); %> 
 							</div>
 						</div>
-					</section>
+					</div>
 				</div>
+			</div>
 
+		</section>
 
-				<%- include("../components/modal") %>
-					<%- include("../components/messageBird") %>
+		<!-- Believes -->
+		<section>
+			<div id="Believes" class="bg-img p-2 p-md-5 w-100">
+				<div class="container d-flex flex-column justify-content-center align-items-center">
+					<div class="heading mb-3">
+						<h3 class="text-light" contenteditable="true"><%= page.believes.title %></h3>
+					</div>
+					<div class="text-block text-center">
+						<p class="believs text-light d-none activeBelievesContent" contenteditable="true"><%= page.believes.cross %></p>
+						<p class="believs text-light d-none" contenteditable="true"><%= page.believes.bell %></p>
+						<p class="believs text-light d-none" contenteditable="true"><%= page.believes.bible %></p>
+						<p class="believs text-light d-none" contenteditable="true"><%= page.believes.church %></p>
+					</div>
+				</div>
+				<div class="container-fluid container-md mt-3">
+					<div class="d-flex flex-row flex-wrap justify-content-evenly align-items-stretch">
+						<div
+							class="card activeBelievesCard justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0" onclick="believs({e: this, believs: 0 })">
+							<img class="card-img-top mw-30 mt-3" src="/assets/img/cross.png" alt="Card image cap">
+							<div class="card-body">
+								<h5 class="card-title text-center">The Cross</h5>
+							</div>
+						</div>
+						<div
+							class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0" onclick="believs({e: this, believs: 1 })">
+							<img class="card-img-top mw-30 mt-3" src="/assets/img/bell.png" alt="Card image cap">
+							<div class="card-body">
+								<h5 class="card-title text-center">The Bell</h5>
+							</div>
+						</div>
+						<div
+							class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0" onclick="believs({e: this, believs: 2 })">
+							<img class="card-img-top mw-30 mt-3" src="/assets/img/bible.png" alt="Card image cap">
+							<div class="card-body">
+								<h5 class="card-title text-center">The Bible</h5>
+							</div>
+						</div>
+						<div
+							class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0" onclick="believs({e: this, believs: 3 })">
+							<img class="card-img-top mw-30 mt-3" src="/assets/img/church.png" alt="Card image cap">
+							<div class="card-body">
+								<h5 class="card-title text-center">The Church</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-						<script>
-							// this script will be able to add new, delete and display Paragraph to the page body
-							// get the number of Paragraphs
-							let index = Number("<%= page.aboutMe.body.length %>");
-							// get the add btn
-							const newBodyBtn = document.getElementById("newBodyBtn");
-							// get the text area section
-							const newBodyText = document.getElementById("newBodyText");
-
-							// array to store Paragraphs
-							const paragraphs = [];
-
-							// put paragraphs in paragraphs array
-							"<% let ctn = 0 %>";// display all paragraphs in teh page
-							for (let i = 0; i < index; i++) {
-								const newtextArea = document.createElement("div");
-								newtextArea.innerHTML = `
-								<div class="edit-text-block col-md-12">
-								<div class="d-flex justify-content-between align-items-center">
-									<label class="mr-sm-2">Paragraph ${i + 1}: </label>
-									<button type="button" class="deleteBodyBtn btn btn-primary rounded-circle d-flex justify-content-center align-items-center text-white float-right my-2"
-									style="width: 2vw;height: 2vw;"><i class="fa fa-trash"></i></button>
+		<!-- Achievements  -->
+		<section>
+			<div id="Achievements" class="container my-5">
+				<div class="container my-5">
+					<div class="heading">
+						<h2 class="text-center text-dark">Achievements</h2>
+					</div>
+					<div class="design d-flex justify-content-center align-items-center w-100">
+						<hr class="hr w-10 bg-p">
+						<div class="d-flex justify-content-center align-items-center rounded-circle border border-p text-p"
+							style="width: 2rem; height: 2rem;">R</div>
+						<hr class="hr w-10 bg-p">
+					</div>
+					<div class="text-block">
+						<p class="container text-center text-dark" contenteditable="true"><%= page.achievements.title %></p>
+					</div>
+				</div>
+				<div class="container center-sqr">
+					<div class="row no-gutters justify-content-center flex-row-reverse">
+						<div class="col-md-6">
+							<img class="img-fluid" src="/assets/img/achievements1.jpg" alt="img">
+						</div>
+						<div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+							<div class="container">
+								<div class="heading">
+									<h3 class="text-dark" contenteditable="true"><%= page.achievements.achievements[0].title %></h3>
 								</div>
-								<textarea class="form-control" name="bodyText" rows="5" id="message"><%= page.aboutMe.body[ctn] %></textarea>
+								<div class="text-block">
+									<span class="text-dark" contenteditable="true"><%= page.achievements.achievements[0].body %></span>
 								</div>
-								<% ++ctn %>
-								`;
-								
-								paragraphs.push(newtextArea); 
-							}
+							</div>
+						</div>
+					</div>
+					<!--  -->
+					<div class="row no-gutters justify-content-center flex-row">
+						<div class="col-md-6">
+							<img class="img-fluid" src="/assets/img/achievements2.jpg" alt="img">
+						</div>
+						<div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+							<div class="container">
+								<div class="heading">
+									<h3 class="text-dark" contenteditable="true"><%= page.achievements.achievements[1].title %></h3>
+								</div>
+								<div class="text-block">
+									<span class="text-dark" contenteditable="true"><%= page.achievements.achievements[1].body %></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-							// Display Paragraph
-							for (let i = 0; i < paragraphs.length; i++) {
-								// create new text area
-								
-								// put new text area in body
-								newBodyText.append(paragraphs[i]);
-							}
+		<!-- Books -->
+		<section>
+			<div id="Books" class="">
+				<div class="container my-5">
+					<div class="heading">
+						<h2 class="text-center text-dark" contenteditable="true"><%= page.book.topic %></h2>
+					</div>
+					<div class="design d-flex justify-content-center align-items-center w-100">
+						<hr class="hr w-10 bg-p">
+						<div class="d-flex justify-content-center align-items-center rounded-circle border border-p text-p"
+							style="width: 2rem; height: 2rem;">R</div>
+						<hr class="hr w-10 bg-p">
+					</div>
+					<div class="text-block">
+						<p class="container text-center text-dark" contenteditable="true"><%= page.book.title %></p>
+					</div>
+				</div>
+				<div class="container row d-flex justify-content-center align-items-start">
+					<% if(books.length){ %> 
+						<% for (let i = 0; i < 3; i++) { %>
+							<% const book = books[i]; %>
+							
+							<!--  -->
+							<div class="col-md-4 my-3 d-flex justify-content-end align-items-center">
+								<div class="card mw-90">
+									<img src="/<%= book.image.path %>" class="img-fluid card-image">
+									<div class="card-body">
+										<div class="d-flex justify-content-between align-items-center">
+											<h6>
+												<%= book.title %>
+											</h6>
+										</div>
+										<span class="mb-5">
+											<%= book.description.length > 32? book.description.substr(0, 32) + "...": book.description %> 
+										</span>
+										<div class="d-flex justify-content-between align-items-center mt-3">
+											<button class="btn btn-primary text-white" target="_parent" rel="noopener noreferrer" onclick="link({url: '/admin/editbook?edit=true&pq=<%= book._id %>&id=<%= book._id.toString().substr(0, 4) %>'})">Edit Book <i class="ti-pencil"></i></button>
+											<!-- <span class="price">$80</span> -->
+										</div>
+									</div>
+								</div>
+							</div>
+							<% } %> 
+							<div class="container d-flex justify-content-center align-items-center my-3">
+								<a href="/admin/books" class="btn btn-primary bg-s border-0 text-light p-3">Edit Other Books</a>
+							</div>
+					<% }else{ %> 
+						<div class="heading">
+							<h3 class="text-dark text-center">No Books Avaliable Yet</h3>
+						</div>
+					<% } %> 
+				</div>
+			</div>
+		</section>
 
-							// Add new Paragraph
+		<!-- Submit Button -->
+		<button type="button" id="editPage" class="btn d-flex justify-content-center align-items-center rounded-circle bg-p bg-s-hover text-light" onclick="savePage()">
+			<i class="ti-save"></i>
+		</button>
+		<!-- end of submit button -->
+		<script>
+			// control the believes cards
+			const beliveContent = document.getElementsByClassName("believs");
 
-							// add event listener to create a new text area
-							newBodyBtn.addEventListener("click", () => {
-								// create new text area
-								const newtextArea = document.createElement("div");
+			// function to get the card to activate and the card to turn off
+			function believs(data) {
+				for (let i = 0; i < beliveContent.length; i++) {
+					const belive = beliveContent[i];
+					belive.classList.remove("activeBelievesContent");
+					data.e.parentElement.children[i].classList.remove("activeBelievesCard");
+				}
+				data.e.classList.add("activeBelievesCard");
+				beliveContent[data.believs].classList.add("activeBelievesContent");
+			}
+		</script>
+			<!-- Scripts -->
+			<%# include("partials/_scripts") %>
+						</div>
+						<!-- content-wrapper ends -->
+						<!-- partial:partials/_footer.html -->
+						<%- include("partials/_footer") %>
+							<!-- partial -->
+					</div>
+					<!-- main-panel ends -->
+			</div>
+			<!-- page-body-wrapper ends -->
+	</div>
+	<!-- container-scroller -->
+	<%- include("partials/_script") %>
+		<!-- script for this book page -->
+		<script src="/RoyalUI/js/editPage.js"></script>
+	</body>
 
-								newtextArea.innerHTML = `<div class="edit-text-block col-md-12">
-											<div class="d-flex justify-content-between align-items-center">
-												<label class="mr-sm-2">Paragraph ${index + 1}: </label>
-												<button type="button" class="deleteBodyBtn btn btn-primary rounded-circle d-flex justify-content-center align-items-center text-white float-right my-2"
-												style="width: 2vw;height: 2vw;"><i class="fa fa-trash"></i></button>
-											</div>
-											<textarea class="form-control" name="bodyText" rows="5" id="message"></textarea>
-											</div>`;
-								// put new text area in body
-								newBodyText.append(newtextArea);
-								// after creating a Paragraph increment indexOfParagraph
-								index++;
-							});
-
-							// Delete Paragraph
-							// get all element that has the delete classname
-							const deleteBodyBtn = document.getElementsByClassName("deleteBodyBtn");
-							// add event listener to delete Paragraph
-							for (let i = 0; i < deleteBodyBtn.length; i++) {
-								const btn = deleteBodyBtn[i];
-
-								btn.addEventListener("click", () => {
-
-								})
-							}
-						</script>
-						<%- include("../partials/scripts") %>
+	</html>

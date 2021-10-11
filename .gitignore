@@ -117,3 +117,8 @@ dist
 
 # images uploaded
 uploads/
+
+# RoyalUI
+public/RoyalUI/fonts
+public/RoyalUI/images
+public/RoyalUI/vendors

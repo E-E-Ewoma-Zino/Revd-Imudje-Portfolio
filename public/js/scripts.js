@@ -43,6 +43,7 @@ window.onclick = function (event) {
 }
 
 
+// NavBar
 // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
 window.onscroll = function () { scrollFunction() };
 
@@ -52,7 +53,7 @@ function scrollFunction() {
 		document.getElementById("navbar").style.backgroundColor = "rgb(0,0,0)";
 		// document.getElementById("logo").style.fontSize = "25px";
 	} else {
-		document.getElementById("navbar").style.padding = "2rem 0";
+		document.getElementById("navbar").style.padding = "0rem 0";
 		document.getElementById("navbar").style.backgroundColor = "rgba(0,0,0, .6)";
 		// document.getElementById("logo").style.fontSize = "35px";
 	}

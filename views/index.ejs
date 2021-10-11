@@ -1,7 +1,7 @@
 <!-- Head -->
-<%- include("partials/head") %>
+<%- include("partials/_head") %>
 	<!-- Navbar -->
-	<%- include("partials/navbar") %>
+	<%- include("partials/_navbar") %>
 		<!-- Header -->
 		<%- include("components/carousel") %>
 
@@ -10,9 +10,11 @@
 			<section>
 				<div class="mt-5">
 					<div id="About" class="row no-gutters justify-content-center">
-						<div class="container my-5">
+						<div class="col-12 container my-5">
 							<div class="heading">
-								<h2 class="text-center text-dark">A Little About Me</h2>
+								<h2 class="text-center text-dark">
+									<%= page.aboutMe.topic %>
+								</h2>
 							</div>
 							<div class="design d-flex justify-content-center align-items-center w-100">
 								<hr class="hr w-10 bg-p">
@@ -21,45 +23,23 @@
 								<hr class="hr w-10 bg-p">
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-6 d-flex justify-content-center align-items-center">
 							<img class="img-fluid" src="assets/img/aboutImg.jpg" alt="img">
 						</div>
 						<div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
 							<div class="container">
 								<div class="heading">
-									<h3 class="text-dark"> <%= page.aboutMe.aboutTitle %>  </h3>
+									<h3 class="text-dark">
+										<%= page.aboutMe.aboutTitle %>
+									</h3>
 								</div>
 
 								<!-- About Me Body -->
-								<!-- Carousel for all the about text -->
-								<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-									<div class="carousel-inner">
-										<% for (let i = 0; i < page.aboutMe.body.length; i++) { %>
-											<% const body = page.aboutMe.body[i] %> 
-											<% if(i == 0){ %>
-												<div class="carousel-item active">
-													<div class="text-block">
-														<p class="text-dark"> <%= body %> </p>
-													</div>
-												</div>
-											<% }else{ %>
-											<div class="carousel-item">
-												<div class="text-block">
-													<p class="text-dark"> <%= body %> </p>
-												</div>
-											</div>
-											<% } %>
-										<% } %> 
-									</div>
-									<a class="carousel-control-prev bg-p-hover" href="#carouselExampleIndicators" role="button" data-slide="prev">
-									  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									  <span class="sr-only">Previous</span>
-									</a>
-									<a class="carousel-control-next bg-p-hover" href="#carouselExampleIndicators" role="button" data-slide="next">
-									  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-									  <span class="sr-only">Next</span>
-									</a>
-								  </div>
+								<div class="text-block">
+									<% page.aboutMe.body.forEach(body => { %>
+										<p class="text-dark"><%= body %></p>
+									<% }); %> 
+								</div>
 							</div>
 						</div>
 					</div>
@@ -67,45 +47,55 @@
 
 			</section>
 
-			<!-- Belives -->
+			<!-- Believes -->
 			<section>
-				<div id="Belives" class="bg-img p-2 p-md-5 w-100">
+				<div id="Believes" class="bg-img p-2 p-md-5 w-100">
 					<div class="container d-flex flex-column justify-content-center align-items-center">
 						<div class="heading mb-3">
-							<h3 class="text-light">Lorem, ipsum di deleniti sequi vel, labore reiciendis beatae.</h3>
+							<h3 class="text-light">
+								<%= page.believes.title %>
+							</h3>
 						</div>
 						<div class="text-block text-center">
-							<p class="text-light">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
-								molestiae
-								consectetur, inventore minima quia quibusdam saepe? Corrupti laboriosam culpa placeat
-								perferendis aspernatur possimus cumque! Facilis tenetur natus maxime quod voluptate.</p>
+							<p class="believs text-light d-none activeBelievesContent">
+								<%= page.believes.cross %>
+							</p>
+							<p class="believs text-light d-none">
+								<%= page.believes.bell %>
+							</p>
+							<p class="believs text-light d-none">
+								<%= page.believes.bible %>
+							</p>
+							<p class="believs text-light d-none">
+								<%= page.believes.church %>
+							</p>
 						</div>
 					</div>
 					<div class="container-fluid container-md mt-3">
 						<div class="d-flex flex-row flex-wrap justify-content-evenly align-items-stretch">
-							<div
-								class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0">
+							<div class="card activeBelievesCard justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0"
+								onclick="believs({e: this, believs: 0 })">
 								<img class="card-img-top mw-30 mt-3" src="/assets/img/cross.png" alt="Card image cap">
 								<div class="card-body">
 									<h5 class="card-title text-center">The Cross</h5>
 								</div>
 							</div>
-							<div
-								class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0">
+							<div class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0"
+								onclick="believs({e: this, believs: 1 })">
 								<img class="card-img-top mw-30 mt-3" src="/assets/img/bell.png" alt="Card image cap">
 								<div class="card-body">
 									<h5 class="card-title text-center">The Bell</h5>
 								</div>
 							</div>
-							<div
-								class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0">
+							<div class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0"
+								onclick="believs({e: this, believs: 2 })">
 								<img class="card-img-top mw-30 mt-3" src="/assets/img/bible.png" alt="Card image cap">
 								<div class="card-body">
 									<h5 class="card-title text-center">The Bible</h5>
 								</div>
 							</div>
-							<div
-								class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0">
+							<div class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0"
+								onclick="believs({e: this, believs: 3 })">
 								<img class="card-img-top mw-30 mt-3" src="/assets/img/church.png" alt="Card image cap">
 								<div class="card-body">
 									<h5 class="card-title text-center">The Church</h5>
@@ -121,7 +111,7 @@
 				<div id="Achievements" class="container my-5">
 					<div class="container my-5">
 						<div class="heading">
-							<h2 class="text-center text-dark">Achievements </h2>
+							<h2 class="text-center text-dark">Achievements</h2>
 						</div>
 						<div class="design d-flex justify-content-center align-items-center w-100">
 							<hr class="hr w-10 bg-p">
@@ -131,11 +121,7 @@
 						</div>
 						<div class="text-block">
 							<p class="container text-center text-dark">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nostrum architecto
-								repellat
-								ipsa facilis commodi incidunt aut nemo, voluptatum error impedit, earum ducimus! Iste
-								qui
-								nesciunt optio dolor odio ipsam!
+								<%= page.achievements.title %>
 							</p>
 						</div>
 					</div>
@@ -147,18 +133,14 @@
 							<div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
 								<div class="container">
 									<div class="heading">
-										<h3 class="text-dark">Lorem, ipsum di deleniti sequi vel, labore reiciendis
-											beatae.</h3>
+										<h3 class="text-dark">
+											<%= page.achievements.achievements[0].title %>
+										</h3>
 									</div>
 									<div class="text-block">
-										<span class="text-dark">Lorem ipsum, dolor sit amet consectetur adipisicing
-											elit.
-											Voluptas
-											molestiae consectetur, inventore minima quia quibusdam saepe? Corrupti
-											laboriosam
-											culpa placeat perferendis aspernatur possimus cumque! Facilis tenetur natus
-											maxime
-											quod voluptate.</span>
+										<span class="text-dark">
+											<%= page.achievements.achievements[0].body %>
+										</span>
 									</div>
 								</div>
 							</div>
@@ -171,18 +153,14 @@
 							<div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
 								<div class="container">
 									<div class="heading">
-										<h3 class="text-dark">Lorem, ipsum di deleniti sequi vel, labore reiciendis
-											beatae.</h3>
+										<h3 class="text-dark">
+											<%= page.achievements.achievements[1].title %>
+										</h3>
 									</div>
 									<div class="text-block">
-										<span class="text-dark">Lorem ipsum, dolor sit amet consectetur adipisicing
-											elit.
-											Voluptas
-											molestiae consectetur, inventore minima quia quibusdam saepe? Corrupti
-											laboriosam
-											culpa placeat perferendis aspernatur possimus cumque! Facilis tenetur natus
-											maxime
-											quod voluptate.</span>
+										<span class="text-dark">
+											<%= page.achievements.achievements[1].body %>
+										</span>
 									</div>
 								</div>
 							</div>
@@ -196,7 +174,9 @@
 				<div id="Books" class="">
 					<div class="container my-5">
 						<div class="heading">
-							<h2 class="text-center text-dark">Get Our Books</h2>
+							<h2 class="text-center text-dark">
+								<%= page.book.topic %>
+							</h2>
 						</div>
 						<div class="design d-flex justify-content-center align-items-center w-100">
 							<hr class="hr w-10 bg-p">
@@ -206,52 +186,72 @@
 						</div>
 						<div class="text-block">
 							<p class="container text-center text-dark">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nostrum architecto
-								repellat
-								ipsa facilis commodi incidunt aut nemo, voluptatum error impedit, earum ducimus! Iste
-								qui
-								nesciunt optio dolor odio ipsam!
+								<%= page.book.title %>
 							</p>
 						</div>
 					</div>
 					<div class="container row d-flex justify-content-center align-items-start">
-						<% for (let i = 0; i < 3; i++) { %>
-							<% const book = books[i]; %>
-							
-							<!--  -->
-							<div class="col-md-4 my-3">
-								<div class="card mw-90">
-									<img src="/<%= book.image.path %>" class="img-fluid card-image">
-									<div class="card-body">
-										<div class="d-flex justify-content-between align-items-center">
-											<h6>
-												<%= book.title %>
-											</h6>
-										</div>
-										<span class="mb-5">
-											<%= book.description.length > 32? book.description.substr(0, 32) + "...": book.description %> 
-										</span>
-										<div class="d-flex justify-content-between align-items-center mt-3">
-											<a href="/books/<%= book.title %>?pq=<%= book._id %>&tr=<%= Math.floor(Math.random() * 1233) %>" class="btn btn-primary text-white" target="_parent"
-												rel="noopener noreferrer">Read Article</a>
-											<!-- <span class="price">$80</span> -->
+						<% if(books.length){ %>
+							<% for (let i=0; i < 3; i++) { %>
+								<% const book=books[i]; %>
+
+									<!--  -->
+									<div class="col-md-4 my-3 d-flex justify-content-end align-items-center	">
+										<div class="card mw-90">
+											<img src="/<%= book.image.path %>" class="img-fluid card-image">
+											<div class="card-body">
+												<div class="d-flex justify-content-between align-items-center">
+													<h6>
+														<%= book.title %>
+													</h6>
+												</div>
+												<span class="mb-5">
+													<%= book.description.length> 32? book.description.substr(0, 32) +
+														"...": book.description %>
+												</span>
+												<div class="d-flex justify-content-between align-items-center mt-3">
+													<a href="/books/<%= book.title %>?pq=<%= book._id %>&tr=<%= Math.floor(Math.random() * 1233) %>"
+														class="btn btn-primary text-white" target="_parent"
+														rel="noopener noreferrer">Read Article</a>
+													<!-- <span class="price">$80</span> -->
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-						<% } %> 
-					</div>
-					<div class="container d-flex justify-content-center align-items-center my-3">
-						<a href="/books" class="btn btn-primary bg-s border-0 text-light p-3">More Books</a>
+									<% } %>
+										<div class="container d-flex justify-content-center align-items-center my-3">
+											<a href="/books" class="btn btn-primary bg-s border-0 text-light p-3">More
+												Books</a>
+										</div>
+										<% }else{ %>
+											<div class="heading">
+												<h3 class="text-dark text-center">No Books Avaliable Yet</h3>
+											</div>
+											<% } %>
 					</div>
 				</div>
 			</section>
 
 			<!-- Message Bird -->
-		<%- include("components/messageBird") %>
-			<!-- LogIn and Register Modal -->
-		<%- include("components/loginModal") %>
-			<!-- Contact / Footer -->
-			<%- include("partials/contact_footer") %>
-				<!-- Scripts -->
-				<%- include("partials/scripts") %>
+			<%- include("components/messageBird") %>
+				<!-- LogIn and Register Modal -->
+				<%- include("components/loginModal") %>
+					<!-- Contact / Footer -->
+					<%- include("partials/_contact_footer") %>
+						<script>
+							// control the believes cards
+							const beliveContent = document.getElementsByClassName("believs");
+
+							// function to get the card to activate and the card to turn off
+							function believs(data) {
+								for (let i = 0; i < beliveContent.length; i++) {
+									const belive = beliveContent[i];
+									belive.classList.remove("activeBelievesContent");
+									data.e.parentElement.children[i].classList.remove("activeBelievesCard");
+								}
+								data.e.classList.add("activeBelievesCard");
+								beliveContent[data.believs].classList.add("activeBelievesContent");
+							}
+						</script>
+						<!-- Scripts -->
+						<%- include("partials/_scripts") %>

@@ -2,11 +2,12 @@
 const mongoose = require("mongoose");
 
 const pageSchema = mongoose.Schema({
+	book: Object,
 	title: Object,
 	aboutMe: Object,
-	belives: Array,
-	achievements : Array,
-	carousel: Array
+	believes: Object,
+	carousel: Array,
+	achievements : Object
 });
 
 module.exports = new mongoose.model("Page", pageSchema);

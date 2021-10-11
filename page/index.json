@@ -16,43 +16,44 @@
 				"G.O. Imudje"
 			]
 		},
-		"address": "5 Ugboloposo · Effurun Warri, Delta State 320012",
 		"phoneNo": "08021286282",
 		"email": "daddyimudje@gmail.com",
 		"facebook": "www.facebook.com/imudje",
 		"whatsapp": "090290298762",
-		"aboutTitle": "Revd. Joseph Gentle Omohow Imudje JP",
+		"topic": "A Little About Me",
+		"aboutTitle": "Revd. Joseph Gentle Omokoro Imudje JP",
 		"body": [
 			"Is currently a Priest in ST. LUKE's Ugbolokposo. He studied at St. Paul University college Awka. He is done with his studies at Immanuel College of Theology, Ibadan in affiliation with the  University of Ibadan.",
 			"He served at St. Peters Anglican Church Warri, Warri Diocese. He hails from Unenurhie Town in Evwreni Clan, Ugheli North Local Government Area Delta State Nigeria. He was baptized with the Holy Spirit on 11th September 1998. He has since then continued to enjoy the in-filling of the Holy Spirit.",
 			"He is an anointed charismatic preacher and teacher of the Gospel of our Lord Jesus Christ. He is loaded with inspiration for evangelistic preaching. He is a seasoned revival preacher in the body of Christ. He is blessed with a godly Wife-Mrs. Pauline U. Imudje and with children."
 		]
 	},
-	"belives": [
-		{
-			"title": "Preaching and Teaching",
-			"subTitle": "Spiritual guidance",
-			"body": "According to Churchleaders.com, the primary duty of a pastor is to spread the word of God and shepherd followers seeking spiritual guidance, as taught in 1 Peter 5:2-4. In fulfillment of their calling, pastors dedicate themselves to studying the Bible and preaching.",
-			"date": "March 2020"
-		},
-		{
-			"title": "Performing Rites and Holding Services",
-			"subTitle": "Pastoral responsibilities ",
-			"body": "Consistent with their faith tradition, pastors may perform baptisms, confirmations, and marriages. They make an effort to get to know their congregants and work to strengthen family ties. Personal connections are helpful when praying with the sick and comforting loved ones at memorial services and funerals. Their job requires pastors to respond 24/7 when tragedy strikes a family or a church member becomes gravely ill and asks to see their priest or minister. \nPastoral responsibilities extend to holding worship services throughout the liturgical year.",
-			"date": "December 2020"
-		},
-		{
-			"title": "Overseeing Administrative Functions",
-			"subTitle": "Executive pastoral duties",
-			"body": "As the senior leader of a church, a pastor assumes administrative oversight of business operations and facility upkeep. They must act in good faith and follow the constitution and by-laws of the church in carrying out their executive pastoral duties. For example, Bethlehem Baptist Church has constitutional provisions regarding accounting, fundraising, and permitted indebtedness that define what pastors can and cannot do in their role. \nDepending on church rules, pastors may make independent personnel decisions to hire, discipline, or fire church staff such as housekeepers, administrative assistants, bookkeepers, and custodians.",
-			"date": "July 2021."
-		}
-	],
-	"achievements": [
-		"Graduate at St. Paul University college Awka.",
-		"Graduates at the Immanuel College of Theology.",
-		"Author of the book 'My People Called By My Name' and 3 others."
-	],
+	"believes": {
+		"topic": "Believes",
+		"title": "My Believes as a Christian",
+		"cross": "I believe that Jesus died for us on the cross. And He died to save us from the enternal condemation.",
+		"bell": "Every time is a good time to worship God. When you are sad or happy worship The Lord. Psalm 34: 1 & 2 - I will bless the Lord at all times: his praise shall continually be in my mouth. My soul shall make her boast in the Lord: the humble shall hear thereof, and be glad.",
+		"bible": "The Bible is The Word of the Lord, ",
+		"church": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas molestiae consectetur, inventore minima quia quibusdam saepe? Corrupti laboriosam culpa placeat perferendis aspernatur possimus cumque! Facilis tenetur natus maxime quod voluptate."
+	},
+	"achievements": {
+		"topic": "Achievements",
+		"title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nostrum architecto repellat ipsa facilis commodi incidunt aut nemo, voluptatum error impedit, earum ducimus! Iste qui nesciunt optio dolor odio ipsam!",
+		"achievements": [
+			{
+				"title": "Lorem, ipsum di deleniti sequi vel, labore reiciendis beatae.",
+				"body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas molestiae consectetur, inventore minima quia quibusdam saepe? Corrupti laboriosam culpa placeat perferendis aspernatur possimus cumque! Facilis tenetur natus maxime quod voluptate."
+			},
+			{
+				"title": "Lorem, ipsum di deleniti sequi vel, labore reiciendis beatae.",
+				"body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas molestiae consectetur, inventore minima quia quibusdam saepe? Corrupti laboriosam culpa placeat perferendis aspernatur possimus cumque! Facilis tenetur natus maxime quod voluptate."
+			}
+		]
+	},
+	"book": {
+		"topic": "Get Our Books",
+		"title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nostrum architecto repellat ipsa facilis commodi incidunt aut nemo, voluptatum error impedit, earum ducimus! Iste qui nesciunt optio dolor odio ipsam!"
+	},
 	"carousel": [
 		{
 			"title": "First slide label",

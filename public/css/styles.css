@@ -8882,6 +8882,9 @@ textarea.form-control-lg {
 	.w-md-30 {
 		width: 30%!important
 	}
+	.w-md-15 {
+		width: 15%!important
+	}
 	.mw-md-50 {
 		max-width: 50%!important
 	}
@@ -9060,6 +9063,11 @@ textarea.form-control-lg {
 }
 
 @media (min-width:992px) {
+	/* my code */
+	.w-lg-15 {
+		width: 15%!important
+	}
+	/*  */
 	.float-lg-start {
 		float: left!important
 	}
@@ -10788,4 +10796,13 @@ section {
 /* heading */
 .heading{
 	margin: .7rem 0;
+}
+
+/* for believes control */
+.activeBelievesContent{
+	display: block!important;
+}
+.activeBelievesCard{
+	background-color: var(--bs-p);
+	color: var(--bs-light);
 }

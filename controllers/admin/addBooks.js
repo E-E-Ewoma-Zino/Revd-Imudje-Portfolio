@@ -1,30 +1,21 @@
 // Components for adding books
+const { authLevel } = require("../auth/authentication");
 const _bird = require("../../middleware/messageBird");
-const _books = require("../../middleware/books");
 const ImagesDB = require("../../model/Images");
-const _page = require("../../middleware/page");
 const Books = require("../../model/Books");
 const Shelf = require("../../model/Shelf");
 
 module.exports = {
 	get: (req, res) => {
-		_page.getPage((page_err, page) => {
-			if (page_err) {
-				console.log(page_err);
-			}
-			else {
-				res.render("admin/addbook", {
-					title: "admin",
-					page: page,
-					bird: _bird.fly
-				});
-				// res.send(page);
-			}
+		// check if the user is authorized and if the user is the admin
+		if (!authLevel(req))	return res.redirect("back");
+
+		res.render("admin/addbook", {
+			title: "admin",
+			bird: _bird.fly
 		});
 	},
 	post: (req, res) => {
-		console.log("it", req.body);
-		console.log("it", req.files.book[0]);
 		// variable to check if image and shelf have finished saving
 		let is_image_save = false, is_shelf_save = false;
 

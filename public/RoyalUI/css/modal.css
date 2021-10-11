@@ -1,0 +1,13 @@
+/* make a modal to show categories */
+
+#modal {
+	position: fixed;
+	top: 0%;
+	right: 0%;
+	width: 85%;
+	z-index: 1;
+	height: 100%;
+	display: none;
+	align-items: center;
+	justify-content: center;
+}

@@ -11,6 +11,12 @@ const userSchema = mongoose.Schema({
 		ref: "Book",
 		type: mongoose.Schema.Types.ObjectId
 	}],
+	// Things needed for the authorization for admin and user.
+	authLevel: {
+		type: Number,
+		min: 0,
+		max: 1
+	},
 	// Things needed for all user Schema
 	createdAt: {
 		type: Date,

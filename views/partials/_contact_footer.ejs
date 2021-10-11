@@ -14,7 +14,7 @@
 			</div>
 			<div class="text-block">
 				<p class="container text-center text-light">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio dolor odio ipsam!
+					You have something to say? Send a mail let us talk about it.
 				</p>
 			</div>
 		</div>
@@ -47,7 +47,20 @@
 					</div>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary mt-3">Submit</button>
+			<div class="row">
+				<!--  -->
+				<div class="col-md-4">
+					<button type="submit" class="btn btn-primary mt-3">Submit</button>
+				</div>
+				<div class="col-md-8 mt-2">
+					<ul class="nav justify-content-evenly justify-content-md-end">
+						<li class="nav-nav-link ms-md-2"><a href="tel:+<%= page.aboutMe.phoneNo %>"><button type="button" class="btn rounded-circle p-2"><i class="fa fa-phone text-light fa-2x"></i></button></a></li>
+						<li class="nav-nav-link ms-md-2"><button type="button" class="btn rounded-circle p-2" onclick="link({url: '<%= page.aboutMe.facebook %>'})"><i class="fab fa-facebook text-light fa-2x"></i></button></li>
+						<li class="nav-nav-link ms-md-2"><button type="button" class="btn rounded-circle p-2" onclick="link({url: '<%= page.aboutMe.whatsapp %>'})"><i class="fab fa-whatsapp text-light fa-2x"></i></button></li>
+						<li class="nav-nav-link ms-md-2"><a href="mailto:<%= page.aboutMe.email %>"><button type="button" class="btn rounded-circle p-2"><i class="fa fa-envelope text-light fa-2x"></i></button></a></li>
+					</ul>
+				</div>
+			</div>
 		</form>
 		<!-- Footer -->
 		<div class="d-flex flex-column justify-content-center align-items-center">

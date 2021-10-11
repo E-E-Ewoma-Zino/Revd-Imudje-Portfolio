@@ -1,7 +1,7 @@
 <!-- Head -->
-<%- include("partials/head") %>
+<%- include("partials/_head") %>
 	<!-- Navbar -->
-	<%- include("partials/navbar") %>
+	<%- include("partials/_navbar") %>
 		<!-- Header -->
 
 			<!-- Main section -->
@@ -39,29 +39,35 @@
 						</div>
 					</div>
 					<div class="container row d-flex justify-content-center align-items-start">
-						<% books.forEach(book => { %>
-							<!--  -->
-							<div class="col-md-4 d-flex justify-content-center align-items-center my-3">
-								<div class="card mw-90">
-									<img src="/<%= book.image.path %>" class="img-fluid card-image">
-									<div class="card-body">
-										<div class="d-flex justify-content-between align-items-center">
-											<h6>
-												<%= book.title %>
-											</h6>
-										</div>
-										<span class="mb-5">
-											<%= book.description.length > 32? book.description.substr(0, 32) + "...": book.description %> 
-										</span>
-										<div class="d-flex justify-content-between align-items-center mt-3">
-											<a href="/books/<%= book.title %>?pq=<%= book._id %>&tr=<%= Math.floor(Math.random() * 1233) %>" class="btn btn-primary text-white" target="_parent"
-												rel="noopener noreferrer">Read Article</a>
-											<!-- <span class="price">$80</span> -->
+						<% if(books.length){ %>
+							<% books.forEach(book => { %>
+								<!--  -->
+								<div class="col-md-4 d-flex justify-content-end align-items-center my-3">
+									<div class="card mw-90">
+										<img src="/<%= book.image.path %>" class="img-fluid card-image">
+										<div class="card-body">
+											<div class="d-flex justify-content-between align-items-center">
+												<h6>
+													<%= book.title %>
+												</h6>
+											</div>
+											<span class="mb-5">
+												<%= book.description.length > 32? book.description.substr(0, 32) + "...": book.description %> 
+											</span>
+											<div class="d-flex justify-content-between align-items-center mt-3">
+												<a href="/books/<%= book.title %>?pq=<%= book._id %>&tr=<%= Math.floor(Math.random() * 1233) %>" class="btn btn-primary text-white" target="_parent"
+													rel="noopener noreferrer">Read Article</a>
+												<!-- <span class="price">$80</span> -->
+											</div>
 										</div>
 									</div>
 								</div>
+							<% }); %>
+						<% }else{ %> 
+							<div class="heading">
+								<h3 class="text-dark text-center">No Books Avaliable Yet</h3>
 							</div>
-						<% }); %>
+						<% } %>  
 					</div>
 				</div>
 			</section>
@@ -71,6 +77,6 @@
 			<!-- LogIn and Register Modal -->
 		<%- include("components/loginModal") %>
 			<!-- Contact / Footer -->
-			<%- include("partials/contact_footer") %>
+			<%- include("partials/_contact_footer") %>
 				<!-- Scripts -->
-				<%- include("partials/scripts") %>
+				<%- include("partials/_scripts") %>
