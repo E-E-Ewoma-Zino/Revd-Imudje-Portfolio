@@ -28,6 +28,24 @@ function modal(data) {
 		Confirm</button>
 		<a href="#x" class="btn btn-light" onclick="closeModal()">Cancel</a></div>`;
 	}
+	else if (data.type === "form2") {
+		// for changing password
+		myModal.style.display = "flex";
+		content.innerHTML = `<h4 class="card-title">${data.title}</h4>
+		<p class="card-description">${data.message}</p>
+		<div class="my-4">
+		<form action="/admin/settings" method="post">
+			<label for="oldPassword">Previous Password</label>
+			<input type="password" class="form-control mb-2" name="oldPassword" id="oldPassword" placeholder="Previous Password">
+			<label for="password">New Password</label>
+			<input type="password" class="form-control mb-2" name="newPassword" id="newPassword" placeholder="New Password">
+			<label for="confirmPassword">Confirm Password</label>
+			<input type="password" class="form-control mb-2" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
+			<button type="button" class="btn btn-primary" onclick="checkPassword()">Send</button>
+			<a href="#x" class="btn btn-light" onclick="closeModal()">Cancel</a>
+		</form>
+		</div>`;
+	}
 	else {
 		messager({
 			replace: ["success", "danger"],

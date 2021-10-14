@@ -9,12 +9,11 @@
 		}
 	},
 	"aboutMe": {
-		"name": {
-			"fullname": "Revd Joseph G.O. Imudje",
-			"eachName": [
-				"Revd Joseph",
-				"G.O. Imudje"
-			]
+		"names": {
+			"title": "Revd",
+			"firstName": "Joseph Omokoro",
+			"lastName": "Imudje",
+			"middleName": "G.O."
 		},
 		"phoneNo": "08021286282",
 		"email": "daddyimudje@gmail.com",

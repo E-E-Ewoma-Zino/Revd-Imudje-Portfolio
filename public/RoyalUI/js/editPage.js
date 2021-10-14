@@ -2,6 +2,8 @@
 // This script controls how the edit page works
 // Get all dom element which contains attribute [concatinatable="true"]
 const pageBody = document.querySelectorAll("[contenteditable='true']");
+// get all values that will not be changed by this page
+const constPageBody = document.querySelectorAll("[data-attribute-constant='true']");
 
 for (let i = 0; i < pageBody.length; i++) {
 	const body = pageBody[i];
@@ -18,26 +20,25 @@ function savePage() {
 	// get the body to be updated
 	const pageDetails = {
 		title: {
-			home: "Revd Joseph G.O. Imudje",
-			books: "My Books",
-			buy: "Get a book",
+			home: constPageBody[0].value,
+			books: constPageBody[1].value,
+			buy: constPageBody[2].value,
 			error: {
-				error404: "Page Not Found",
-				error500: "Server Error"
+				error404: constPageBody[3].value,
+				error500: constPageBody[4].value
 			}
 		},
 		aboutMe: {
 			name: {
-				fullname: "Revd Joseph G.O. Imudje",
-				eachName: [
-					"RevdJoseph",
-					"GO. Imudje"
-				]
+				"title": constPageBody[5].value,
+				"firstName": constPageBody[6].value,
+				"lastName": constPageBody[7].value,
+				"middleName": constPageBody[8].value
 			},
-			phoneNo: "08021286282",
-			email: "daddyimudje@gmail.com",
-			facebook: "www.facebook.com/imudje",
-			whatsapp: "090290298762",
+			phoneNo: constPageBody[9].value,
+			email: constPageBody[10].value,
+			facebook: constPageBody[11].value,
+			whatsapp: constPageBody[12].value,
 			topic: pageBody[0].innerText,
 			aboutTitle: pageBody[1].innerText,
 			body: [
@@ -47,7 +48,7 @@ function savePage() {
 			]
 		},
 		believes: {
-			topic: "Believes",
+			topic: constPageBody[13].value,
 			title: pageBody[5].innerText,
 			cross: pageBody[6].innerText,
 			bell: pageBody[7].innerText,
@@ -55,7 +56,7 @@ function savePage() {
 			church: pageBody[9].innerText
 		},
 		achievements: {
-			topic: "Achievements",
+			topic: constPageBody[14].value,
 			title: pageBody[10].innerText,
 			achievements: [
 				{
@@ -74,27 +75,26 @@ function savePage() {
 		},
 		carousel: [
 			{
-				title: "First slide label",
-				body: "Some representative placeholder content for the first slide."
+				title: constPageBody[15].value,
+				body: constPageBody[16].value
 			},
 			{
-				title: "Second slide label",
-				body: "Some representative placeholder content for the first slide."
+				title: constPageBody[17].value,
+				body: constPageBody[18].value
 			},
 			{
-				title: "Third slide label",
-				body: "Some representative placeholder content for the first slide."
+				title: constPageBody[19].value,
+				body: constPageBody[20].value
 			}
 		]
 	}
 
-	console.log(pageDetails);
 	postAxios({ url: "/admin/editpage", _data: pageDetails }, (err, res) => {
 		if (err) {
 			return console.error("::post_err", err);
 		}
 		else {
-			console.log(res);
+			// console.log(res);
 			return messager({
 				replace: ["danger", "success"],
 				message: "Updated <i class=\"ti-thumb-up\"></i>"

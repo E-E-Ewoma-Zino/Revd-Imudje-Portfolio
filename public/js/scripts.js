@@ -1,6 +1,11 @@
 //
 // Scripts
 // 
+// For links
+function link(data) {
+	window.location.href = data.url;
+}
+
 // modal
 // Get the modal
 var modal = document.getElementById('myModal');

@@ -13,7 +13,7 @@
 								<div class="col-md-12 grid-margin">
 									<div class="d-flex justify-content-between align-items-center">
 										<div>
-											<h4 class="font-weight-bold mb-0">RoyalUI Dashboard</h4>
+											<h4 class="font-weight-bold mb-0">Settings</h4>
 										</div>
 										<div>
 											<button type="button" class="btn btn-primary btn-icon-text btn-rounded">
@@ -22,39 +22,114 @@
 										</div>
 									</div>
 								</div>
-							</div>							
+							</div>
 							<div class="row">
 								<div class="col-md-12 grid-margin stretch-card">
 									<div class="card position-relative">
 										<div class="card-body">
-											<p class="card-title">Detailed Reports</p>
+											<p class="card-title">Settings</p>
 											<p class="card-description">
-												Basic form elements
+												Remember to save before you leave
 											</p>
 											<div class="row">
-												<div class="col-12 border-bottom border-top hover-cursor py-3">
-													change password
+												<div class="col-12 border-bottom py-3">
+													<div class="row">
+														<div class="col-12">
+															<span class="card-title">Change Password</span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-6"><span class="card-description small">Use the form to change your password, by entering the previous password</span></div>
+														<div class="col-6 d-flex justify-content-end align-items-center"><button class="btn btn-primary" onclick="modal({type: 'form2', title: 'Change Password', message: 'Use the form to change your password'})">Change</button></div>
+													</div>
 												</div>
-												<div class="col-12 border-bottom hover-cursor py-3">
-													change password
+												<div class="col-12 border-bottom py-3">
+													<div class="row">
+														<div class="col-12 mb-1">
+															<span class="card-title">Carousel Caption</span>
+														</div>
+														<div class="col-12 mb-3"><span class="card-description small">You can change the captions of the carousel</span></div>
+														<div class="col-12">
+															<div class="row d-flex justify-content-center align-items-center">
+																<% page.carousel.forEach((carousel, index) => { %>
+																	<div class="col-12 col-md-6 col-lg-4 mb-3">
+																		<h6 class="text-muted text-center">Carousel <%= index + 1 %></h6>
+																		<hr class="w-50">
+																		<label for="carousel<%= index + 1 %>">Title</label>
+																		<input type="text" data-attribute-carousel="title" class="form-control mb-2" name="carousel" id="carousel<%= index + 1 %>" value="<%= carousel.title %>">
+																		<label for="carousel<%= index + 1 %>">Body</label>
+																		<input type="text" data-attribute-carousel="body" class="form-control mb-2" name="carousel" id="carousel<%= index + 1 %>" value="<%= carousel.body %>">
+																	</div>
+																<% }); %>
+																<div class="col-12 d-flex justify-content-end align-items-center">
+																	<button class="btn btn-primary" onclick="updateCarousel()">Save</button>
+																</div>
+															</div>
+														</div>
+													</div>
 												</div>
-												<div class="col-12 border-bottom hover-cursor py-3">
-													change password
-												</div>
-												<div class="col-12 border-bottom hover-cursor py-3">
-													change password
-												</div>
-												<div class="col-12 border-bottom hover-cursor py-3">
-													change password
-												</div>
-												<div class="col-12 border-bottom hover-cursor py-3">
-													change password
-												</div>
-												<div class="col-12 border-bottom hover-cursor py-3">
-													change password
-												</div>
-												<div class="col-12 border-bottom hover-cursor py-3">
-													change password
+												<div class="col-12 py-3">
+													<div class="row mb-2">
+														<div class="col-12 col-md-6">
+															<span class="card-title">Phone No</span>
+														</div>
+														<div class="col-12 col-md-6">
+															<input type="text" data-attribute-contact="phoneNo" class="form-control" name="phoneNo" id="phoneNo" value="<%= page.aboutMe.phoneNo %>">
+															<span class="card-description small">Change your phone number here.</span>
+														</div>
+													</div>
+													<div class="row mb-2">
+														<div class="col-12 col-md-6">
+															<span class="card-title">Whatsapp No</span>
+														</div>
+														<div class="col-12 col-md-6">
+															<input type="text" data-attribute-contact="whatsapp" class="form-control" name="whatsapp" id="whatsapp" value="<%= page.aboutMe.whatsapp %>">
+															<span class="card-description small">Change your whatsapp number here.</span>
+														</div>
+													</div>
+													<div class="row mb-2">
+														<div class="col-12 col-md-6">
+															<span class="card-title">Email</span>
+														</div>
+														<div class="col-12 col-md-6">
+															<input type="text" data-attribute-contact="email" class="form-control" name="email" id="email" value="<%= page.aboutMe.email %>">
+															<span class="card-description small">Change your email here.</span>
+														</div>
+													</div>
+													<div class="row mb-2">
+														<div class="col-12 col-md-6">
+															<span class="card-title">Facebook</span>
+														</div>
+														<div class="col-12 col-md-6">
+															<input type="text" data-attribute-contact="facebook" class="form-control" name="facebook" id="facebook" value="<%= page.aboutMe.facebook %>">
+															<span class="card-description small">Change your facebook address here.</span>
+														</div>
+													</div>
+													<div class="row mb-2">
+														<div class="col-12 col-md-6">
+															<span class="card-title">name</span>
+														</div>
+														<div class="col-12 col-md-6">
+															<input type="text" data-attribute-contact="names" class="form-control" name="name" id="name" value="<%= page.aboutMe.names.title %>" placeholder="Your Title">
+															<input type="text" data-attribute-contact="names" class="form-control" name="name" id="name" value="<%= page.aboutMe.names.firstName %>" placeholder="First Name">
+															<input type="text" data-attribute-contact="names" class="form-control" name="name" id="name" value="<%= page.aboutMe.names.lastName %>" placeholder="Last Name">
+															<input type="text" data-attribute-contact="names" class="form-control" name="name" id="name" value="<%= page.aboutMe.names.middleName %>" placeholder="Middle Name">
+															<span class="card-description small">Change your names here.</span>
+														</div>
+														<!-- hidden value -->
+														<div class="d-none">
+															<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.topic %>">
+															<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.aboutTitle %>">
+															<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.body[0] %>">
+															<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.body[1] %>">
+															<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.body[2] %>">
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-12 d-flex justify-content-end align-items-center">
+															<button class="btn btn-primary" onclick="updateContact()">Save</button>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -73,6 +148,7 @@
 	</div>
 	<!-- container-scroller -->
 	<%- include("partials/_script") %>
-		</body>
+	<script src="/RoyalUI/js/settings.js"></script>
+</body>
 
 		</html>

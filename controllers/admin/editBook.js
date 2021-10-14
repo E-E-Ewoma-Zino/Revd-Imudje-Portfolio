@@ -7,7 +7,7 @@ const error500 = require("../errors/error500");
 module.exports = {
 	get: (req, res) => {
 		// check if the user is authorized and if the user is the admin
-		if (authLevel(req))	return res.redirect("back");
+		if (!authLevel(req))	return res.redirect("back");
 
 		_books.allBooks((book_err, books) => {
 			if (book_err) {

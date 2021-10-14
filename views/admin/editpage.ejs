@@ -58,7 +58,30 @@
 							<div class="heading">
 								<h3 class="text-dark" contenteditable="true"><%= page.aboutMe.aboutTitle %></h3>
 							</div>
-
+							<!-- hidden values -->
+							<div class="d-none">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.title.home %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.title.books %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.title.buy %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.title.error.error404 %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.title.error.error500 %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.names.title %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.names.firstName %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.names.lastName %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.names.middleName %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.phoneNo %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.email %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.facebook %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.whatsapp %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.believes.topic %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.achievements.topic %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.carousel[0].title %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.carousel[0].body %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.carousel[1].title %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.carousel[1].body %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.carousel[2].title %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.carousel[2].body %>">
+							</div>
 							<!-- About Me Body -->
 							<div class="text-block">
 								<% page.aboutMe.body.forEach(body => { %>

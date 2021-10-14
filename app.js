@@ -45,6 +45,7 @@ require(__dirname + "/config/passport")(passport);
 
 // set up Page
 require(__dirname + "/middleware/page").createPage();
+// require(__dirname + "/middleware/page").dropPage();
 
 // @desc	for all home route "/"
 // @route	home

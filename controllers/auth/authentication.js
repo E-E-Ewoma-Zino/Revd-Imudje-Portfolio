@@ -1,6 +1,5 @@
 // controlls all the authentication for the users
 const _bird = require("../../middleware/messageBird");
-const _page = require("../../middleware/page");
 const Users = require("../../model/Users");
 const passport = require("passport");
 
@@ -46,14 +45,21 @@ module.exports = {
 					return next(reqLogIn_err);
 				}
 
-				// because i have done the authLevel checker function i can do this here
-				if(!user.authLevel){
+				// checking where the auth is coming from
+				if (req.body.auth) {
+					// because i have done the authLevel checker function i can do this here
+					if (!user.authLevel) {
+						_bird.message("success", "Welcome back " + req.user.username);
+						return res.redirect("/");
+					}
+					else {
+						_bird.message("success", "Welcome back Admin " + req.user.username);
+						return res.redirect("/admin/dashboard");
+					}
+				}
+				else {
 					_bird.message("success", "Welcome back " + req.user.username);
 					return res.redirect("back");
-				}
-				else{
-					_bird.message("success", "Welcome back Admin " + req.user.username);
-					return res.redirect("/admin/dashboard");
 				}
 			});
 		})(req, res, next);
@@ -74,7 +80,7 @@ module.exports = {
 			}
 			else return true;
 		}
-		else{
+		else {
 			_bird.message("warning", "You are not logIn yet.");
 			return false;
 		}

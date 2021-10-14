@@ -35,7 +35,6 @@ module.exports = {
 		});
 	},
 	post: (req, res) => {
-		console.log(req.body);
 		_page.update(req.body, (pageUpdate_err, done)=>{
 			if (pageUpdate_err) {
 				_bird.message("danger", pageUpdate_err)
