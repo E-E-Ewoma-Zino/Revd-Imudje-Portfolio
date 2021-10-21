@@ -67,10 +67,10 @@ module.exports = {
 	logOut: (req, res) => {
 		_bird.message("primary", "Bye " + req.user.username);
 		req.logOut();
-		res.redirect("back");
+		res.redirect("/");
 	},
 	// Check the auth level for the user and the authlevel from the form used to send the req then send to the user pages if 0 or the admin page if 1
-	authLevel: (req) => {
+	adminOnly: (req) => {
 		// Checks if user is authenticated and then redirect to the destination
 		// IF user does not have auth validation then send back
 		if (req.isAuthenticated()) {
@@ -79,6 +79,18 @@ module.exports = {
 				return false;
 			}
 			else return true;
+		}
+		else {
+			_bird.message("warning", "You are not logIn yet.");
+			return false;
+		}
+	},
+	// Check the auth level for the user and the authlevel from the form used to send the req then send to the user pages if 0 or the admin page if 1
+	userOnly: (req) => {
+		// Checks if user is authenticated and then redirect to the destination
+		// IF user does not have auth validation then send back
+		if (req.isAuthenticated()) {
+			return true;
 		}
 		else {
 			_bird.message("warning", "You are not logIn yet.");

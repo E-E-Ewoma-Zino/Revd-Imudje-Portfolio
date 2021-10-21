@@ -73,29 +73,29 @@
 					</div>
 					<div class="container-fluid container-md mt-3">
 						<div class="d-flex flex-row flex-wrap justify-content-evenly align-items-stretch">
-							<div class="card activeBelievesCard justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0"
-								onclick="believs({e: this, believs: 0 })">
+							<div class="card believesControl activeBelievesCard justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0"
+								onclick="believs(0)">
 								<img class="card-img-top mw-30 mt-3" src="/assets/img/cross.png" alt="Card image cap">
 								<div class="card-body">
 									<h5 class="card-title text-center">The Cross</h5>
 								</div>
 							</div>
-							<div class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0"
-								onclick="believs({e: this, believs: 1 })">
+							<div class="card believesControl justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0"
+								onclick="believs(1)">
 								<img class="card-img-top mw-30 mt-3" src="/assets/img/bell.png" alt="Card image cap">
 								<div class="card-body">
 									<h5 class="card-title text-center">The Bell</h5>
 								</div>
 							</div>
-							<div class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0"
-								onclick="believs({e: this, believs: 2 })">
+							<div class="card believesControl justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0"
+								onclick="believs(2)">
 								<img class="card-img-top mw-30 mt-3" src="/assets/img/bible.png" alt="Card image cap">
 								<div class="card-body">
 									<h5 class="card-title text-center">The Bible</h5>
 								</div>
 							</div>
-							<div class="card justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0"
-								onclick="believs({e: this, believs: 3 })">
+							<div class="card believesControl justify-content-center align-items-center bg-gray-300 bg-p-hover text-light-hover w-40 mw-md-15 min-w-40 min-w-md-15 my-3 my-md-0"
+								onclick="believs(3)">
 								<img class="card-img-top mw-30 mt-3" src="/assets/img/church.png" alt="Card image cap">
 								<div class="card-body">
 									<h5 class="card-title text-center">The Church</h5>
@@ -148,7 +148,7 @@
 						<!--  -->
 						<div class="row no-gutters justify-content-center flex-row">
 							<div class="col-md-6">
-								<img class="img-fluid" src="assets/img/achievements2.jpg" alt="img">
+								<img class="img-fluid" style="filter: sepia(0.5)" src="assets/img/achievements2.jpg" alt="img">
 							</div>
 							<div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
 								<div class="container">
@@ -241,16 +241,17 @@
 						<script>
 							// control the believes cards
 							const beliveContent = document.getElementsByClassName("believs");
+							const beliveControls = document.getElementsByClassName("believesControl");
 
 							// function to get the card to activate and the card to turn off
 							function believs(data) {
 								for (let i = 0; i < beliveContent.length; i++) {
 									const belive = beliveContent[i];
 									belive.classList.remove("activeBelievesContent");
-									data.e.parentElement.children[i].classList.remove("activeBelievesCard");
+									beliveControls[data].parentElement.children[i].classList.remove("activeBelievesCard");
 								}
-								data.e.classList.add("activeBelievesCard");
-								beliveContent[data.believs].classList.add("activeBelievesContent");
+								beliveControls[data].classList.add("activeBelievesCard");
+								beliveContent[data].classList.add("activeBelievesContent");
 							}
 						</script>
 						<!-- Scripts -->

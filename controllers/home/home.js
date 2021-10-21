@@ -8,6 +8,7 @@ module.exports = (req, res) => {
 	_page.getPage((page_err, page) => {
 		if (page_err) {
 			console.log(page_err);
+			_bird.message("danger", page_err);
 			error500(req, res);
 		}
 		else {

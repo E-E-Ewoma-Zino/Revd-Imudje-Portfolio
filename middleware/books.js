@@ -46,7 +46,6 @@ module.exports = {
 		});
 	},
 	// delete book with its shelf and Image
-	// TODO: also delete files using fs
 	delete: (bookId, callback) => {
 		Books.findOneAndDelete({ _id: bookId }, (delete_err, book) => {
 			if (delete_err) {

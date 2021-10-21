@@ -9,6 +9,8 @@ module.exports = (req, res)=>{
 		}
 
 		return res.render("errors/error404", {
+			page: page,
+			user: req.isAuthenticated() && req.user.username,
 			title: page.title.error.error404
 		});
 	});

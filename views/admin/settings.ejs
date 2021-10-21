@@ -35,12 +35,41 @@
 												<div class="col-12 border-bottom py-3">
 													<div class="row">
 														<div class="col-12">
+															<span class="card-title">Profile Picture</span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-6"><span class="card-description small">Change
+																your profile picture. Click the profile picture.</span>
+														</div>
+														<form
+															class="col-6 d-flex justify-content-end align-items-center"
+															action="/admin/settings?q=changeProfile" method="post" enctype="multipart/form-data">
+															<input type="file" class="form-control" name="image"
+																id="image" accept="image/*" required hidden>
+															<img class="hover-cursor rounded-circle" style="width: 4rem; height: 4rem;"
+																src="/<%= page.profile.path %>" alt="profile"
+																onclick="document.querySelector('#image').click()"/>
+															<div class="mx-1"></div>
+															<button type="submit" class="btn btn-primary" onclick="changeProfile(this)">Change</button>
+														</form>
+													</div>
+												</div>
+												<div class="col-12 border-bottom py-3">
+													<div class="row">
+														<div class="col-12">
 															<span class="card-title">Change Password</span>
 														</div>
 													</div>
 													<div class="row">
-														<div class="col-6"><span class="card-description small">Use the form to change your password, by entering the previous password</span></div>
-														<div class="col-6 d-flex justify-content-end align-items-center"><button class="btn btn-primary" onclick="modal({type: 'form2', title: 'Change Password', message: 'Use the form to change your password'})">Change</button></div>
+														<div class="col-6"><span class="card-description small">Use the
+																form to change your password, by entering the previous
+																password</span></div>
+														<div
+															class="col-6 d-flex justify-content-end align-items-center">
+															<button class="btn btn-primary"
+																onclick="modal({type: 'form2', title: 'Change Password', message: 'Use the form to change your password'})">Change</button>
+														</div>
 													</div>
 												</div>
 												<div class="col-12 border-bottom py-3">
@@ -48,22 +77,39 @@
 														<div class="col-12 mb-1">
 															<span class="card-title">Carousel Caption</span>
 														</div>
-														<div class="col-12 mb-3"><span class="card-description small">You can change the captions of the carousel</span></div>
+														<div class="col-12 mb-3"><span
+																class="card-description small">You can change the
+																captions of the carousel</span></div>
 														<div class="col-12">
-															<div class="row d-flex justify-content-center align-items-center">
-																<% page.carousel.forEach((carousel, index) => { %>
+															<div
+																class="row d-flex justify-content-center align-items-center">
+																<% page.carousel.forEach((carousel, index)=> { %>
 																	<div class="col-12 col-md-6 col-lg-4 mb-3">
-																		<h6 class="text-muted text-center">Carousel <%= index + 1 %></h6>
+																		<h6 class="text-muted text-center">Carousel <%=
+																				index + 1 %>
+																		</h6>
 																		<hr class="w-50">
-																		<label for="carousel<%= index + 1 %>">Title</label>
-																		<input type="text" data-attribute-carousel="title" class="form-control mb-2" name="carousel" id="carousel<%= index + 1 %>" value="<%= carousel.title %>">
-																		<label for="carousel<%= index + 1 %>">Body</label>
-																		<input type="text" data-attribute-carousel="body" class="form-control mb-2" name="carousel" id="carousel<%= index + 1 %>" value="<%= carousel.body %>">
+																		<label
+																			for="carousel<%= index + 1 %>">Title</label>
+																		<input type="text"
+																			data-attribute-carousel="title"
+																			class="form-control mb-2" name="carousel"
+																			id="carousel<%= index + 1 %>"
+																			value="<%= carousel.title %>">
+																		<label
+																			for="carousel<%= index + 1 %>">Body</label>
+																		<input type="text"
+																			data-attribute-carousel="body"
+																			class="form-control mb-2" name="carousel"
+																			id="carousel<%= index + 1 %>"
+																			value="<%= carousel.body %>">
 																	</div>
-																<% }); %>
-																<div class="col-12 d-flex justify-content-end align-items-center">
-																	<button class="btn btn-primary" onclick="updateCarousel()">Save</button>
-																</div>
+																	<% }); %>
+																		<div
+																			class="col-12 d-flex justify-content-end align-items-center">
+																			<button class="btn btn-primary"
+																				onclick="updateCarousel()">Save</button>
+																		</div>
 															</div>
 														</div>
 													</div>
@@ -74,8 +120,11 @@
 															<span class="card-title">Phone No</span>
 														</div>
 														<div class="col-12 col-md-6">
-															<input type="text" data-attribute-contact="phoneNo" class="form-control" name="phoneNo" id="phoneNo" value="<%= page.aboutMe.phoneNo %>">
-															<span class="card-description small">Change your phone number here.</span>
+															<input type="text" data-attribute-contact="phoneNo"
+																class="form-control" name="phoneNo" id="phoneNo"
+																value="<%= page.aboutMe.phoneNo %>">
+															<span class="card-description small">Change your phone
+																number here.</span>
 														</div>
 													</div>
 													<div class="row mb-2">
@@ -83,8 +132,11 @@
 															<span class="card-title">Whatsapp No</span>
 														</div>
 														<div class="col-12 col-md-6">
-															<input type="text" data-attribute-contact="whatsapp" class="form-control" name="whatsapp" id="whatsapp" value="<%= page.aboutMe.whatsapp %>">
-															<span class="card-description small">Change your whatsapp number here.</span>
+															<input type="text" data-attribute-contact="whatsapp"
+																class="form-control" name="whatsapp" id="whatsapp"
+																value="<%= page.aboutMe.whatsapp %>">
+															<span class="card-description small">Change your whatsapp
+																number here.</span>
 														</div>
 													</div>
 													<div class="row mb-2">
@@ -92,8 +144,11 @@
 															<span class="card-title">Email</span>
 														</div>
 														<div class="col-12 col-md-6">
-															<input type="text" data-attribute-contact="email" class="form-control" name="email" id="email" value="<%= page.aboutMe.email %>">
-															<span class="card-description small">Change your email here.</span>
+															<input type="text" data-attribute-contact="email"
+																class="form-control" name="email" id="email"
+																value="<%= page.aboutMe.email %>">
+															<span class="card-description small">Change your email
+																here.</span>
 														</div>
 													</div>
 													<div class="row mb-2">
@@ -101,8 +156,11 @@
 															<span class="card-title">Facebook</span>
 														</div>
 														<div class="col-12 col-md-6">
-															<input type="text" data-attribute-contact="facebook" class="form-control" name="facebook" id="facebook" value="<%= page.aboutMe.facebook %>">
-															<span class="card-description small">Change your facebook address here.</span>
+															<input type="text" data-attribute-contact="facebook"
+																class="form-control" name="facebook" id="facebook"
+																value="<%= page.aboutMe.facebook %>">
+															<span class="card-description small">Change your facebook
+																address here.</span>
 														</div>
 													</div>
 													<div class="row mb-2">
@@ -110,24 +168,44 @@
 															<span class="card-title">name</span>
 														</div>
 														<div class="col-12 col-md-6">
-															<input type="text" data-attribute-contact="names" class="form-control" name="name" id="name" value="<%= page.aboutMe.names.title %>" placeholder="Your Title">
-															<input type="text" data-attribute-contact="names" class="form-control" name="name" id="name" value="<%= page.aboutMe.names.firstName %>" placeholder="First Name">
-															<input type="text" data-attribute-contact="names" class="form-control" name="name" id="name" value="<%= page.aboutMe.names.lastName %>" placeholder="Last Name">
-															<input type="text" data-attribute-contact="names" class="form-control" name="name" id="name" value="<%= page.aboutMe.names.middleName %>" placeholder="Middle Name">
-															<span class="card-description small">Change your names here.</span>
+															<input type="text" data-attribute-contact="names"
+																class="form-control" name="name" id="name"
+																value="<%= page.aboutMe.names.title %>"
+																placeholder="Your Title">
+															<input type="text" data-attribute-contact="names"
+																class="form-control" name="name" id="name"
+																value="<%= page.aboutMe.names.firstName %>"
+																placeholder="First Name">
+															<input type="text" data-attribute-contact="names"
+																class="form-control" name="name" id="name"
+																value="<%= page.aboutMe.names.lastName %>"
+																placeholder="Last Name">
+															<input type="text" data-attribute-contact="names"
+																class="form-control" name="name" id="name"
+																value="<%= page.aboutMe.names.middleName %>"
+																placeholder="Middle Name">
+															<span class="card-description small">Change your names
+																here.</span>
 														</div>
 														<!-- hidden value -->
 														<div class="d-none">
-															<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.topic %>">
-															<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.aboutTitle %>">
-															<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.body[0] %>">
-															<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.body[1] %>">
-															<input type="hidden" data-attribute-constant="true" value="<%= page.aboutMe.body[2] %>">
+															<input type="hidden" data-attribute-constant="true"
+																value="<%= page.aboutMe.topic %>">
+															<input type="hidden" data-attribute-constant="true"
+																value="<%= page.aboutMe.aboutTitle %>">
+															<input type="hidden" data-attribute-constant="true"
+																value="<%= page.aboutMe.body[0] %>">
+															<input type="hidden" data-attribute-constant="true"
+																value="<%= page.aboutMe.body[1] %>">
+															<input type="hidden" data-attribute-constant="true"
+																value="<%= page.aboutMe.body[2] %>">
 														</div>
 													</div>
 													<div class="row">
-														<div class="col-12 d-flex justify-content-end align-items-center">
-															<button class="btn btn-primary" onclick="updateContact()">Save</button>
+														<div
+															class="col-12 d-flex justify-content-end align-items-center">
+															<button class="btn btn-primary"
+																onclick="updateContact()">Save</button>
 														</div>
 													</div>
 												</div>
@@ -148,7 +226,7 @@
 	</div>
 	<!-- container-scroller -->
 	<%- include("partials/_script") %>
-	<script src="/RoyalUI/js/settings.js"></script>
-</body>
+		<script src="/RoyalUI/js/settings.js"></script>
+		</body>
 
 		</html>

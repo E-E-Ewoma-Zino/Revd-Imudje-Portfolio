@@ -1,4 +1,5 @@
 // This page is called by any server errors
+const _bird = require("../../middleware/messageBird");
 const _page = require("../../middleware/page");
 
 module.exports = (req, res)=>{
@@ -9,6 +10,9 @@ module.exports = (req, res)=>{
 		}
 
 		return res.render("errors/error500", {
+			page: page,
+			user: req.isAuthenticated() && req.user.username,
+			bird: _bird.fly,
 			title: page.title.error.error500
 		});
 	});

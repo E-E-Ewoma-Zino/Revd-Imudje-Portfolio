@@ -5,7 +5,6 @@ const _users = require("../../middleware/users");
 const _books = require("../../middleware/books");
 const error500 = require("../errors/error500");
 const _page = require("../../middleware/page");
-const { authLevel } = require("../auth/authentication");
 
 module.exports = {
 	get: (req, res) => {

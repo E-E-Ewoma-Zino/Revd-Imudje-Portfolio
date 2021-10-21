@@ -11,5 +11,23 @@ module.exports = {
 				callback(null, done);
 			}
 		});
+	},
+	changePassword: (data, callback) => {
+		Users.findOne({ _id: data.user }, (user_err, user) => {
+			if (user_err) {
+				return console.error("user_err::", user_err);
+			}
+			if (user) {
+				// using the passport-local-mongoose module, you can use the changePassword function to change the password
+				user.changePassword(data.oldPassword, data.newPassword, function (changePassword_err) {
+					if (changePassword_err) {
+						console.log(":::::", changePassword_err);
+						callback(changePassword_err, null);
+					} else {
+						callback(null, true);
+					}
+				});
+			}
+		});
 	}
 }

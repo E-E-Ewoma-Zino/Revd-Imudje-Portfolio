@@ -2,7 +2,7 @@
 <nav id="navbar" class="navbar navbar-expand-md navbar-dark position-fixed-md top-0 w-100">
 	<div class="container d-flex justify-content-between align-items-center pt-2">
 		<a class="navbar-brand" href="/">
-			<img src="/assets/img/profile.jpg" alt="profile" class="img-fluid rounded-circle" width="50vw"
+			<img src="/<%= page.profile.path %>" style="width: 3rem; height: 3rem" alt="profile" class="img-fluid rounded-circle" width="50vw"
 				height="50vw">
 			<div class="navbar-name d-inline-block"><%= page.aboutMe.names.title + " " + page.aboutMe.names.lastName %></div>
 		</a>
@@ -40,8 +40,7 @@
 							<span class="text-light" style="font-weight: 700;"><%= user.substr(0,1).toUpperCase() %></span>
 						</button>
 						<div class="dropdown-menu translate-md-middle-x bg-black">
-						  <a class="dropdown-item text-light bg-s-hover" href="#">Owned books</a>
-						  <a class="dropdown-item text-light bg-s-hover" href="#">Share a book</a>
+						  <a class="dropdown-item text-light bg-s-hover" href="/mybooks">My books</a>
 						  <a class="dropdown-item text-light bg-s-hover" href="/logout">LogOut</a>
 						</div>
 					  </div>

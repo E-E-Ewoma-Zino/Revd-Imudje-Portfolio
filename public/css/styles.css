@@ -4362,12 +4362,15 @@ textarea.form-control-lg {
 }
 
 /* my code */
-.card-image{
+
+.card-image {
 	height: 50vh;
 }
-.mw-90{
+
+.mw-90 {
 	max-width: 90%;
 }
+
 /*  */
 
 .card>hr {
@@ -8912,6 +8915,16 @@ textarea.form-control-lg {
 	.translate-md-middle-x {
 		transform: translateX(-50%)!important
 	}
+	/* Caption for carousel */
+	.caption {
+		top: 50%!important;
+		transform: none!important;
+	}
+	/* for the nonsense third slide that is missbehaveing */
+	.carousel-item:nth-child(3) .caption {
+		top: 40%!important;
+		transform: none!important;
+	}
 	/*  */
 	.p-md-0 {
 		padding: 0!important
@@ -10664,6 +10677,7 @@ section {
 	transform: translate(-50%, -50%);
 	width: 8vmin;
 	height: 8vmin;
+	z-index: 1;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -10789,20 +10803,35 @@ section {
 }
 
 /* text-block */
-.text-block{
+
+.text-block {
 	margin: .5rem 0;
 }
 
 /* heading */
-.heading{
+
+.heading {
 	margin: .7rem 0;
 }
 
 /* for believes control */
-.activeBelievesContent{
+
+.activeBelievesContent {
 	display: block!important;
 }
-.activeBelievesCard{
+
+.activeBelievesCard {
 	background-color: var(--bs-p);
 	color: var(--bs-light);
+}
+
+/* Caption for carousel */
+
+.caption {
+	position: absolute;
+	top: 43%;
+	font-size: 0.8rem;
+	width: 80%;
+	left: 50%;
+	transform: translateX(-45%);
 }

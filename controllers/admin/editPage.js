@@ -1,5 +1,5 @@
 // Components for editing a page
-const { authLevel } = require("../auth/authentication");
+const { adminOnly } = require("../auth/authentication");
 const _bird = require("../../middleware/messageBird");
 const _books = require("../../middleware/books");
 const error500 = require("../errors/error500");
@@ -8,7 +8,7 @@ const _page = require("../../middleware/page");
 module.exports = {
 	get: (req, res)=>{
 		// check if the user is authorized and if the user is the admin
-		if (!authLevel(req))	return res.redirect("back");
+		if (!adminOnly(req))	return res.redirect("back");
 
 		_page.getPage((page_err, page) => {
 			if (page_err) {

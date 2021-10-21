@@ -4,9 +4,10 @@ const mongoose = require("mongoose");
 const pageSchema = mongoose.Schema({
 	book: Object,
 	title: Object,
+	carousel: Array,
+	profile: Object,
 	aboutMe: Object,
 	believes: Object,
-	carousel: Array,
 	achievements : Object
 });
 

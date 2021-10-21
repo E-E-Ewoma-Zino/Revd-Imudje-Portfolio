@@ -29,7 +29,7 @@ function savePage() {
 			}
 		},
 		aboutMe: {
-			name: {
+			names: {
 				"title": constPageBody[5].value,
 				"firstName": constPageBody[6].value,
 				"lastName": constPageBody[7].value,

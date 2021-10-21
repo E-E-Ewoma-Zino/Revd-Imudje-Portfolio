@@ -60,7 +60,7 @@ router.get("/settings", (req, res) => settings.get(req, res));
 
 // @desc	Settings for setting
 // @route	Post admin/settings
-router.post("/settings", (req, res) => settings.post(req, res));
+router.post("/settings", upload.single("image"), (req, res) => settings.post(req, res));
 
 
 module.exports = router;

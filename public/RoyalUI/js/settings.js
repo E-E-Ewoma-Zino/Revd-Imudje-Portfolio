@@ -1,5 +1,21 @@
 // controll the settings page
 
+// change profile
+function changeProfile(e) {
+	console.log("Profile");
+	if(!document.querySelector('#image').value){
+		e.style.backgroundColor = "red";
+		e.parentElement.children[1].style.transition = "transform 1s ease-in";
+		e.parentElement.children[1].style.transform = "scale(1.4)";
+		setTimeout(() => {
+			e.parentElement.children[1].style.transform = "scale(1)";
+		}, 600);
+		setTimeout(() => {
+			e.parentElement.children[1].style.transform = "scale(1.4)";
+		}, 6800);
+	}
+}
+
 // check Password
 function checkPassword() {
 	const oldP = document.getElementById('oldPassword').value

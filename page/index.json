@@ -8,10 +8,20 @@
 			"error500": "Server Error"
 		}
 	},
+	"profile": {
+		"fieldname": "image",
+		"originalname": "screencapture-education-hostreloaded-virtual-assistance-2021-10-02-22_43_12 (1).jpg",
+		"encoding": "7bit",
+		"mimetype": "image/jpeg",
+		"destination": "assets",
+		"filename": "image-screencapture-education-hostreloaded-virtual-assistance-2021-10-02-22_43_12 (1).jpg-1634773233646.jpg",
+		"path": "assets/img/profile.jpg",
+		"size": 1
+	},
 	"aboutMe": {
 		"names": {
 			"title": "Revd",
-			"firstName": "Joseph Omokoro",
+			"firstName": "Joseph Omohwo",
 			"lastName": "Imudje",
 			"middleName": "G.O."
 		},
@@ -20,51 +30,51 @@
 		"facebook": "www.facebook.com/imudje",
 		"whatsapp": "090290298762",
 		"topic": "A Little About Me",
-		"aboutTitle": "Revd. Joseph Gentle Omokoro Imudje JP",
+		"aboutTitle": "Revd. Joseph Gentle Omohwo Imudje Ph.D (JP)",
 		"body": [
-			"Is currently a Priest in ST. LUKE's Ugbolokposo. He studied at St. Paul University college Awka. He is done with his studies at Immanuel College of Theology, Ibadan in affiliation with the  University of Ibadan.",
-			"He served at St. Peters Anglican Church Warri, Warri Diocese. He hails from Unenurhie Town in Evwreni Clan, Ugheli North Local Government Area Delta State Nigeria. He was baptized with the Holy Spirit on 11th September 1998. He has since then continued to enjoy the in-filling of the Holy Spirit.",
-			"He is an anointed charismatic preacher and teacher of the Gospel of our Lord Jesus Christ. He is loaded with inspiration for evangelistic preaching. He is a seasoned revival preacher in the body of Christ. He is blessed with a godly Wife-Mrs. Pauline U. Imudje and with children."
+			"I am a Priest in the Church of Nigeria-Anglican Communion, Diocese of Warri. He is presently serving as a Vicar at St. Luke's Anglican Church, Ugbolokposo, Effurun.",
+			"I was baptized with the Holy Spirit on the 11th of September 1998. And I am an anointed charismatic, evangelistic, motivational, prophetic, inspirational and seasoned revival preacher and teacher of the Gospel of our Lord Jesus Christ.",
+			"I was called in such a time as this to proclaim the message of salvation/deliverance to the captives. My messages and ministrations in the Holy Spirit have blessed and transformed many lives and are often characterized by signs and wonders. I am blessed with a godly wife-Mrs. Uviemuamren Pauline Imudje and biological and spiritual children."
 		]
 	},
 	"believes": {
 		"topic": "Believes",
 		"title": "My Believes as a Christian",
-		"cross": "I believe that Jesus died for us on the cross. And He died to save us from the enternal condemation.",
+		"cross": "I believe that Jesus died for us on the cross. John 5: 24. Very truly I tell you, whoever hears my word and believes him who sent me has eternal life and will not be judged but has crossed over from death to life.",
 		"bell": "Every time is a good time to worship God. When you are sad or happy worship The Lord. Psalm 34: 1 & 2 - I will bless the Lord at all times: his praise shall continually be in my mouth. My soul shall make her boast in the Lord: the humble shall hear thereof, and be glad.",
-		"bible": "The Bible is The Word of the Lord, ",
-		"church": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas molestiae consectetur, inventore minima quia quibusdam saepe? Corrupti laboriosam culpa placeat perferendis aspernatur possimus cumque! Facilis tenetur natus maxime quod voluptate."
+		"bible": "The Bible is The Word of the Lord.",
+		"church": "The church is the place where the Christian faith is nurtured and where the Holy Spirit is manifest on earth. It is where Christians are received into the faith and where they are brought together into one body through the Eucharist."
 	},
 	"achievements": {
 		"topic": "Achievements",
-		"title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nostrum architecto repellat ipsa facilis commodi incidunt aut nemo, voluptatum error impedit, earum ducimus! Iste qui nesciunt optio dolor odio ipsam!",
+		"title": "I Thank God for giving me the Grace to become a PhD holder of Crowther Graduate Theological Seminary. And I have used that as a great way to share The Word of God through my books.",
 		"achievements": [
 			{
-				"title": "Lorem, ipsum di deleniti sequi vel, labore reiciendis beatae.",
-				"body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas molestiae consectetur, inventore minima quia quibusdam saepe? Corrupti laboriosam culpa placeat perferendis aspernatur possimus cumque! Facilis tenetur natus maxime quod voluptate."
+				"title": "I am a PhD holder of Crowther Graduate Theological Seminary",
+				"body": "Crowther Graduate Theological Seminary is a learning and research center for sound and orthodox Theology for Anglicans in particular and all Christians."
 			},
 			{
-				"title": "Lorem, ipsum di deleniti sequi vel, labore reiciendis beatae.",
-				"body": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas molestiae consectetur, inventore minima quia quibusdam saepe? Corrupti laboriosam culpa placeat perferendis aspernatur possimus cumque! Facilis tenetur natus maxime quod voluptate."
+				"title": "I am the author of serval inspirational books",
+				"body": "Overtime I have written serval inspirational books that will help us into living a godly live."
 			}
 		]
 	},
 	"book": {
 		"topic": "Get Our Books",
-		"title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis nostrum architecto repellat ipsa facilis commodi incidunt aut nemo, voluptatum error impedit, earum ducimus! Iste qui nesciunt optio dolor odio ipsam!"
+		"title": "You can get your own copy of my books here. And once you buy a book its is yours and it will be added to your account."
 	},
 	"carousel": [
 		{
-			"title": "First slide label",
-			"body": "Some representative placeholder content for the first slide."
+			"title": "Young belivers",
+			"body": "You are not too young to start beliving in Christ."
 		},
 		{
-			"title": "Second slide label",
-			"body": "Some representative placeholder content for the first slide."
+			"title": "Worshiping together",
+			"body": "The church is a place where we christains can unite."
 		},
 		{
-			"title": "Third slide label",
-			"body": "Some representative placeholder content for the first slide."
+			"title": "Dining with Christ",
+			"body": "Let us worship and prise Our Lord together."
 		}
 	]
 }

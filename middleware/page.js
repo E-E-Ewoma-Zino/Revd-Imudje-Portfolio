@@ -25,8 +25,9 @@ module.exports = {
 					const newPage = Page({
 						book: require("../page/index").book,
 						title: require("../page/index").title,
-						believes: require("../page/index").believes,
 						aboutMe: require("../page/index").aboutMe,
+						profile: require("../page/index").profile,
+						believes: require("../page/index").believes,
 						carousel: require("../page/index").carousel,
 						achievements: require("../page/index").achievements
 					});

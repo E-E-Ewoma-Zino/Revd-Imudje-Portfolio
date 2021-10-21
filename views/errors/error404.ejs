@@ -1,1 +1,34 @@
-Page Not Found!
+<!-- Head -->
+<%- include("../partials/_head") %>
+	<!-- Navbar -->
+	<%- include("../partials/_navbar") %>
+		<!-- Header -->
+
+			<!-- Main section -->
+			<!-- Header / Breadcrumb -->
+			<section>
+				<header class="position-relative mvh-70 overflow-hidden">
+					<img src="/assets/img/slide2.jpg" alt="header" class="img-fluid filter-brightness">
+					<div class="text-block text-center position-absolute top-50 start-50 translate-middle-x">
+						<h1 class="text-light">404 Page not found</h1>
+						<span class="text-light">Home / ??</span>
+					</div>
+				</header>
+			</section>
+			<!-- lost -->
+			<section>
+				<div class="row mt-5">
+					<div class="col-12 d-flex justify-content-center align-items-center bg-s p-5">
+						<h2 class="text-light">We could not find that page!</h2>
+					</div>
+				</div>
+			</section>
+
+			<!-- Message Bird -->
+		<%# include("../components/messageBird") %>
+			<!-- LogIn and Register Modal -->
+		<%- include("../components/loginModal") %>
+			<!-- Contact / Footer -->
+			<%- include("../partials/_contact_footer") %>
+				<!-- Scripts -->
+				<%- include("../partials/_scripts") %>

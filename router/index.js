@@ -1,4 +1,5 @@
 const authentication = require("../controllers/auth/authentication");
+const myBooks = require("../controllers/home/myBooks");
 const books = require("../controllers/home/books");
 const home = require("../controllers/home/home");
 const express = require("express");
@@ -13,6 +14,9 @@ router.get("/home", (req, res) => home(req, res));
 
 // @desc	books Router
 router.get("/books", (req, res) => books.get(req, res));
+
+// @desc	books a user owns Router
+router.get("/mybooks", (req, res) => myBooks.get(req, res));
 
 // @desc	books Router
 // for when someone wants to buy a book

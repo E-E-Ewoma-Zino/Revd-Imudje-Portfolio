@@ -1,14 +1,15 @@
 // Components for general settings
-const { authLevel } = require("../auth/authentication");
+const { adminOnly } = require("../auth/authentication");
+const _settings = require("../../middleware/settings");
 const _bird = require("../../middleware/messageBird");
+const ImagesDB = require("../../model/Images");
 const error500 = require("../errors/error500");
 const _page = require("../../middleware/page");
-const _settings = require("../../middleware/settings");
 
 module.exports = {
 	get: (req, res) => {
 		// check if the user is authorized and if the user is the admin
-		if (!authLevel(req))	return res.redirect("back");
+		if (!adminOnly(req))	return res.redirect("back");
 
 		_page.getPage((page_err, page) => {
 			if (page_err) {
@@ -25,8 +26,8 @@ module.exports = {
 		});
 	},
 	post: (req, res) => {
-		console.log(req.body);
-		console.log(req.query);
+		// console.log(req.body);
+		// console.log(req.query);
 		// get the type of query that was sent
 		const requestType = req.query.q;
 
@@ -60,7 +61,6 @@ module.exports = {
 				});
 				break;
 			case "updateContact":
-				console.log("updateContact");
 				_settings.updateContact(req.body, (updateContact_err, done) => {
 					if (updateContact_err) {
 						_bird.message("danger", updateContact_err);
@@ -72,6 +72,16 @@ module.exports = {
 					else {
 						return res.send(false);
 					}
+				});
+				break;
+			case "changeProfile":
+				_settings.changeProfile(req.file, (changeProfile_err, done)=>{
+					if(changeProfile_err){
+						_bird.message("danger", changeProfile_err);
+						return res.redirect("back");
+					}
+					_bird.message("success", "Profile Updated");
+					return res.redirect("back");
 				});
 				break;
 			default:

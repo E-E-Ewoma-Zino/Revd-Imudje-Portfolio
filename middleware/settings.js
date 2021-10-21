@@ -28,13 +28,22 @@ module.exports = {
 				return callback(updateCarousel_err, null);
 			}
 			return callback(null, true);
-		});
+		})
 	},
 	updateContact: (data, callback)=>{
 		Page.updateOne({}, {$set: {aboutMe: data}}, (updateContact_err)=>{
 			if(updateContact_err){
 				console.error("updateContact_err::", updateContact_err);
 				return callback(updateContact_err, null);
+			}
+			return callback(null, true);
+		});
+	},
+	changeProfile: (data, callback)=>{
+		Page.updateOne({}, {$set: {profile: data}}, (updateProfile_err)=>{
+			if(updateProfile_err){
+				console.error("updateContact_err::", updateProfile_err);
+				return callback(updateProfile_err, null);
 			}
 			return callback(null, true);
 		});
