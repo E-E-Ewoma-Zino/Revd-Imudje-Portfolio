@@ -18,5 +18,21 @@ module.exports = {
 				callback(null, true);
 			}
 		});
+	},
+	all: (callback)=>{
+		Payments.find({}).populate({
+			path: "book user",
+			populate: {
+				path: "shelf image"
+			}
+		}).exec((err, payments)=>{
+			if(err){
+				console.error("findPayment_err", err);
+				return callback(err, null);
+			}
+			else{
+				return callback(null, payments);
+			}
+		});
 	}
 }

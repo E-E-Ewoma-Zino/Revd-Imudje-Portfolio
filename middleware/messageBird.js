@@ -11,7 +11,7 @@ module.exports = {
 		this.fly.push({
 			alert: alert,
 			message: message
-		})
+		});
 		
 		this.kill();
 	}

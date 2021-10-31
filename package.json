@@ -4,17 +4,19 @@
   "description": "A portfolio for Rev Imudje",
   "main": "app.js",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "mongodb": "^3.6.9",
-    "mongoose": "^5.13.0",
-    "multer": "^1.4.3",
-    "nodemon": "^2.0.9",
-    "dotenv": "^8.2.0",
     "express-session": "^1.17.1",
+    "googleapis": "^89.0.0",
     "lodash": "^4.17.21",
     "method-override": "^3.0.0",
     "moment": "^2.29.1",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.13.0",
+    "multer": "^1.4.3",
+    "nodemailer": "^6.7.0",
+    "nodemon": "^2.0.9",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth20": "^2.0.0",
@@ -30,5 +32,13 @@
   "license": "ISC",
   "engines": {
     "node": "14.x"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/E-E-Ewoma-Zino/Revd-Imudje-Portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/E-E-Ewoma-Zino/Revd-Imudje-Portfolio/issues"
+  },
+  "homepage": "https://github.com/E-E-Ewoma-Zino/Revd-Imudje-Portfolio#readme"
 }

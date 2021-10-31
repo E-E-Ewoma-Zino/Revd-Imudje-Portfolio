@@ -18,19 +18,19 @@
 				</p>
 			</div>
 		</div>
-		<form action="/" method="post" class="container">
+		<form action="/home" method="POST" class="container">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="name">Name address</label>
-						<input type="Name" class="form-control" id="name" placeholder="Enter Name">
+						<label for="name">Name</label>
+						<input type="Name" class="form-control" id="name" name="name" placeholder="Enter Name">
 					</div>
 				</div>
 				<!--  -->
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="email">Email address</label>
-						<input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+						<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
 							placeholder="Enter email">
 						<small id="emailHelp" class="form-text text-light">We'll never share your email with anyone
 							else.</small>
@@ -42,7 +42,7 @@
 				<div class="col-md-12">
 					<div class="form-group">
 						<label for="exampleFormControlTextarea1">Message</label>
-						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+						<textarea class="form-control" id="message" name="message" rows="3"
 							placeholder="Send a mail..."></textarea>
 					</div>
 				</div>

@@ -32,7 +32,7 @@ module.exports = {
 			}
 		});
 	},
-	// I don't want to create another folder for the books/:bookName
+	// I don't want to create another file for the books/:bookName
 	buy: {
 		get: (req, res) => {
 			// to store the book that the user is selecting
@@ -131,12 +131,13 @@ module.exports = {
 								}
 								else{
 									_bird.message("success", "You now own " + book.title);
+									_bird.message("warning", "Refresh this page!");
 								}
 							});
 							res.redirect("back");
 						});
 					}else{
-						_bird.message("danger", "Your payment status is " + req.body.status);
+						_bird.message("danger", "Your payment status: " + req.body.status);
 						res.redirect("back");
 					}
 				}

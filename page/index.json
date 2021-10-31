@@ -41,40 +41,40 @@
 		"topic": "Believes",
 		"title": "My Believes as a Christian",
 		"cross": "I believe that Jesus died for us on the cross. John 5: 24. Very truly I tell you, whoever hears my word and believes him who sent me has eternal life and will not be judged but has crossed over from death to life.",
-		"bell": "Every time is a good time to worship God. When you are sad or happy worship The Lord. Psalm 34: 1 & 2 - I will bless the Lord at all times: his praise shall continually be in my mouth. My soul shall make her boast in the Lord: the humble shall hear thereof, and be glad.",
+		"bell": "Every time is a good time to worship God. When you are sad or happy, worship The Lord. Psalm 34: 1 & 2 - I will bless the Lord at all times: his praise shall continually be in my mouth. My soul shall make her boast in the Lord: the humble shall hear thereof, and be glad.",
 		"bible": "The Bible is The Word of the Lord.",
 		"church": "The church is the place where the Christian faith is nurtured and where the Holy Spirit is manifest on earth. It is where Christians are received into the faith and where they are brought together into one body through the Eucharist."
 	},
 	"achievements": {
 		"topic": "Achievements",
-		"title": "I Thank God for giving me the Grace to become a PhD holder of Crowther Graduate Theological Seminary. And I have used that as a great way to share The Word of God through my books.",
+		"title": "I Thank God for giving me the Grace to become a Ph.D. holder of Crowther Graduate Theological Seminary. And I have used that as a great way to share The Word of God through my books.",
 		"achievements": [
 			{
-				"title": "I am a PhD holder of Crowther Graduate Theological Seminary",
+				"title": "I am a Ph.D. holder of Crowther Graduate Theological Seminary",
 				"body": "Crowther Graduate Theological Seminary is a learning and research center for sound and orthodox Theology for Anglicans in particular and all Christians."
 			},
 			{
 				"title": "I am the author of serval inspirational books",
-				"body": "Overtime I have written serval inspirational books that will help us into living a godly live."
+				"body": "Over time, I have written serval inspirational books that will help us to live a godly life."
 			}
 		]
 	},
 	"book": {
 		"topic": "Get Our Books",
-		"title": "You can get your own copy of my books here. And once you buy a book its is yours and it will be added to your account."
+		"title": "You can get your own copy of my books here. And once you buy a book, it is yours and, it will be added to your account."
 	},
 	"carousel": [
 		{
-			"title": "Young belivers",
-			"body": "You are not too young to start beliving in Christ."
+			"title": "Young believers",
+			"body": "You are not too young to start believing in Christ."
 		},
 		{
 			"title": "Worshiping together",
-			"body": "The church is a place where we christains can unite."
+			"body": "The church is a place where we Christians can unite."
 		},
 		{
-			"title": "Dining with Christ",
-			"body": "Let us worship and prise Our Lord together."
+			"title": "Dinning with Christ",
+			"body": "Let us worship and praise Our Lord together."
 		}
 	]
 }

@@ -39,6 +39,7 @@ module.exports = {
 			return callback(null, true);
 		});
 	},
+	// TODO: delete file when changing
 	changeProfile: (data, callback)=>{
 		Page.updateOne({}, {$set: {profile: data}}, (updateProfile_err)=>{
 			if(updateProfile_err){

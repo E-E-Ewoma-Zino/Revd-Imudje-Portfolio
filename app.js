@@ -58,3 +58,9 @@ app.use(require(__dirname + "/controllers/errors/error404"));
 
 const port = process.env.PORT || 8080;
 app.listen(port, ()=> console.log("started app at port 5000"));
+
+// TODO: Add to the admin dashboard the a section that will receive the messages sent and display them
+// the message button in the nav bar should take the user to the messages
+// don't forget a notification to shaw that their is a new message
+
+// TODO: The notification button in the admin dashboard should show updates made to the site and messages that came from the server

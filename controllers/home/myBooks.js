@@ -2,6 +2,7 @@
 const { userOnly } = require("../auth/authentication");
 const _bird = require("../../middleware/messageBird");
 const _books = require("../../middleware/books");
+const _users = require("../../middleware/users");
 const error500 = require("../errors/error500");
 const _page = require("../../middleware/page");
 
@@ -17,18 +18,27 @@ module.exports = {
 			}
 			else {
 				// TODO: use all books to create books you may like section
-				_books.allBooks((err, books) => {
-					if (err) {
-						console.log(":::", err);
+				_books.allBooks((books_err, books) => {
+					if (books_err) {
+						console.log(":::books_err", books_err);
 						error500(req, res);
 					}
 					else {
-						res.render("myBooks", {
-							user: req.isAuthenticated() && req.user.username,
-							books: req.user.ownedBooks,
-							title: page.title.books,
-							bird: _bird.fly,
-							page: page
+						_users.mybook(req.user._id, (ownBooks_err, userBooks)=>{
+							if(ownBooks_err){
+								_bird.message("danger", ownBooks_err);
+								return error500(req, res);
+							}
+							else{
+								return res.render("myBooks", {
+									user: req.isAuthenticated() && req.user.username,
+									myBooks: userBooks,
+									title: page.title.books,
+									bird: _bird.fly,
+									books: books,
+									page: page
+								});
+							}
 						});
 					}
 				});

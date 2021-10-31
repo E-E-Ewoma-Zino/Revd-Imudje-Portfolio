@@ -24,7 +24,7 @@ function makePayment(callback) {
 				console.log("closed function");
 			},
 			customizations: {
-				title: "Rev Imudeje",
+				title: document.querySelector("#navbar > div > a > div").innerText,
 				description: "Payment for book",
 			},
 		});

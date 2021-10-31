@@ -10,7 +10,12 @@ const router = express.Router();
 router.get("/", (req, res) => res.redirect("/home"));
 
 // @desc	Home Router
-router.get("/home", (req, res) => home(req, res));
+// @route	Get /hone
+router.get("/home", (req, res) => home.get(req, res));
+
+// @desc	Home Router
+// @route	Post /home
+router.post("/home", (req, res) => home.post(req, res));
 
 // @desc	books Router
 router.get("/books", (req, res) => books.get(req, res));

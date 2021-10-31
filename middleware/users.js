@@ -12,6 +12,23 @@ module.exports = {
 			}
 		});
 	},
+	mybook: (user, callback)=>{
+		Users.findOne({_id: user}).populate({
+			path: 'ownedBooks',
+			populate: {
+				path: "image shelf",
+				select: "path"
+			}
+		}).exec((userBook_err, user)=>{
+			if(userBook_err){
+				console.error("userBook_err::", userBook_err);
+				return callback(userBook_err, null);
+			}
+			else{
+				return callback(null, user.ownedBooks);
+			}
+		});
+	},
 	changePassword: (data, callback) => {
 		Users.findOne({ _id: data.user }, (user_err, user) => {
 			if (user_err) {
