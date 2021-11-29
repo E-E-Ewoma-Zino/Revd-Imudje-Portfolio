@@ -1,7 +1,7 @@
 // Flutterwave 
 function makePayment(callback) {
 	try {
-		console.log("ent", document.getElementById("username").value, document.getElementById("price").value);
+		// console.log("ent", document.getElementById("username").value, document.getElementById("price").value);
 		FlutterwaveCheckout({
 			public_key: "FLWPUBK_TEST-88cd4a7dc50e807c5da141b586b3a656-X",
 			tx_ref: "RX1" + Math.floor(Math.random() * 9999999) + 1,
@@ -12,16 +12,46 @@ function makePayment(callback) {
 				name: document.getElementById("username").value.substr(0, 1).toUpperCase()
 			},
 			callback: function (data) {
-				document.getElementById("status").value = data.status;
-				document.getElementById("transaction_id").value = data.transaction_id;
-				document.getElementById("tx_ref").value = data.tx_ref;
+				console.log("the function has been called");
+
+				const paymentData = {
+					status: data.status,
+					tx_ref: data.transaction_id,
+					transaction_id: data.tx_ref
+				}
 
 				// submit form
-				document.getElementById("paymentForm").submit();
+				axios.post("/books/" + document.getElementById("title").value + "?pq=" + document.getElementById("bookId").value, paymentData).then((res) => {
+					console.log("RES", res);
+					if (res.data.type) {
+						messager({
+							replace: ["danger", "success"],
+							message: res.data.message
+						});
+						setTimeout(() => {
+							window.location.reload();
+						}, 1000);
+					} else {
+						if (res.data.message == "Something went wrong! Contact costomer care") messager({
+							replace: ["success", "danger"],
+							message: res.data.message
+						});
+						else messager({
+							replace: ["success", "danger"],
+							message: res.data.message
+						});
+					}
+				}).catch((err) => {
+					console.error("err", err);
+				});
 			},
 			onclose: function () {
 				// close modal
-				console.log("closed function");
+				// console.log("closed function");
+				messager({
+					replace: ["success", "danger"],
+					message: "You cancled the payment!"
+				});
 			},
 			customizations: {
 				title: document.querySelector("#navbar > div > a > div").innerText,

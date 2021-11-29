@@ -1,4 +1,5 @@
 // controlls all the routes for the home page
+const emailTemplate = require("../../components/emailTemplate");
 const _bird = require("../../middleware/messageBird");
 const _books = require("../../middleware/books");
 const error500 = require("../errors/error500");
@@ -45,7 +46,7 @@ module.exports = {
 				to: "eewoma75@gmail.com",
 				subject: `Message from ${req.body.name}`,
 				text: req.body.message,
-				html: req.body.message
+				html: emailTemplate({logoUrl: "www.mm.com", fromMail: req.body.email, title: `Message from ${req.body.name}`, body: req.body.message, footer: "www.rev-imudje.com"})
 			}, (accessToken_err, email_err, info)=>{
 				if(email_err){
 					_bird.message("danger", "Failed to send mail!");

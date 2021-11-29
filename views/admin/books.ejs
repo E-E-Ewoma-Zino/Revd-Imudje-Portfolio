@@ -44,11 +44,11 @@
 											<p class="card-title text-md-center text-xl-left">Revenue</p>
 											<div
 												class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-												<h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">47033</h3>
+												<% let sum = 0; %>
+												<% payments.forEach(a => {sum += sum + Number(a.book.price)}) %>
+												<h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">&#x20A6;<%= Number((sum).toFixed(2)).toLocaleString() %></h3>
 												<i class="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
 											</div>
-											<p class="mb-0 mt-2 text-danger">0.47% <span
-													class="text-black ml-1"><small>(30 days)</small></span></p>
 										</div>
 									</div>
 								</div>
@@ -58,25 +58,22 @@
 											<p class="card-title text-md-center text-xl-left">Downloads</p>
 											<div
 												class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-												<h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">40016</h3>
+												<h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0"><%= payments.length %></h3>
 												<i class="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
 											</div>
-											<p class="mb-0 mt-2 text-success">64.00%<span
-													class="text-black ml-1"><small>(30 days)</small></span></p>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-3 grid-margin stretch-card">
 									<div class="card">
 										<div class="card-body">
-											<p class="card-title text-md-center text-xl-left">Returns</p>
+											<p class="card-title text-md-center text-xl-left">Messages</p>
 											<div
 												class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-												<h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">61344</h3>
-												<i class="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+												<!-- TODO: Add real data to this place -->
+												<h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">0</h3>
+												<i class="ti-email icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
 											</div>
-											<p class="mb-0 mt-2 text-success">23.00%<span
-													class="text-black ml-1"><small>(30 days)</small></span></p>
 										</div>
 									</div>
 								</div>

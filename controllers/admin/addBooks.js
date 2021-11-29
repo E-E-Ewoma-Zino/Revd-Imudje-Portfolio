@@ -2,6 +2,7 @@
 const { adminOnly } = require("../auth/authentication");
 const _bird = require("../../middleware/messageBird");
 const _page = require("../../middleware/page");
+const _payments = require("../../middleware/payments");
 const error500 = require("../errors/error500");
 const ImagesDB = require("../../model/Images");
 const Books = require("../../model/Books");
@@ -18,9 +19,18 @@ module.exports = {
 				return error500(req, res);
 			}
 			else{
-				res.render("admin/addbook", {
-					title: "admin",
-					bird: _bird.fly
+				_payments.all((allPayment_err, payments) => {
+					if (allPayment_err) {
+						_bird.message("danger", allPayment_err);
+						return error500(req, res);
+					}
+					
+					res.render("admin/addbook", {
+						title: "Add a book",
+						payments: payments,
+						bird: _bird.fly,
+						page: page
+					});
 				});
 			}
 		});

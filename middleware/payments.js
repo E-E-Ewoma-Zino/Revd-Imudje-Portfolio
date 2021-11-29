@@ -34,5 +34,21 @@ module.exports = {
 				return callback(null, payments);
 			}
 		});
+	},
+	find: (paymentId, callback)=>{
+		Payments.findOne({_id: paymentId}).populate({
+			path: "book user",
+			populate: {
+				path: "shelf image"
+			}
+		}).exec((err, payment)=>{
+			if(err){
+				console.error("findPayment_err", err);
+				return callback(err, null);
+			}
+			else{
+				return callback(null, payment);
+			}
+		});
 	}
 }

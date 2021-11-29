@@ -102,6 +102,8 @@ module.exports = {
 		},
 		post: (req, res) => {
 			// Get the book 
+			// console.log("qwer", req.body);
+			// console.log("qwer", req.query);
 			_books.byId(req.query.pq, (book_err, book) => {
 				if (book_err) {
 					console.log(":::book_err:", book_err);
@@ -109,7 +111,7 @@ module.exports = {
 				} else {
 					// check if the payment was successful
 					if(req.body.status == "successful"){
-						// create the payment
+						// create the payment   
 						_payments.createPayment({
 							book: book._id,
 							user: req.user._id,
@@ -127,18 +129,15 @@ module.exports = {
 							_users.ownBook(req.user._id, book._id, (ownBook_err, done)=>{
 								if(ownBook_err){
 									console.log(":::ownBook_err:", ownBook_err);
-									_bird.message("danger", "Something went wrong! Contact costomer care");
+									res.send({type: false, message: "Something went wrong! Contact costomer care"});
 								}
 								else{
-									_bird.message("success", "You now own " + book.title);
-									_bird.message("warning", "Refresh this page!");
+									res.send({type: true, message: "You now own " + book.title});
 								}
 							});
-							res.redirect("back");
 						});
 					}else{
-						_bird.message("danger", "Your payment status: " + req.body.status);
-						res.redirect("back");
+						res.send({type: false, message: "Your payment status: " + req.body.status});
 					}
 				}
 			});

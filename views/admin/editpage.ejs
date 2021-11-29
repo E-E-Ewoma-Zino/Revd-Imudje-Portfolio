@@ -17,8 +17,8 @@
 										</div>
 										<div>
 											<button type="button" class="btn btn-primary btn-icon-text btn-rounded"
-												onclick="link({url: '/admin'})">
-												<i class="ti-arrow-left btn-icon-prepend"></i>Back
+												onclick="link({url: '/logout'})">
+												<i class="ti-arrow-left btn-icon-prepend"></i>Logout
 											</button>
 										</div>
 									</div>
@@ -81,6 +81,15 @@
 								<input type="hidden" data-attribute-constant="true" value="<%= page.carousel[1].body %>">
 								<input type="hidden" data-attribute-constant="true" value="<%= page.carousel[2].title %>">
 								<input type="hidden" data-attribute-constant="true" value="<%= page.carousel[2].body %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.profile.fieldname %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.profile.originalname %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.profile.encoding %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.profile.mimetype %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.profile.destination %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.profile.filename %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.profile.path %>">
+								<input type="hidden" data-attribute-constant="true" value="<%= page.profile.size %>">
+
 							</div>
 							<!-- About Me Body -->
 							<div class="text-block">

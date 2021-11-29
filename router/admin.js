@@ -1,6 +1,7 @@
 const dashboard = require("../controllers/admin/dashboard");
 const editBook = require("../controllers/admin/editBook");
 const addBooks = require("../controllers/admin/addBooks");
+const paymentDetails = require("../controllers/admin/paymentDetails");
 const editPage = require("../controllers/admin/editPage");
 const settings = require("../controllers/admin/settings");
 const login = require("../controllers/admin/login");
@@ -21,6 +22,10 @@ router.post("/", (req, res) => login.post(req, res));
 // @desc	Dashboard Router
 // @route	get
 router.get("/dashboard", (req, res) => dashboard(req, res));
+
+// @desc	Payment Details Router
+// @route	get
+router.get("/paymentdetails", (req, res) => paymentDetails(req, res));
 
 // @desc	Add New Book Router
 // @route	get

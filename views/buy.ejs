@@ -32,13 +32,12 @@
 								</div>
 							<% }else{ %> 
 								<!-- FORM FOR FLUTTERWAVE PAYMENT -->
-								<form id="paymentForm" method="POST" action="/books/<%= theBook.title %>?pq=<%= theBook._id %>">
+								<form id="paymentForm1" method="POST" action="/books/<%= theBook.title %>?pq=<%= theBook._id %>">
+									<input type="hidden" class="d-none d-lg-block col-lg-2" id="bookId" value="<%= theBook._id %>">
+									<input type="hidden" class="d-none d-lg-block col-lg-2" id="title" value="<%= theBook._id %>">
 									<script src="https://checkout.flutterwave.com/v3.js"></script>
-									<input type="hidden" id="status" name="status">
-									<input type="hidden" id="transaction_id" name="transaction_id">
-									<input type="hidden" id="tx_ref" name="tx_ref">
-									<input type="hidden" id="username" name="username" value="<%= user %>">
-									<input type="hidden" id="price" name="price" value="<%= theBook.price %>">
+									<input type="hidden" class="d-none d-lg-block col-lg-2" id="username" name="username" value="<%= user %>">
+									<input type="hidden" class="d-none d-lg-block col-lg-2" id="price" name="price" value="<%= theBook.price %>">
 									<div class="text-block">
 										<a href="#x" class="btn btn-primary text-white" onclick="makePayment()">Pay Now</a>
 									</div>
@@ -80,13 +79,8 @@
 									</div>
 								<% }else{ %> 
 									<!-- FORM FOR FLUTTERWAVE PAYMENT -->
-									<form id="paymentForm" method="POST" action="/books/<%= theBook.title %>?pq=<%= theBook._id %>">
+									<form id="paymentForm2" method="POST" action="/books/<%= theBook.title %>?pq=<%= theBook._id %>">
 										<script src="https://checkout.flutterwave.com/v3.js"></script>
-										<input type="hidden" id="status" name="status">
-										<input type="hidden" id="transaction_id" name="transaction_id">
-										<input type="hidden" id="tx_ref" name="tx_ref">
-										<input type="hidden" id="username" name="username" value="<%= user %>">
-										<input type="hidden" id="price" name="price" value="<%= theBook.price %>">
 										<div class="text-block">
 											<a href="#x" class="btn btn-primary text-white" onclick="makePayment()">Pay Now</a>
 										</div>
@@ -138,103 +132,111 @@
 						</div>
 						<!-- About Book details -->
 						<div class="text-block mt-3">
-							<% if(theBook.description.length > 20) { %>
-								<p class="text-dark"><%= theBook.description.substr(0, 500) %><span class="text-dark text-muted text-p-hover">...Read more</span></p>
-							<% }else{ %> 
-								<p class="text-dark"><%= theBook.description %></p>
-							<% } %>  
+							<p class="text-dark">
+								<span class="text-dark">
+									<%= theBook.description.substr(0, 500) %>
+								</span>
+								<span class="text-dark" data-hidden="true">
+									<%= theBook.description.substr(500, theBook.description.length) %>
+								</span>
+								<span class="text-dark text-muted text-p-hover cursor-pointer" onclick="showHidden(this)">...Read more</span>
+							</p>
 						</div>
 						<hr class="hr w-50">
 						<!-- TODO: Status and pages -->
 						<div class="text-block">
 							<small class="text-dark text-muted">Status: Unpaied</small><br>
 							<small class="text-dark text-muted">Pages: <%= theBook.length %> </small>
-							<small class="text-dark text-muted text-p-hover">More details...</small>
 						</div>
-						<div class="text-block">
+						<div class="text-block" data-hidden="true">
 							<small class="text-dark text-muted">Language: English</small><br>
 							<small class="text-dark text-muted">Published: 2016</small>
 						</div>
+						<small class="text-dark text-muted text-p-hover cursor-pointer" onclick="showHidden(this)">...Read more</small>
+						<!-- this div is used to hide this part -->
+						<div class="position-relative d-none">
 						<hr class="hr w-100">
 						<!-- Area for Question and Answer -->
 						<div class="heading">
 							<h6 class="text-dark">Questions and Comments</h6>
 						</div>
 						<!-- TODO: Form to be submited for to the books/question route -->
-						<form action="/books/question" method="post">
-							<div class="form-group">
-								<label for="comment">Comment:</label>
-								<textarea class="form-control" rows="2" id="comment" placeholder="Ask a question or place a comment about this theBook..."></textarea>
-							</div>
-							<button type="submit" class="btn btn-primary mt-2">Send</button>
-						</form>
-						<!-- Comment section -->
-						<div class="container-fluid">
-							<!-- COMMENT 1 -->
-							<div class="comment">
-								<hr class="hr w-100">
-								<div class="row">
-									<!-- comment img for profile -->
-									<div class="col-md-2">
-										<img src="/assets/img/profile1.jpg" alt="profile" class="img-fluid rounded-circle" style="height: 3rem;width: 3rem;">
-									</div>
-									<div class="col-md-10">
-										<div class="heading">
-											<div class="h6 text-dark">Profile Name</div>
+							<div class="cursor-band position-absolute w-100 h-100" style="filter: blur(5rem); background-color: #ffffff"></div>
+							<form action="/books/question" method="post">
+								<div class="form-group">
+									<label for="comment">Comment:</label>
+									<textarea class="form-control" rows="2" id="comment" placeholder="Ask a question or place a comment about this theBook..."></textarea>
+								</div>
+								<button type="submit" class="btn btn-primary mt-2">Send</button>
+							</form>
+							<!-- Comment section -->
+							<div class="container-fluid">
+								<!-- COMMENT 1 -->
+								<div class="comment">
+									<hr class="hr w-100">
+									<div class="row">
+										<!-- comment img for profile -->
+										<div class="col-md-2">
+											<img src="/assets/img/profile1.jpg" alt="profile" class="img-fluid rounded-circle" style="height: 3rem;width: 3rem;">
 										</div>
-										<div class="text-block">
-											<p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem sit natus atque fugiat.</p>
-										</div>
-										<div class="text-block">
-											<small class="text-dark text-muted">Like 21</small><span class="text-dark">&nbsp;·&nbsp;</span>
-											<small class="text-dark text-muted"><i class="fa fa-thumbs-up"></i></small><span class="text-dark">&nbsp;·&nbsp;</span>
-											<small class="text-dark text-muted">Jan 21, 2021</small>
+										<div class="col-md-10">
+											<div class="heading">
+												<div class="h6 text-dark">Profile Name</div>
+											</div>
+											<div class="text-block">
+												<p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem sit natus atque fugiat.</p>
+											</div>
+											<div class="text-block">
+												<small class="text-dark text-muted">Like 21</small><span class="text-dark">&nbsp;·&nbsp;</span>
+												<small class="text-dark text-muted"><i class="fa fa-thumbs-up"></i></small><span class="text-dark">&nbsp;·&nbsp;</span>
+												<small class="text-dark text-muted">Jan 21, 2021</small>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<!-- COMMENT 2 -->
-							<div class="comment">
-								<hr class="hr w-100">
-								<div class="row">
-									<!-- comment img for profile -->
-									<div class="col-md-2">
-										<img src="/assets/img/profile1.jpg" alt="profile" class="img-fluid rounded-circle" style="height: 3rem;width: 3rem;">
-									</div>
-									<div class="col-md-10">
-										<div class="heading">
-											<div class="h6 text-dark">Profile Name</div>
+								<!-- COMMENT 2 -->
+								<div class="comment">
+									<hr class="hr w-100">
+									<div class="row">
+										<!-- comment img for profile -->
+										<div class="col-md-2">
+											<img src="/assets/img/profile1.jpg" alt="profile" class="img-fluid rounded-circle" style="height: 3rem;width: 3rem;">
 										</div>
-										<div class="text-block">
-											<p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem sit natus atque fugiat.</p>
-										</div>
-										<div class="text-block">
-											<small class="text-dark text-muted">Like 21</small><span class="text-dark">&nbsp;·&nbsp;</span>
-											<small class="text-dark text-muted"><i class="fa fa-thumbs-up"></i></small><span class="text-dark">&nbsp;·&nbsp;</span>
-											<small class="text-dark text-muted">Jan 21, 2021</small>
+										<div class="col-md-10">
+											<div class="heading">
+												<div class="h6 text-dark">Profile Name</div>
+											</div>
+											<div class="text-block">
+												<p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem sit natus atque fugiat.</p>
+											</div>
+											<div class="text-block">
+												<small class="text-dark text-muted">Like 21</small><span class="text-dark">&nbsp;·&nbsp;</span>
+												<small class="text-dark text-muted"><i class="fa fa-thumbs-up"></i></small><span class="text-dark">&nbsp;·&nbsp;</span>
+												<small class="text-dark text-muted">Jan 21, 2021</small>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<!-- COMMENT 3 -->
-							<div class="comment">
-								<hr class="hr w-100">
-								<div class="row">
-									<!-- comment img for profile -->
-									<div class="col-md-2">
-										<img src="/assets/img/profile1.jpg" alt="profile" class="img-fluid rounded-circle" style="height: 3rem;width: 3rem;">
-									</div>
-									<div class="col-md-10">
-										<div class="heading">
-											<div class="h6 text-dark">Profile Name</div>
+								<!-- COMMENT 3 -->
+								<div class="comment">
+									<hr class="hr w-100">
+									<div class="row">
+										<!-- comment img for profile -->
+										<div class="col-md-2">
+											<img src="/assets/img/profile1.jpg" alt="profile" class="img-fluid rounded-circle" style="height: 3rem;width: 3rem;">
 										</div>
-										<div class="text-block">
-											<p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem sit natus atque fugiat.</p>
-										</div>
-										<div class="text-block">
-											<small class="text-dark text-muted">Like 21</small><span class="text-dark">&nbsp;·&nbsp;</span>
-											<small class="text-dark text-muted"><i class="fa fa-thumbs-up"></i></small><span class="text-dark">&nbsp;·&nbsp;</span>
-											<small class="text-dark text-muted">Jan 21, 2021</small>
+										<div class="col-md-10">
+											<div class="heading">
+												<div class="h6 text-dark">Profile Name</div>
+											</div>
+											<div class="text-block">
+												<p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem sit natus atque fugiat.</p>
+											</div>
+											<div class="text-block">
+												<small class="text-dark text-muted">Like 21</small><span class="text-dark">&nbsp;·&nbsp;</span>
+												<small class="text-dark text-muted"><i class="fa fa-thumbs-up"></i></small><span class="text-dark">&nbsp;·&nbsp;</span>
+												<small class="text-dark text-muted">Jan 21, 2021</small>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -242,6 +244,7 @@
 						</div>
 					</div>
 					<!-- Others -->
+					<!-- Column 3 -->
 					<div class="col-md-4 d-none d-md-block">
 						<!-- About the author -->
 						<div class="mt-5">
@@ -253,7 +256,7 @@
 							</div>
 							<div class="text-block">
 								<p class="text-dark">
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quod fugiat excepturi libero, expedita iure suscipit? Totam repudiandae, in tempora itaque facere deleniti provident recusandae quo optio quod a odio.
+									<%= page.aboutMe.body[Math.floor(Math.random() * 4)] %> 
 								</p>
 							</div>
 						</div>
@@ -310,7 +313,30 @@
 		<%- include("components/loginModal") %>
 		<!-- Contact / Footer -->
 		<%- include("partials/_contact_footer") %>
+		<!-- Axios -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.22.0/axios.min.js"
+		integrity="sha512-m2ssMAtdCEYGWXQ8hXVG4Q39uKYtbfaJL5QMTbhl2kc6vYyubrKHhr6aLLXW4ITeXSywQLn1AhsAaqrJl8Acfg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<!-- flutterwave script -->
 		<script src="/js/flutterwave.js"></script>
+		<script>
+			const hiddenData = document.querySelectorAll("[data-hidden='true']");
+			for (let i = 0; i < hiddenData.length; i++) {
+				const data = hiddenData[i];
+				data.style.display = "none";
+			}
+			function showHidden(e) {
+				if(JSON.parse(e.previousElementSibling.getAttribute("data-hidden"))){
+					e.innerText = "Read less";
+					e.previousElementSibling.style.display = "block";
+					e.previousElementSibling.setAttribute("data-hidden", "false");
+				}else{
+					console.log("false");
+					e.innerText = "...Read more";
+					e.previousElementSibling.style.display = "none";
+					e.previousElementSibling.setAttribute("data-hidden", "true");
+				}
+			}
+		</script>
 <!-- Scripts -->
 <%- include("partials/_scripts") %>

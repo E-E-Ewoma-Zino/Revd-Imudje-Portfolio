@@ -10835,3 +10835,10 @@ section {
 	left: 50%;
 	transform: translateX(-45%);
 }
+
+.cursor-pointer{
+	cursor: pointer;
+}
+.cursor-band{
+	cursor: not-allowed;
+}

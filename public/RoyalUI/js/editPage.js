@@ -86,7 +86,17 @@ function savePage() {
 				title: constPageBody[19].value,
 				body: constPageBody[20].value
 			}
-		]
+		],
+		profile: {
+			fieldname:  constPageBody[21].value,
+			originalname:  constPageBody[22].value,
+			encoding:  constPageBody[23].value,
+			mimetype:  constPageBody[24].value,
+			destination:  constPageBody[25].value,
+			filename:  constPageBody[26].value,
+			path:  constPageBody[27].value,
+			size:  constPageBody[28].value
+		},
 	}
 
 	postAxios({ url: "/admin/editpage", _data: pageDetails }, (err, res) => {
