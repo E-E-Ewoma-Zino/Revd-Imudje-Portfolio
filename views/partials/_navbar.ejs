@@ -2,9 +2,9 @@
 <nav id="navbar" class="navbar navbar-expand-md navbar-dark position-fixed-md top-0 w-100">
 	<div class="container d-flex justify-content-between align-items-center pt-2">
 		<a class="navbar-brand" href="/">
-			<img src="/<%= page.profile.path %>" style="width: 3rem; height: 3rem" alt="profile" class="img-fluid rounded-circle" width="50vw"
+			<img src="/<%= page.profile.path %>" style="width: 8vmin; height: 8vmin" alt="profile" class="img-fluid rounded-circle" width="50vw"
 				height="50vw">
-			<div class="navbar-name d-inline-block"><%= page.aboutMe.names.title + " " + page.aboutMe.names.lastName %></div>
+			<div class="navbar-name d-inline-block fn-x2"><%= page.aboutMe.names.title + " " + page.aboutMe.names.lastName %></div>
 		</a>
 		<button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<i class="fas fa-ellipsis-v"></i>
@@ -13,41 +13,42 @@
 			id="collapsibleNavbar">
 			<ul class="navbar-nav d-flex justify-content-md-between align-items-md-center w-md-70">
 				<li class="nav-item">
-					<a class="nav-link" href="/#About">About</a>
+					<a class="nav-link fn-x2" href="/#About">About</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/#Believes">Believes</a>
+					<a class="nav-link fn-x2" href="/#Believes">Believes</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/books">Books</a>
+					<a class="nav-link fn-x2" href="/books">Books</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/#Contact">Contact</a>
+					<a class="nav-link fn-x2" href="/#Contact">Contact</a>
 				</li>
 				<!-- on small screens show full name (Achievements) -->
 				<li class="nav-item d-md-none">
-					<a class="nav-link" href="/#Achievements">Achievements</a>
+					<a class="nav-link fn-x2" href="/#Achievements">Achievements</a>
 				</li>
 				<!-- on large screens show icon -->
 				<li class="nav-item d-none d-md-block" title="Achievements">
-					<a class="nav-link" href="/#Achievements"><i class="fa fa-trophy"></i></a>
+					<a class="nav-link" href="/#Achievements"><i class="fa fa-trophy fn-x2"></i></a>
 				</li>
 				<% if(user) { %> 
 				<li class="nav-item rounded-pill text-center w-10">
 					<div class="dropdown">
 						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 							<!-- This is the user logIn name -->
-							<span class="text-light" style="font-weight: 700;"><%= user.substr(0,1).toUpperCase() %></span>
+							<span class="text-light fn-x2" style="font-weight: 700;"><%= user.substr(0,1).toUpperCase() %></span>
 						</button>
 						<div class="dropdown-menu translate-md-middle-x bg-black">
-						  <a class="dropdown-item text-light bg-s-hover" href="/mybooks">My books</a>
-						  <a class="dropdown-item text-light bg-s-hover" href="/logout">LogOut</a>
+						  <a class="dropdown-item text-light fn-x2 bg-s-hover" href="/mybooks">My books</a>
+						  <a class="dropdown-item text-muted fn-x2 disabled" href="javascript:void(0)">Change Password</a>
+						  <a class="dropdown-item text-light fn-x2 bg-s-hover" href="/logout">LogOut</a>
 						</div>
 					  </div>
 				</li>
 				<% }else{ %>
 					<li class="nav-item rounded-pill text-center w-lg-15 bg-p">
-						<a class="nav-link" href="#x" onclick="openLogInModal()"><strong>Login</strong></a>
+						<a class="nav-link fn-x2" href="#x" onclick="openLogInModal()"><strong>Login</strong></a>
 					</li>
 				<% } %> 
 			</ul>

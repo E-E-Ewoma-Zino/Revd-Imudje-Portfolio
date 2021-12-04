@@ -4,7 +4,7 @@
 	<div id="Contact" class="bg-s w-100 mt-5 pb-5 text-light">
 		<div class="container my-5">
 			<div class="heading">
-				<h2 class="text-center text-light">My Contact</h2>
+				<h2 class="text-center text-light fn-x4">My Contact</h2>
 			</div>
 			<div class="design d-flex justify-content-center align-items-center w-100">
 				<hr class="hr w-10 bg-p">
@@ -13,7 +13,7 @@
 				<hr class="hr w-10 bg-p">
 			</div>
 			<div class="text-block">
-				<p class="container text-center text-light">
+				<p class="container text-center text-light fn-x2">
 					You have something to say? Send a mail let us talk about it.
 				</p>
 			</div>
@@ -22,17 +22,17 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="name">Name</label>
-						<input type="Name" class="form-control" id="name" name="name" placeholder="Enter Name">
+						<label class="fn-x2" for="name">Name</label>
+						<input type="Name" class="form-control fn-x2" id="name" name="name" placeholder="Enter Name">
 					</div>
 				</div>
 				<!--  -->
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="email">Email address</label>
-						<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+						<label class="fn-x2" for="email">Email address</label>
+						<input type="email" class="form-control fn-x2" id="email" name="email" aria-describedby="emailHelp"
 							placeholder="Enter email">
-						<small id="emailHelp" class="form-text text-light">We'll never share your email with anyone
+						<small id="emailHelp" class="form-text text-light fn-small">We'll never share your email with anyone
 							else.</small>
 					</div>
 				</div>
@@ -41,8 +41,8 @@
 				<!--  -->
 				<div class="col-md-12">
 					<div class="form-group">
-						<label for="exampleFormControlTextarea1">Message</label>
-						<textarea class="form-control" id="message" name="message" rows="3"
+						<label class="fn-x2" for="exampleFormControlTextarea1">Message</label>
+						<textarea class="form-control fn-x2" id="message" name="message" rows="3"
 							placeholder="Send a mail..."></textarea>
 					</div>
 				</div>
@@ -50,14 +50,14 @@
 			<div class="row">
 				<!--  -->
 				<div class="col-md-4">
-					<button type="submit" class="btn btn-primary mt-3">Submit</button>
+					<button type="submit" class="btn btn-primary fn-x2 mt-3">Submit</button>
 				</div>
 				<div class="col-md-8 mt-2">
 					<ul class="nav justify-content-evenly justify-content-md-end">
-						<li class="nav-nav-link ms-md-2"><a href="tel:+<%= page.aboutMe.phoneNo %>"><button type="button" class="btn rounded-circle p-2"><i class="fa fa-phone text-light fa-2x"></i></button></a></li>
-						<li class="nav-nav-link ms-md-2"><a href="<%= page.aboutMe.facebook %>" target="_blank" class="btn rounded-circle p-2"><i class="fab fa-facebook text-light fa-2x"></i></a></li>
-						<li class="nav-nav-link ms-md-2"><a href="tel:+<%= page.aboutMe.whatsapp %>" class="btn rounded-circle p-2"><i class="fab fa-whatsapp text-light fa-2x"></i></a></li>
-						<li class="nav-nav-link ms-md-2"><a href="mailto:<%= page.aboutMe.email %>"><button type="button" class="btn rounded-circle p-2"><i class="fa fa-envelope text-light fa-2x"></i></button></a></li>
+						<li class="nav-nav-link ms-md-2"><a href="tel:+<%= page.aboutMe.phoneNo %>"><button type="button" class="btn rounded-circle p-2"><i class="fa fa-phone text-light fn-x4"></i></button></a></li>
+						<li class="nav-nav-link ms-md-2"><a href="<%= page.aboutMe.facebook %>" target="_blank" class="btn rounded-circle p-2"><i class="fab fa-facebook text-light fn-x4"></i></a></li>
+						<li class="nav-nav-link ms-md-2"><a href="tel:+<%= page.aboutMe.whatsapp %>" class="btn rounded-circle p-2"><i class="fab fa-whatsapp text-light fn-x4"></i></a></li>
+						<li class="nav-nav-link ms-md-2"><a href="mailto:<%= page.aboutMe.email %>"><button type="button" class="btn rounded-circle p-2"><i class="fa fa-envelope text-light fn-x4"></i></button></a></li>
 					</ul>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 		<!-- Footer -->
 		<div class="d-flex flex-column justify-content-center align-items-center">
 			<hr class="hr w-75">
-			<span class="text-center"> Made with <i class="fa fa-heart"></i> by <a href="http://www.ewomaetemire.com"
+			<span class="text-center fn-small"> Made with <i class="fa fa-heart"></i> by <a href="http://www.ewomaetemire.com"
 					target="_blank" class="link text-p text-light-hover">Art In
 					Coding</a>. All Rights Reserved &copy; <span id="year"></span></span>
 			<script>window.onload = () => { document.getElementById("year").innerHTML = new Date().getFullYear(); }</script>
