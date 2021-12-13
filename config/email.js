@@ -1,50 +1,53 @@
 // This script is in-charge of sending mails to users
 const nodemailer = require("nodemailer");
-const { google } = require("googleapis");
 
-// CREATE AUTHORISATION
-const oauth2Client = new google.auth.OAuth2(process.env.CLIENT_ID, process.env.CLIENT_SECRET, process.env.REDIERCT_URL);
-oauth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
-
-// for sending messages using nodemailer
 module.exports = ({ from: from, to: to, subject: subject, text: text, html: html }, callback) => {
-
-	// Generate and Get access token
-	oauth2Client.getAccessToken((accessToken_err, accessToken, tokenResponse) => {
-		if(accessToken_err){
-			console.error("accessToken_err::", accessToken_err);
-			return callback(accessToken_err, null, null);
+	var transporter = nodemailer.createTransport({
+		host: "srv5.myukserver.com",
+		// port: 465,
+		secure: true, // true for 465, false for other ports
+		auth: {
+			user: "info@drimudjejp.com",
+			pass: "Omowho6*!!!"
 		}
-		else{	
-			// console.log("Generated access token:", accessToken);
-	
-			const transporter = nodemailer.createTransport({
-				service: "gmail",
-				auth: {
-					type: "OAuth2",
-					user: "eewoma75@gmail.com",
-					clientId: process.env.CLIENT_ID,
-					clientSecret: process.env.CLIENT_SECRET,
-					refresh_token: process.env.REFRESH_TOKEN,
-					accessToken: accessToken
-				}
-			});
-	
-			transporter.sendMail({
-				from: from,
-				to: to,
-				subject: subject,
-				text: text,
-				html: html
-			},(email_err, info)=>{
-				if(email_err){
-					console.error("email_err::", email_err);
-					return callback(null, email_err, null);
-				}
-				else{
-					callback(null, null, info);
-				}
-			});
+	});
+
+	var mailOptions = {
+		from: from,
+		to: to,
+		subject: subject,
+		text: text
+	};
+
+	transporter.sendMail(mailOptions, function (error, info) {
+		if (error) {
+			console.log("Email Error:::", error);
+			callback(error, null);
+		} else {
+			console.log("Email sent: " + info.response);
+			callback(null, info);
 		}
 	});
 }
+
+// const mailgun = require("mailgun-js");
+// module.exports = ({ from: from, to: to, subject: subject, text: text, html: html }, callback) => {
+
+// 	const DOMAIN = "sandbox1ded1b06d84d49dd9d3df072eb1bb105.mailgun.org";
+// 	const mg = mailgun({ apiKey: "c9581ce37419ea54cbfca5b36bccbcba-8ed21946-f1885e72", domain: DOMAIN });
+// 	const data = {
+// 		from: from,
+// 		to: to,
+// 		subject: subject,
+// 		text: text
+// 	};
+// 	mg.messages().send(data, function (error, body) {
+// 		if(error){
+// 			console.log(error);
+// 			callback(error, null);
+// 		}else{
+// 			console.log(body);
+// 			callback(null, body);
+// 		}
+// 	});
+// }

@@ -73,6 +73,7 @@ module.exports = {
 									return callback(unlink_err, null);
 								}
 								console.log("file deleted successfully");
+								callback(null, true);
 							});
 						});
 						console.log("Deleted Shelf");
@@ -98,6 +99,7 @@ module.exports = {
 									return callback(unlink_err, null);
 								}
 								console.log("file deleted successfully");
+								callback(null, true);
 							});
 						});
 						console.log("Deleted Image");

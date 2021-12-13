@@ -42,16 +42,16 @@ module.exports = {
 
 			// Sending Email using nodemailer
 			email({
-				from: `${page.aboutMe.names.title} ${page.aboutMe.names.lastName} <${req.body.email}>`,
-				to: "eewoma75@gmail.com",
+				from: `${req.body.name} <${req.body.email}>`,
+				to: "info@drimudjejp.com",
 				subject: `Message from ${req.body.name}`,
 				text: req.body.message,
 				html: emailTemplate({logoUrl: "www.mm.com", fromMail: req.body.email, title: `Message from ${req.body.name}`, body: req.body.message, footer: "www.rev-imudje.com"})
-			}, (accessToken_err, email_err, info)=>{
+			}, (email_err, info)=>{
 				if(email_err){
 					_bird.message("danger", "Failed to send mail!");
 				}
-				else if(accessToken_err){
+				else if(null){
 					_bird.message("danger", "No internet connection");
 				}
 				else{
