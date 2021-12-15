@@ -1,0 +1,95 @@
+<%- include("partials/_head") %>
+	<div class="container-scroller">
+		<!-- partial:partials/_navbar.html -->
+		<%- include("partials/_navbar") %>
+			<!-- partial -->
+			<div class="container-fluid page-body-wrapper">
+				<!-- partial:partials/_sidebar.html -->
+				<%- include("partials/_sidebar") %>
+					<!-- partial -->
+					<div class="main-panel">
+						<div class="content-wrapper">
+							<div class="row">
+								<div class="col-md-12 grid-margin">
+									<div class="d-flex justify-content-between align-items-center">
+										<div>
+											<h4 class="font-weight-bold mb-0">Message Description</h4>
+										</div>
+										<div>
+											<a href="/admin/dashboard" class="btn btn-primary btn-icon-text btn-rounded">
+												<i class="ti-arrow-left btn-icon-prepend"></i>Back
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-lg-12 grid-margin stretch-card">
+									<div class="card">
+										<div class="card-body">
+											<h4 class="card-title">Message from <%= message.name %>
+											</h4>
+											<div class="row d-flex justify-content-md-between">
+												<div class="col d-flex flex-column justify-content-md-center my-2">
+													<span class="card-description mb-1">See message in cPanel</span>
+													<a href="https://srv5.myukserver.com/webmail/?_task=mail&_mbox=INBOX">See Web mail</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 stretch-card">
+									<div class="card">
+										<div class="card-body">
+											<h4 class="card-title">Message Information</h4>
+											<div class="row d-flex justify-content-md-between">
+												<div class="col d-flex flex-column justify-content-md-center my-2">
+													<span class="card-description mb-1">Email Address</span>
+													<a href="mailto: <%= message.message %> " class="text-muted">
+														<%= message.email%>
+													</a>
+												</div>
+											</div>
+											<div class="row d-flex justify-content-md-between">
+												<div class="col d-flex flex-column justify-content-md-center my-2">
+													<span class="card-description mb-1">Date</span>
+													<span class="text-muted">
+														<%= JSON.stringify(message.createdAt).substr(1, 10) %>
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 stretch-card">
+									<div class="card">
+										<div class="card-body">
+											<h4 class="card-title">Message Information</h4>
+											<div class="row d-flex justify-content-md-between">
+												<div class="col d-flex flex-column justify-content-md-center cursor-pointer my-2" onclick="modal({type: 'info', message: '<%# message.details.address1 %>', title: 'Shipping Address'})">
+													<span class="card-description mb-1">Message</span>
+													<span class="text-muted">
+														<%= message.message %>
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- content-wrapper ends -->
+						<%- include("partials/_footer") %>
+					</div>
+					<!-- main-panel ends -->
+			</div>
+			<!-- page-body-wrapper ends -->
+	</div>
+	<!-- container-scroller -->
+	<%- include("partials/_script") %>
+		</body>
+
+		</html>

@@ -11,7 +11,7 @@ module.exports = {
 			select: ["path"]
 		}).exec((err, books) => {
 			if (err) {
-				console.log(":::", err);
+				console.log(":::Book_err", err);
 				callback(err, null);
 			}
 			else {
@@ -25,7 +25,7 @@ module.exports = {
 			select: ["path"]
 		}).exec((err, book) => {
 			if (err) {
-				console.log(":::", err);
+				console.log(":::Book_err", err);
 				callback(err, null);
 			}
 			else {

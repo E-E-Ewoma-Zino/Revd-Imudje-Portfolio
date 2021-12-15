@@ -13,6 +13,10 @@ const bookSchema = mongoose.Schema({
 	image: {
 		ref: "Image",
 		type: mongoose.Schema.Types.ObjectId
+	},
+	createdAt: {
+		type: Date,
+		default: Date.now
 	}
 });
 

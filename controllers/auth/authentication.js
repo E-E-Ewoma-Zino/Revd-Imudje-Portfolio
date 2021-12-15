@@ -66,8 +66,13 @@ module.exports = {
 	},
 	logOut: (req, res) => {
 		_bird.message("primary", "Bye " + req.user.username);
-		req.logOut();
-		res.redirect("/");
+		if (req.originalUrl == "/admin/logout") {
+			req.logOut();
+			res.redirect("/admin");
+		}else{
+			req.logOut();
+			res.redirect("/");
+		}
 	},
 	// Check the auth level for the user and the authlevel from the form used to send the req then send to the user pages if 0 or the admin page if 1
 	adminOnly: (req) => {

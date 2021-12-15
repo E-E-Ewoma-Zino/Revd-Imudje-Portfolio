@@ -4,7 +4,7 @@ const _bird = require("../../middleware/messageBird");
 const _page = require("../../middleware/page");
 const _books = require("../../middleware/books");
 const error500 = require("../errors/error500");
-const payments = require("../../middleware/payments");
+const _payments = require("../../middleware/payments");
 
 module.exports = (req, res) => {
 	// check if the user is authorized and if the user is the admin
@@ -16,7 +16,7 @@ module.exports = (req, res) => {
 			return error500(req, res);
 		}
 		else {
-			payments.all((payment_err, payments) => {
+			_payments.all((payment_err, payments) => {
 				if (payment_err) {
 					_bird.message("danger", payment_err);
 					return error500(req, res);

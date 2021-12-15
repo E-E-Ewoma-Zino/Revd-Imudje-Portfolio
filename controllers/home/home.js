@@ -5,6 +5,7 @@ const _books = require("../../middleware/books");
 const error500 = require("../errors/error500");
 const _page = require("../../middleware/page");
 const email = require("../../config/email");
+const messages = require("../../middleware/messages");
 
 module.exports = {
 	get: (req, res) => {
@@ -58,6 +59,12 @@ module.exports = {
 					_bird.message("success", "Your mail has been sent.");
 					console.log("info", info);
 					console.log("Email sent>>");
+					// add message to db
+					messages.create({name: req.body.name, email: req.body.email, message: req.body.message}, (createMessage_err, done)=>{
+						if(createMessage_err){
+							return error500(req, res);
+						}
+					});
 				}
 				res.redirect("back");
 			});

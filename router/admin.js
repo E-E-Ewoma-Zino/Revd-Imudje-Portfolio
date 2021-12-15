@@ -1,9 +1,12 @@
+const messagesDetails = require("../controllers/admin/messagesDetails");
+const paymentDetails = require("../controllers/admin/paymentDetails");
+const authentication = require("../controllers/auth/authentication");
 const dashboard = require("../controllers/admin/dashboard");
 const editBook = require("../controllers/admin/editBook");
 const addBooks = require("../controllers/admin/addBooks");
-const paymentDetails = require("../controllers/admin/paymentDetails");
 const editPage = require("../controllers/admin/editPage");
 const settings = require("../controllers/admin/settings");
+const message = require("../controllers/admin/message");
 const login = require("../controllers/admin/login");
 const books = require("../controllers/admin/books");
 const upload = require("../config/multer");
@@ -19,13 +22,30 @@ router.get("/", (req, res) => login.get(req, res));
 // @route	Post admin/
 router.post("/", (req, res) => login.post(req, res));
 
+// @desc	LogOut User
+// @route	GET
+// for when someone wants to logOut
+router.get("/logout", (req, res) => authentication.logOut(req, res));
+
 // @desc	Dashboard Router
 // @route	get
 router.get("/dashboard", (req, res) => dashboard(req, res));
 
+// @desc	Messages Router
+// @route	get
+router.get("/messages", (req, res) => message.get(req, res));
+
+// @desc	Messages Router
+// @route	get
+router.post("/messages", (req, res) => message.post(req, res));
+
 // @desc	Payment Details Router
 // @route	get
 router.get("/paymentdetails", (req, res) => paymentDetails(req, res));
+
+// @desc	Message Details Router
+// @route	get
+router.get("/messagedetails", (req, res) => messagesDetails(req, res));
 
 // @desc	Add New Book Router
 // @route	get
