@@ -3,6 +3,7 @@ const { adminOnly } = require("../auth/authentication");
 const _bird = require("../../middleware/messageBird");
 const _books = require("../../middleware/books");
 const _payments = require("../../middleware/payments");
+const _messages = require("../../middleware/messages");
 const error500 = require("../errors/error500");
 const _page = require("../../middleware/page");
 
@@ -21,21 +22,28 @@ module.exports = {
 						_bird.message("danger", allPayment_err);
 						return error500(req, res);
 					}
-
-					_books.allBooks((book_err, books) => {
-						if (book_err) {
-							console.log("::book_err:", book_err);
-							_bird.message("danger", book_err);
-							error500(req, res);
-						} else {
-							res.render("admin/books", {
-								title: "admin",
-								bird: _bird.fly,
-								payments: payments,
-								books: books,
-								page: page
-							});
+					_messages.allMessages((allMessages_err, messages) => {
+						if (allMessages_err) {
+							_bird.message("danger", allMessages_err);
+							return error500(req, res);
 						}
+	
+						_books.allBooks((book_err, books) => {
+							if (book_err) {
+								console.log("::book_err:", book_err);
+								_bird.message("danger", book_err);
+								error500(req, res);
+							} else {
+								res.render("admin/books", {
+									title: "admin",
+									bird: _bird.fly,
+									payments: payments,
+									messages: messages,
+									books: books,
+									page: page
+								});
+							}
+						});
 					});
 				});
 			}

@@ -70,8 +70,7 @@
 											<p class="card-title text-md-center text-xl-left">Messages</p>
 											<div
 												class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-												<!-- TODO: Add real data to this place -->
-												<h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">0</h3>
+												<h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0"><%= messages.length %></h3>
 												<i class="ti-email icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
 											</div>
 										</div>
@@ -93,7 +92,7 @@
 													<div id="<%= book._id.toString().substr(6, 18) %>"
 														class="col-md-4 d-flex justify-content-center align-items-center my-3">
 														<div class="card card-options-control mw-90">
-															<img src="/<%= book.image.path %>"
+															<img src="http://www.drimudjejp.com/<%= book.image.path %>"
 																class="img-fluid card-image">
 															<div class="card-body">
 																<div

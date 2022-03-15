@@ -5,6 +5,7 @@ const _page = require("../../middleware/page");
 const _books = require("../../middleware/books");
 const error500 = require("../errors/error500");
 const _payments = require("../../middleware/payments");
+const _messages = require("../../middleware/messages");
 
 module.exports = (req, res) => {
 	// check if the user is authorized and if the user is the admin
@@ -21,18 +22,25 @@ module.exports = (req, res) => {
 					_bird.message("danger", payment_err);
 					return error500(req, res);
 				}
-				_books.allBooks((allBooks_err, books) => {
-					if (allBooks_err) {
-						_bird.message("danger", allBooks_err);
+				_messages.allMessages((message_err, messages) => {
+					if (message_err) {
+						_bird.message("danger", message_err);
 						return error500(req, res);
 					}
-
-					return res.render("admin/dashboard", {
-						title: "admin",
-						bird: _bird.fly,
-						books: books,
-						page: page,
-						payments: payments
+					_books.allBooks((allBooks_err, books) => {
+						if (allBooks_err) {
+							_bird.message("danger", allBooks_err);
+							return error500(req, res);
+						}
+				
+						return res.render("admin/dashboard", {
+							title: "admin",
+							bird: _bird.fly,
+							books: books,
+							page: page,
+							messages: messages,
+							payments: payments
+						});
 					});
 				});
 			});

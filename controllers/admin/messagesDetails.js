@@ -16,7 +16,7 @@ module.exports = (req, res) => {
 			return error500(req, res);
 		}
 		else {
-			_messages.allMessages((allMessage_err, messages) => {
+			_messages.allMessagesMessages((allMessage_err, messages) => {
 				if (allMessage_err) {
 					_bird.message("danger", allMessage_err);
 					return error500(req, res);

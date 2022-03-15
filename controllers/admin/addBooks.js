@@ -1,6 +1,7 @@
 // Components for adding books
 const { adminOnly } = require("../auth/authentication");
 const _payments = require("../../middleware/payments");
+const _messages = require("../../middleware/messages");
 const _bird = require("../../middleware/messageBird");
 const _books = require("../../middleware/books");
 const _page = require("../../middleware/page");
@@ -25,20 +26,27 @@ module.exports = {
 						_bird.message("danger", allPayment_err);
 						return error500(req, res);
 					}
-					_books.allBooks((book_err, books) => {
-						if (book_err) {
-							console.log("::book_err:", book_err);
-							_bird.message("danger", book_err);
-							error500(req, res);
-						} else {
-							res.render("admin/addbook", {
-								title: "admin",
-								bird: _bird.fly,
-								payments: payments,
-								books: books,
-								page: page
-							});
+					_messages.allMessages((allMessage_err, messages) => {
+						if (allMessage_err) {
+							_bird.message("danger", allMessage_err);
+							return error500(req, res);
 						}
+						_books.allBooks((book_err, books) => {
+							if (book_err) {
+								console.log("::book_err:", book_err);
+								_bird.message("danger", book_err);
+								error500(req, res);
+							} else {
+								res.render("admin/addbook", {
+									title: "admin",
+									bird: _bird.fly,
+									payments: payments,
+									messages: messages,
+									books: books,
+									page: page
+								});
+							}
+						});
 					});
 				});
 			}
