@@ -31,7 +31,7 @@ module.exports = {
 							_bird.message("danger", book_err);
 							error500(req, res);
 						} else {
-							res.render("admin/books", {
+							res.render("admin/addbook", {
 								title: "admin",
 								bird: _bird.fly,
 								payments: payments,
@@ -57,46 +57,46 @@ module.exports = {
 				// _bird.message("danger", err);
 			} else {
 				is_shelf_save = true;
+				// create new Image
+				const newImage = new ImagesDB(req.files.image[0]);
+				// save book image in images
+				newImage.save((error) => {
+					if (error) {
+						console.log(":::", error);
+						// _bird.message("danger", err);
+					} else {
+						is_image_save = true;
+						// creaate book to db
+						const newBook = new Books({
+							title: req.body.title,
+							description: req.body.description,
+							price: req.body.price,
+							length: req.body.length,
+							shelf: newShelf,
+							image: newImage
+						});
+				
+						newBook.save((err_upload) => {
+							if (err_upload) {
+								console.log(":::", err_upload);
+								// _bird.message("danger", err);
+							} else {
+								if (is_shelf_save && is_image_save) {
+									_bird.message("success", "Book Uploaded Successfully!");
+									res.redirect("back");
+								}
+								else {
+									console.log(is_image_save, is_shelf_save);
+									_bird.message("danger", "Something went wrong!");
+									res.redirect("back");
+								}
+							}
+						});
+					}
+				});
+		
 			}
 		});
 
-		// create new Image
-		const newImage = new ImagesDB(req.files.image[0]);
-		// save book image in images
-		newImage.save((error) => {
-			if (error) {
-				console.log(":::", error);
-				// _bird.message("danger", err);
-			} else {
-				is_image_save = true;
-			}
-		});
-
-		// creaate book to db
-		const newBook = new Books({
-			title: req.body.title,
-			description: req.body.description,
-			price: req.body.price,
-			length: req.body.length,
-			shelf: newShelf,
-			image: newImage
-		});
-
-		newBook.save((err_upload) => {
-			if (err_upload) {
-				console.log(":::", err_upload);
-				// _bird.message("danger", err);
-			} else {
-				if (is_shelf_save && is_image_save) {
-					_bird.message("success", "Book Uploaded Successfully!");
-					res.redirect("back");
-				}
-				else {
-					console.log(is_image_save, is_shelf_save);
-					_bird.message("danger", "Something went wrong!");
-					res.redirect("back");
-				}
-			}
-		});
 	}
 }

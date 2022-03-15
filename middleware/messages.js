@@ -1,5 +1,5 @@
 // controll message schema
-const Messages = require("../model/messages");
+const Messages = require("../model/Messages");
 
 module.exports = {
 	allMessages: (callback)=>{
