@@ -51,7 +51,7 @@
 											<div class="d-flex justify-content-between align-items-center mt-3">
 												<a href="/books/<%= book.title %>?pq=<%= book._id %>&tr=<%= Math.floor(Math.random() * 1233) %>" class="btn btn-primary text-white" target="_parent"
 													rel="noopener noreferrer">See Details</a>
-												<!-- <span class="price">$80</span> -->
+												<span class="price cursor-pointer" onclick="openModal({title: 'Get the hard copy', body: `Make a request to get the hard copy of the book. Tell us how you want to receive it. <br> WhatsApp us on <a class='text-p' href='tel:<%- page.aboutMe.whatsapp %>'><%- page.aboutMe.whatsapp %></a><br> Call us on <a class='text-p' href='tel:<%- page.aboutMe.phoneNo %>'><%- page.aboutMe.phoneNo %></a>`})">Get hard copy</span>
 											</div>
 										</div>
 									</div>
@@ -106,6 +106,8 @@
 		<%- include("components/messageBird") %>
 			<!-- LogIn and Register Modal -->
 		<%- include("components/loginModal") %>
+		<!-- LogIn and Register Modal -->
+		<%- include("components/modal") %>
 			<!-- Contact / Footer -->
 			<%- include("partials/_contact_footer") %>
 				<!-- Scripts -->
